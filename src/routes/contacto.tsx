@@ -82,10 +82,10 @@ function ContactoPage() {
               <div className="mt-10 pt-10 border-t border-border">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Seguinos</p>
                 <div className="flex gap-3">
-                  <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-11 w-11 border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
+                  <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-11 w-11 rounded-md border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
                     <Instagram className="h-4 w-4" />
                   </a>
-                  <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-11 w-11 border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
+                  <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-11 w-11 rounded-md border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
                     <Linkedin className="h-4 w-4" />
                   </a>
                 </div>
