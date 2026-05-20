@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, X } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Placeholder } from "@/components/site/Placeholder";
+import { Badge } from "@/components/site/Badge";
 import { projects, type Project, type ProjectCategory } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
