@@ -110,7 +110,7 @@ function ContactoPage() {
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white text-foreground px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors"
+                    className="inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white text-foreground rounded-md px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors"
                   >
                     <CalendarCheck className="h-4 w-4" />
                     Agendá una reunión online
