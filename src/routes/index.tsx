@@ -133,8 +133,8 @@ function HomePage() {
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Industrias</p>
               <ul className="flex flex-wrap gap-2">
                 {industries.map((ind) => (
-                  <li key={ind} className="border border-white/15 text-white/80 px-3 py-1.5 text-xs uppercase tracking-wider">
-                    {ind}
+                  <li key={ind}>
+                    <Badge variant="dark">{ind}</Badge>
                   </li>
                 ))}
               </ul>
