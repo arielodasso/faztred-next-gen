@@ -15,6 +15,7 @@ import {
 import { HeroSlider } from "@/components/site/HeroSlider";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
+import { Badge } from "@/components/site/Badge";
 import { ContactForm } from "@/components/site/ContactForm";
 import {
   featuredServices,
