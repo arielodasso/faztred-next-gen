@@ -15,6 +15,7 @@ import {
 import { HeroSlider } from "@/components/site/HeroSlider";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
+import { Badge } from "@/components/site/Badge";
 import { ContactForm } from "@/components/site/ContactForm";
 import {
   featuredServices,
@@ -87,11 +88,11 @@ function HomePage() {
             {contactCards.map((c) => {
               const Icon = c.icon;
               const Inner = (
-                <div className="group h-full bg-white border border-border p-8 flex flex-col hover:border-primary transition-all duration-300 hover:-translate-y-1">
-                  <div className="h-12 w-12 flex items-center justify-center bg-foreground text-white group-hover:bg-primary transition-colors">
+                <div className="group relative h-full bg-white border border-border rounded-xl p-8 flex flex-col hover:border-primary/50 hover:shadow-[0_20px_60px_-20px_rgba(204,0,0,0.25)] transition-all duration-300 hover:-translate-y-1">
+                  <div className="h-11 w-11 flex items-center justify-center bg-foreground text-white rounded-lg group-hover:bg-primary transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-foreground">{c.title}</h3>
+                  <h3 className="mt-6 text-xl font-bold text-foreground tracking-tight">{c.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{c.desc}</p>
                   <span className="mt-6 inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
                     {c.cta}
@@ -132,8 +133,8 @@ function HomePage() {
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Industrias</p>
               <ul className="flex flex-wrap gap-2">
                 {industries.map((ind) => (
-                  <li key={ind} className="border border-white/15 text-white/80 px-3 py-1.5 text-xs uppercase tracking-wider">
-                    {ind}
+                  <li key={ind}>
+                    <Badge variant="dark">{ind}</Badge>
                   </li>
                 ))}
               </ul>
@@ -154,14 +155,16 @@ function HomePage() {
             title="Servicios destacados"
             description="Una oferta completa de ingeniería, implementación y soporte para procesos industriales."
           />
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {featuredServices.map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.title} className="group bg-background p-7 hover:bg-foreground hover:text-white transition-colors duration-300">
-                  <Icon className="h-7 w-7 text-primary" />
-                  <h3 className="mt-5 text-base font-bold">{s.title}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground group-hover:text-white/60 leading-relaxed">
+                <div key={s.title} className="group relative bg-background border border-border rounded-xl p-7 hover:border-primary/40 hover:shadow-[0_20px_50px_-25px_rgba(204,0,0,0.3)] transition-all duration-300">
+                  <div className="h-11 w-11 flex items-center justify-center border border-border rounded-lg bg-muted group-hover:border-primary/30 group-hover:bg-primary/5 transition-colors">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="mt-5 text-base font-bold tracking-tight">{s.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                     {s.description}
                   </p>
                 </div>
@@ -190,14 +193,12 @@ function HomePage() {
               <Link
                 key={p.slug}
                 to="/proyectos"
-                className="group bg-white border border-border hover:border-primary transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
+                className="group bg-white border border-border rounded-xl hover:border-primary/40 hover:shadow-[0_24px_60px_-25px_rgba(204,0,0,0.3)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
               >
                 <Placeholder ratio="video" />
                 <div className="p-6 flex-1 flex flex-col">
-                  <span className="inline-block w-fit bg-foreground text-white text-[10px] uppercase tracking-widest px-2.5 py-1">
-                    {p.industry}
-                  </span>
-                  <h3 className="mt-4 text-lg font-bold">{p.title}</h3>
+                  <Badge variant="solid" className="self-start">{p.industry}</Badge>
+                  <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.situation}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
                     Ver más
@@ -208,7 +209,7 @@ function HomePage() {
             ))}
           </div>
           <div className="mt-12 flex justify-center">
-            <Link to="/proyectos" className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-7 py-4 text-xs font-semibold tracking-wider uppercase">
+            <Link to="/proyectos" className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase">
               Ver todos los proyectos
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -225,8 +226,8 @@ function HomePage() {
             {whyFaztred.map((w) => {
               const Icon = w.icon;
               return (
-                <div key={w.title} className="group border border-white/10 hover:border-primary p-7 transition-colors">
-                  <div className="h-11 w-11 flex items-center justify-center border border-primary text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div key={w.title} className="group bg-white/[0.02] border border-white/10 rounded-xl hover:border-primary/40 hover:bg-white/[0.04] p-7 transition-colors">
+                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-bold text-white">{w.title}</h3>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { Placeholder } from "./Placeholder";
+import { Badge } from "./Badge";
 import { cn } from "@/lib/utils";
+import { WHATSAPP_URL } from "@/lib/site-data";
 
 const slides = [
   {
@@ -37,21 +39,21 @@ export function HeroSlider() {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[640px] max-h-[860px] w-full overflow-hidden bg-[color:var(--surface-dark)]">
+    <section className="relative h-screen min-h-[680px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-dark)]">
       {/* Background placeholder layer */}
       <div className="absolute inset-0">
         <Placeholder
           label="Imagen industrial — reemplazar"
           ratio="wide"
-          className="!aspect-auto h-full w-full !border-0 opacity-30"
+          className="!aspect-auto h-full w-full !border-0 opacity-20"
         />
       </div>
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-black/60" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(204,0,0,0.2),transparent_50%)]" />
-      <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
+      {/* Overlays — n8n-style deep gradient + red glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-black/70" />
+      <div className="absolute -top-1/3 -right-1/4 w-[80%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.25),transparent_60%)] blur-2xl" />
+      <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:96px_96px]" />
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-20">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-24">
         {slides.map((s, idx) => (
           <div
             key={idx}
@@ -60,27 +62,33 @@ export function HeroSlider() {
               idx === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none",
             )}
           >
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="h-px w-10 bg-primary" />
-                <span className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">
-                  {s.eyebrow}
-                </span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+            <div className="max-w-3xl">
+              <Badge variant="dark" dot className="mb-8">
+                {s.eyebrow}
+              </Badge>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.02] tracking-[-0.03em]">
                 {s.title}
               </h1>
-              <p className="mt-6 text-lg md:text-xl text-white/75 max-w-2xl">
+              <p className="mt-8 text-base md:text-lg text-white/65 max-w-xl leading-relaxed">
                 {s.subtitle}
               </p>
-              <div className="mt-10">
+              <div className="mt-12 flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/contacto"
-                  className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-7 py-4 text-sm font-semibold tracking-wider uppercase transition-colors"
+                  className="group inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
                 >
                   {s.cta}
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Hablar por WhatsApp
+                </a>
               </div>
             </div>
           </div>
@@ -94,8 +102,8 @@ export function HeroSlider() {
               onClick={() => setI(idx)}
               aria-label={`Slide ${idx + 1}`}
               className={cn(
-                "h-1 transition-all duration-300",
-                idx === i ? "w-12 bg-primary" : "w-6 bg-white/30 hover:bg-white/60",
+                "h-1 rounded-full transition-all duration-300",
+                idx === i ? "w-12 bg-primary" : "w-6 bg-white/25 hover:bg-white/60",
               )}
             />
           ))}
