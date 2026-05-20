@@ -172,7 +172,7 @@ function ProyectosPage() {
           </h2>
           <Link
             to="/contacto"
-            className="mt-10 group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-xs font-semibold tracking-wider uppercase"
+            className="mt-10 group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-8 py-4 text-xs font-semibold tracking-wider uppercase"
           >
             Hablemos de tu proyecto
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
