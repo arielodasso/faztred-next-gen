@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Placeholder } from "./Placeholder";
-import { Badge } from "./Badge";
+
 import { cn } from "@/lib/utils";
 import { WHATSAPP_URL } from "@/lib/site-data";
 
