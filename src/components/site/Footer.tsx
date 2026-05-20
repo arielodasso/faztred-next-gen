@@ -8,7 +8,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-2">
-            <img src={logoWhite} alt="Faztred Soluciones" className="h-12 w-auto mb-5" />
+            <img src={logoWhite} alt="Faztred Soluciones" className="h-20 md:h-24 w-auto mb-5" />
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               Automatización industrial con experiencia real en planta. Ingeniería,
               implementación y soporte llave en mano.
