@@ -75,14 +75,15 @@ function ProyectosPage() {
             {filtered.map((p) => (
               <article
                 key={p.slug}
-                className="group bg-white border border-border hover:border-primary transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
+                className="group bg-white border border-border rounded-xl hover:border-primary/40 hover:shadow-[0_24px_60px_-25px_rgba(204,0,0,0.3)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
               >
                 <Placeholder ratio="video" />
                 <div className="p-6 flex-1 flex flex-col">
-                  <span className="inline-block w-fit bg-foreground text-white text-[10px] uppercase tracking-widest px-2.5 py-1">
-                    {p.industry}
-                  </span>
-                  <h3 className="mt-4 text-lg font-bold">{p.title}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="solid">{p.industry}</Badge>
+                    <Badge variant="ghost">{p.category}</Badge>
+                  </div>
+                  <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.situation}</p>
                   <ul className="mt-4 space-y-1.5">
                     {p.tasks.slice(0, 2).map((t) => (
