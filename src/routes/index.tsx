@@ -155,14 +155,16 @@ function HomePage() {
             title="Servicios destacados"
             description="Una oferta completa de ingeniería, implementación y soporte para procesos industriales."
           />
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {featuredServices.map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.title} className="group bg-background p-7 hover:bg-foreground hover:text-white transition-colors duration-300">
-                  <Icon className="h-7 w-7 text-primary" />
-                  <h3 className="mt-5 text-base font-bold">{s.title}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground group-hover:text-white/60 leading-relaxed">
+                <div key={s.title} className="group relative bg-background border border-border rounded-xl p-7 hover:border-primary/40 hover:shadow-[0_20px_50px_-25px_rgba(204,0,0,0.3)] transition-all duration-300">
+                  <div className="h-11 w-11 flex items-center justify-center border border-border rounded-lg bg-muted group-hover:border-primary/30 group-hover:bg-primary/5 transition-colors">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="mt-5 text-base font-bold tracking-tight">{s.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                     {s.description}
                   </p>
                 </div>
