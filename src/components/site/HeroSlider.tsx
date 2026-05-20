@@ -59,11 +59,11 @@ export function HeroSlider() {
               idx === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none",
             )}
           >
-            <div className="max-w-3xl">
-              <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-bold text-white tracking-[-0.03em] text-balance">
+            <div className="max-w-5xl">
+              <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-[5.25rem] xl:text-[5.75rem] font-bold text-white tracking-[-0.03em]">
                 {s.title}
               </h1>
-              <p className="mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-xl leading-relaxed">
+              <p className="mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-2xl leading-relaxed">
                 {s.subtitle}
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-3">
