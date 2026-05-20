@@ -61,3 +61,7 @@ Navegación real entre rutas, no single-page scroll. Cada ruta con su propio `he
 - Mobile-first, breakpoints `md`/`lg`. Menú hamburguesa con sheet.
 - Sin backend: formularios sólo validan y muestran toast. Sin Lovable Cloud por ahora.
 - Sin imágenes generadas — componente `PlaceholderImage` reutilizable con aspect ratio + label "Reemplazar con foto real".
+
+En la página de Proyectos, cada proyecto debe tener sus placeholders de imagen con el número correcto: proyecto 1 = 2 imágenes, proyecto 2 = 2, proyecto 3 = 2, proyecto 4 = 2, proyecto 5 = 3, proyecto 6 = 2. El modal debe mostrar esa cantidad exacta por proyecto.
+
+Cada ruta debe tener su propio head() con title y meta description únicos — no solo en el root. Ejemplo: /servicios debe tener title 'Servicios de Automatización Industrial | Faztred Soluciones' y su propia description con keywords.
