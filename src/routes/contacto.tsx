@@ -94,7 +94,7 @@ function ContactoPage() {
 
             {/* Right: form */}
             <div className="lg:col-span-3">
-              <div className="bg-muted p-8 md:p-10 border-t-2 border-primary">
+              <div className="bg-muted rounded-xl p-8 md:p-10 border-t-2 border-primary">
                 <h3 className="text-2xl font-bold">Enviá tu consulta</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Completá los datos y te respondemos a la brevedad.
