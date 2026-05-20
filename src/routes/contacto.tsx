@@ -73,7 +73,7 @@ function ContactoPage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-10 inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5c] text-white px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors"
+                className="mt-10 inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5c] text-white rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors"
               >
                 <MessageCircle className="h-4 w-4" fill="currentColor" />
                 Escribinos por WhatsApp
