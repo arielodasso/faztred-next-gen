@@ -55,7 +55,7 @@ function ProyectosPage() {
                 key={c}
                 onClick={() => setActive(c)}
                 className={cn(
-                  "px-4 py-2 text-xs uppercase tracking-wider font-semibold border transition-colors",
+                  "px-4 py-2 text-xs uppercase tracking-wider font-semibold border rounded-full transition-colors",
                   active === c
                     ? "bg-primary text-primary-foreground border-primary"
                     : "border-border text-muted-foreground hover:border-foreground hover:text-foreground",
