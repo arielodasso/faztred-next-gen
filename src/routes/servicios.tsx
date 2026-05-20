@@ -129,10 +129,10 @@ function ServiciosPage() {
               >
                 <Placeholder ratio="video" />
                 <div>
-                  <span className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">
-                    {String(idx + 1).padStart(2, "0")} / {String(mainServices.length).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 text-2xl md:text-4xl font-bold tracking-tight">{s.title}</h3>
+                  <Badge variant="ghost" dot>
+                    {String(idx + 1).padStart(2, "0")} / {s.title.split(" ")[0]}
+                  </Badge>
+                  <h3 className="mt-5 text-2xl md:text-4xl font-bold tracking-tight">{s.title}</h3>
                   <p className="mt-4 text-muted-foreground">{s.description}</p>
                   <ul className="mt-7 grid sm:grid-cols-2 gap-x-6 gap-y-3">
                     {s.items.map((it) => (
