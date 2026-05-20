@@ -31,9 +31,19 @@ export function Navbar() {
           : "bg-[color:var(--surface-dark)]/70 backdrop-blur-sm",
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
-        <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
-          <img src={logoWhite} alt="Faztred Soluciones" className="h-12 md:h-16 w-auto" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 md:h-32 flex items-center justify-between">
+        <Link
+          to="/"
+          className="flex items-center"
+          onClick={(e) => {
+            setOpen(false);
+            if (typeof window !== "undefined" && window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
+          <img src={logoWhite} alt="Faztred Soluciones" className="h-16 md:h-24 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
