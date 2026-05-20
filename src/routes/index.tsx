@@ -277,7 +277,7 @@ function HomePage() {
                 href={BROCHURE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-7 py-4 text-xs font-semibold tracking-wider uppercase"
+                className="mt-8 inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase"
               >
                 <Download className="h-4 w-4" />
                 Descargar PDF
