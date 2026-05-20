@@ -53,7 +53,7 @@ function ContactoPage() {
                   const Icon = it.icon;
                   const Inner = (
                     <span className="flex items-start gap-4">
-                      <span className="h-10 w-10 flex items-center justify-center bg-foreground text-white flex-shrink-0">
+                      <span className="h-10 w-10 rounded-md flex items-center justify-center bg-foreground text-white flex-shrink-0">
                         <Icon className="h-4 w-4" />
                       </span>
                       <span className="text-sm pt-2.5">{it.label}</span>
