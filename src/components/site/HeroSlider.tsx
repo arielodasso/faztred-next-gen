@@ -36,7 +36,7 @@ export function HeroSlider() {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[680px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-dark)]">
+    <section className="relative h-screen min-h-[560px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-dark)]">
       {/* Background placeholder layer */}
       <div className="absolute inset-0">
         <Placeholder
