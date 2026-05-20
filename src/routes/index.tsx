@@ -193,14 +193,12 @@ function HomePage() {
               <Link
                 key={p.slug}
                 to="/proyectos"
-                className="group bg-white border border-border hover:border-primary transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
+                className="group bg-white border border-border rounded-xl hover:border-primary/40 hover:shadow-[0_24px_60px_-25px_rgba(204,0,0,0.3)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
               >
                 <Placeholder ratio="video" />
                 <div className="p-6 flex-1 flex flex-col">
-                  <span className="inline-block w-fit bg-foreground text-white text-[10px] uppercase tracking-widest px-2.5 py-1">
-                    {p.industry}
-                  </span>
-                  <h3 className="mt-4 text-lg font-bold">{p.title}</h3>
+                  <Badge variant="solid" className="self-start">{p.industry}</Badge>
+                  <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.situation}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
                     Ver más
@@ -211,7 +209,7 @@ function HomePage() {
             ))}
           </div>
           <div className="mt-12 flex justify-center">
-            <Link to="/proyectos" className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-7 py-4 text-xs font-semibold tracking-wider uppercase">
+            <Link to="/proyectos" className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase">
               Ver todos los proyectos
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
