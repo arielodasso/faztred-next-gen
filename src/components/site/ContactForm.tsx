@@ -25,7 +25,7 @@ export function ContactForm({ variant = "compact", className }: Props) {
   };
 
   const fieldCls =
-    "w-full bg-white border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors";
+    "w-full bg-white border border-border rounded-md px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors";
 
   return (
     <form onSubmit={onSubmit} className={cn("space-y-4", className)}>
@@ -47,7 +47,7 @@ export function ContactForm({ variant = "compact", className }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 disabled:opacity-60 text-primary-foreground px-7 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors"
+        className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 disabled:opacity-60 text-primary-foreground rounded-md px-7 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors"
       >
         <Send className="h-4 w-4" />
         {loading ? "Enviando..." : variant === "full" ? "Enviar consulta" : "Enviar"}

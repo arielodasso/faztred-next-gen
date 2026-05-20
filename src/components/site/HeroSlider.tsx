@@ -2,27 +2,24 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Placeholder } from "./Placeholder";
-import { Badge } from "./Badge";
+
 import { cn } from "@/lib/utils";
 import { WHATSAPP_URL } from "@/lib/site-data";
 
 const slides = [
   {
-    eyebrow: "DIAGNÓSTICO INDUSTRIAL",
     title: "¿Cansado de parar la producción por fallas imprevistas?",
     subtitle:
       "Diagnosticamos tu planta operativa con informes claros y soluciones que funcionan.",
     cta: "Solicitá tu visita técnica sin costo",
   },
   {
-    eyebrow: "MODERNIZACIÓN LLAVE EN MANO",
     title: "¿Tenés que actualizar tus máquinas y no sabés por dónde empezar?",
     subtitle:
       "Te acompañamos en un proceso llave en mano desde el relevamiento hasta la puesta en marcha.",
     cta: "Coordiná tu reunión con un especialista",
   },
   {
-    eyebrow: "AUTOMATIZACIÓN A MEDIDA",
     title: "¿Tu proceso podría rendir más con automatización?",
     subtitle:
       "Integramos sistemas, programamos PLC y armamos tableros a medida, con foco en resultados.",
@@ -34,12 +31,12 @@ export function HeroSlider() {
   const [i, setI] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % slides.length), 6500);
+    const t = setInterval(() => setI((v) => (v + 1) % slides.length), 9000);
     return () => clearInterval(t);
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[680px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-dark)]">
+    <section className="relative h-screen min-h-[560px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-dark)]">
       {/* Background placeholder layer */}
       <div className="absolute inset-0">
         <Placeholder
@@ -63,13 +60,10 @@ export function HeroSlider() {
             )}
           >
             <div className="max-w-3xl">
-              <Badge variant="dark" dot className="mb-8">
-                {s.eyebrow}
-              </Badge>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.02] tracking-[-0.03em]">
+              <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-bold text-white tracking-[-0.03em] text-balance">
                 {s.title}
               </h1>
-              <p className="mt-8 text-base md:text-lg text-white/65 max-w-xl leading-relaxed">
+              <p className="mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-xl leading-relaxed">
                 {s.subtitle}
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-3">

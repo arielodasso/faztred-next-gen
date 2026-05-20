@@ -44,13 +44,13 @@ export function Footer() {
           <div>
             <h4 className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Seguinos</h4>
             <div className="flex items-center gap-3">
-              <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-10 w-10 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-colors">
+              <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-10 w-10 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-colors">
+              <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a href="https://api.whatsapp.com/send/?phone=5491162083230" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="h-10 w-10 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-colors">
+              <a href="https://api.whatsapp.com/send/?phone=5491162083230" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
                 <MessageCircle className="h-4 w-4" />
               </a>
             </div>

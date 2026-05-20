@@ -53,7 +53,7 @@ function ContactoPage() {
                   const Icon = it.icon;
                   const Inner = (
                     <span className="flex items-start gap-4">
-                      <span className="h-10 w-10 flex items-center justify-center bg-foreground text-white flex-shrink-0">
+                      <span className="h-10 w-10 rounded-md flex items-center justify-center bg-foreground text-white flex-shrink-0">
                         <Icon className="h-4 w-4" />
                       </span>
                       <span className="text-sm pt-2.5">{it.label}</span>
@@ -73,7 +73,7 @@ function ContactoPage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-10 inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5c] text-white px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors"
+                className="mt-10 inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5c] text-white rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors"
               >
                 <MessageCircle className="h-4 w-4" fill="currentColor" />
                 Escribinos por WhatsApp
@@ -82,10 +82,10 @@ function ContactoPage() {
               <div className="mt-10 pt-10 border-t border-border">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Seguinos</p>
                 <div className="flex gap-3">
-                  <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-11 w-11 border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
+                  <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-11 w-11 rounded-md border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
                     <Instagram className="h-4 w-4" />
                   </a>
-                  <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-11 w-11 border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
+                  <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-11 w-11 rounded-md border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
                     <Linkedin className="h-4 w-4" />
                   </a>
                 </div>
@@ -94,7 +94,7 @@ function ContactoPage() {
 
             {/* Right: form */}
             <div className="lg:col-span-3">
-              <div className="bg-muted p-8 md:p-10 border-t-2 border-primary">
+              <div className="bg-muted rounded-xl p-8 md:p-10 border-t-2 border-primary">
                 <h3 className="text-2xl font-bold">Enviá tu consulta</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Completá los datos y te respondemos a la brevedad.
@@ -110,7 +110,7 @@ function ContactoPage() {
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white text-foreground px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors"
+                    className="inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white text-foreground rounded-md px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors"
                   >
                     <CalendarCheck className="h-4 w-4" />
                     Agendá una reunión online

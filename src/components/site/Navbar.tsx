@@ -54,7 +54,7 @@ export function Navbar() {
         <div className="hidden md:block">
           <Link
             to="/contacto"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 text-xs font-semibold tracking-wider uppercase transition-colors"
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-5 py-2.5 text-xs font-semibold tracking-wider uppercase transition-colors"
           >
             <CalendarCheck className="h-4 w-4" />
             Agendá una reunión
@@ -93,7 +93,7 @@ export function Navbar() {
           <Link
             to="/contacto"
             onClick={() => setOpen(false)}
-            className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 text-xs font-semibold tracking-wider uppercase"
+            className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
           >
             <CalendarCheck className="h-4 w-4" />
             Agendá una reunión
