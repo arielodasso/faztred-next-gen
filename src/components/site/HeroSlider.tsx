@@ -8,21 +8,18 @@ import { WHATSAPP_URL } from "@/lib/site-data";
 
 const slides = [
   {
-    eyebrow: "DIAGNÓSTICO INDUSTRIAL",
     title: "¿Cansado de parar la producción por fallas imprevistas?",
     subtitle:
       "Diagnosticamos tu planta operativa con informes claros y soluciones que funcionan.",
     cta: "Solicitá tu visita técnica sin costo",
   },
   {
-    eyebrow: "MODERNIZACIÓN LLAVE EN MANO",
     title: "¿Tenés que actualizar tus máquinas y no sabés por dónde empezar?",
     subtitle:
       "Te acompañamos en un proceso llave en mano desde el relevamiento hasta la puesta en marcha.",
     cta: "Coordiná tu reunión con un especialista",
   },
   {
-    eyebrow: "AUTOMATIZACIÓN A MEDIDA",
     title: "¿Tu proceso podría rendir más con automatización?",
     subtitle:
       "Integramos sistemas, programamos PLC y armamos tableros a medida, con foco en resultados.",
