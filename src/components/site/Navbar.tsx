@@ -16,99 +16,118 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    setOpen(false);
+    if (typeof window !== "undefined" && window.location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled || open
-          ? "bg-[color:var(--surface-dark)]/95 backdrop-blur-md shadow-lg"
-          : "bg-[color:var(--surface-dark)]/70 backdrop-blur-sm",
+        "fixed inset-x-0 z-50 transition-all duration-500 ease-out",
+        scrolled ? "top-3 md:top-5" : "top-0",
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 md:h-32 flex items-center justify-between">
-        <Link
-          to="/"
-          className="flex items-center"
-          onClick={(e) => {
-            setOpen(false);
-            if (typeof window !== "undefined" && window.location.pathname === "/") {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
-        >
-          <img src={logoWhite} alt="Faztred Soluciones" className="h-16 md:h-24 w-auto" />
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="text-xs font-medium tracking-[0.18em] text-white/80 hover:text-white transition-colors relative py-2 group"
-              activeProps={{ className: "!text-white" }}
-              activeOptions={{ exact: l.to === "/" }}
-            >
-              {l.label}
-              <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden md:block">
-          <Link
-            to="/contacto"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-5 py-2.5 text-xs font-semibold tracking-wider uppercase transition-colors"
-          >
-            <CalendarCheck className="h-4 w-4" />
-            Agendá una reunión
-          </Link>
-        </div>
-
-        <button
-          className="md:hidden text-white p-2"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menú"
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
       <div
         className={cn(
-          "md:hidden overflow-hidden transition-all duration-300 bg-[color:var(--surface-dark)] border-t border-white/10",
-          open ? "max-h-96" : "max-h-0",
+          "mx-auto transition-all duration-500 ease-out",
+          scrolled
+            ? "max-w-6xl px-3 md:px-4"
+            : "max-w-7xl px-4 sm:px-6 lg:px-8",
         )}
       >
-        <nav className="flex flex-col px-6 py-4 gap-1">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              onClick={() => setOpen(false)}
-              className="text-white/90 hover:text-primary text-sm font-medium tracking-wider py-3 border-b border-white/5"
-              activeProps={{ className: "!text-primary" }}
-              activeOptions={{ exact: l.to === "/" }}
-            >
-              {l.label}
-            </Link>
-          ))}
-          <Link
-            to="/contacto"
-            onClick={() => setOpen(false)}
-            className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
-          >
-            <CalendarCheck className="h-4 w-4" />
-            Agendá una reunión
+        <div
+          className={cn(
+            "flex items-center justify-between transition-all duration-500 ease-out",
+            scrolled || open
+              ? "h-16 md:h-20 px-4 md:px-6 bg-[color:var(--surface-dark)]/70 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
+              : "h-24 md:h-32 border border-transparent rounded-none",
+          )}
+        >
+          <Link to="/" className="flex items-center" onClick={handleLogoClick}>
+            <img
+              src={logoWhite}
+              alt="Faztred Soluciones"
+              className={cn(
+                "w-auto transition-all duration-500 ease-out",
+                scrolled ? "h-10 md:h-12" : "h-16 md:h-24",
+              )}
+            />
           </Link>
-        </nav>
+
+          <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="text-[11px] font-medium tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
+                activeProps={{ className: "!text-white" }}
+                activeOptions={{ exact: l.to === "/" }}
+              >
+                {l.label}
+                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hidden md:block">
+            <Link
+              to="/contacto"
+              className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-5 py-2.5 text-[11px] font-semibold tracking-wider uppercase transition-colors"
+            >
+              <CalendarCheck className="h-4 w-4" />
+              Agendá una reunión
+            </Link>
+          </div>
+
+          <button
+            className="md:hidden text-white p-2 -mr-2"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menú"
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        <div
+          className={cn(
+            "md:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
+            open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0 border-transparent",
+          )}
+        >
+          <nav className="flex flex-col px-5 py-4 gap-1">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                className="text-white/90 hover:text-primary text-sm font-medium tracking-wider py-3 border-b border-white/5"
+                activeProps={{ className: "!text-primary" }}
+                activeOptions={{ exact: l.to === "/" }}
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              to="/contacto"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
+            >
+              <CalendarCheck className="h-4 w-4" />
+              Agendá una reunión
+            </Link>
+          </nav>
+        </div>
       </div>
     </header>
   );
