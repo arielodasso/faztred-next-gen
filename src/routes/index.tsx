@@ -226,8 +226,8 @@ function HomePage() {
             {whyFaztred.map((w) => {
               const Icon = w.icon;
               return (
-                <div key={w.title} className="group border border-white/10 hover:border-primary p-7 transition-colors">
-                  <div className="h-11 w-11 flex items-center justify-center border border-primary text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div key={w.title} className="group bg-white/[0.02] border border-white/10 rounded-xl hover:border-primary/40 hover:bg-white/[0.04] p-7 transition-colors">
+                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-bold text-white">{w.title}</h3>
