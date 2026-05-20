@@ -23,9 +23,9 @@ export function Navbar() {
   }, []);
 
   const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     setOpen(false);
-    if (typeof window !== "undefined" && window.location.pathname === "/") {
-      e.preventDefault();
+    if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
