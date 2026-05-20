@@ -88,11 +88,11 @@ function HomePage() {
             {contactCards.map((c) => {
               const Icon = c.icon;
               const Inner = (
-                <div className="group h-full bg-white border border-border p-8 flex flex-col hover:border-primary transition-all duration-300 hover:-translate-y-1">
-                  <div className="h-12 w-12 flex items-center justify-center bg-foreground text-white group-hover:bg-primary transition-colors">
+                <div className="group relative h-full bg-white border border-border rounded-xl p-8 flex flex-col hover:border-primary/50 hover:shadow-[0_20px_60px_-20px_rgba(204,0,0,0.25)] transition-all duration-300 hover:-translate-y-1">
+                  <div className="h-11 w-11 flex items-center justify-center bg-foreground text-white rounded-lg group-hover:bg-primary transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-foreground">{c.title}</h3>
+                  <h3 className="mt-6 text-xl font-bold text-foreground tracking-tight">{c.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{c.desc}</p>
                   <span className="mt-6 inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
                     {c.cta}
