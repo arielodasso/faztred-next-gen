@@ -93,7 +93,7 @@ export function Navbar() {
           <Link
             to="/contacto"
             onClick={() => setOpen(false)}
-            className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 text-xs font-semibold tracking-wider uppercase"
+            className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
           >
             <CalendarCheck className="h-4 w-4" />
             Agendá una reunión
