@@ -31,9 +31,9 @@ export function Navbar() {
           : "bg-[color:var(--surface-dark)]/70 backdrop-blur-sm",
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
         <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
-          <img src={logoWhite} alt="Faztred Soluciones" className="h-9 md:h-10 w-auto" />
+          <img src={logoWhite} alt="Faztred Soluciones" className="h-12 md:h-16 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
