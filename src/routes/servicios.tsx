@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Placeholder } from "@/components/site/Placeholder";
 import { SectionTitle } from "@/components/site/SectionTitle";
+import { Badge } from "@/components/site/Badge";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/servicios")({
