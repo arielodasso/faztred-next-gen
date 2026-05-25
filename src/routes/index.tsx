@@ -13,6 +13,7 @@ import {
   Brain,
 } from "lucide-react";
 import { HeroSlider } from "@/components/site/HeroSlider";
+import brochureCover from "@/assets/brochure-cover.png";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
