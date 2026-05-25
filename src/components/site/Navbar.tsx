@@ -1,19 +1,44 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, CalendarCheck } from "lucide-react";
+import {
+  Menu,
+  X,
+  CalendarCheck,
+  ChevronDown,
+  CircuitBoard,
+  AlertTriangle,
+  Wrench,
+  Shield,
+  GraduationCap,
+  Cpu,
+  Sparkles,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { cn } from "@/lib/utils";
+import { projects, type ProjectCategory } from "@/lib/site-data";
 
 const links = [
   { to: "/", label: "HOME" },
   { to: "/servicios", label: "SERVICIOS" },
-  { to: "/proyectos", label: "PROYECTOS" },
+  { to: "/proyectos", label: "PROYECTOS", hasMenu: true },
   { to: "/contacto", label: "CONTACTO" },
 ] as const;
+
+const categoryIcons: Record<ProjectCategory, LucideIcon> = {
+  Automatización: Cpu,
+  Tableros: CircuitBoard,
+  Revamping: Wrench,
+  Capacitación: GraduationCap,
+  Cerramiento: Shield,
+  Antiexplosivo: AlertTriangle,
+  Señalización: Sparkles,
+};
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -64,18 +89,90 @@ export function Navbar() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="text-[11px] font-medium tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
-                activeProps={{ className: "!text-white" }}
-                activeOptions={{ exact: l.to === "/" }}
-              >
-                {l.label}
-                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+            {links.map((l) =>
+              "hasMenu" in l && l.hasMenu ? (
+                <div
+                  key={l.to}
+                  className="relative"
+                  onMouseEnter={() => setProjectsOpen(true)}
+                  onMouseLeave={() => setProjectsOpen(false)}
+                >
+                  <Link
+                    to={l.to}
+                    className="inline-flex items-center gap-1 text-[11px] font-medium tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
+                    activeProps={{ className: "!text-white" }}
+                  >
+                    {l.label}
+                    <ChevronDown
+                      className={cn(
+                        "h-3 w-3 transition-transform duration-200",
+                        projectsOpen && "rotate-180",
+                      )}
+                    />
+                    <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                  </Link>
+
+                  {/* Mega menu */}
+                  <div
+                    className={cn(
+                      "absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200",
+                      projectsOpen
+                        ? "opacity-100 pointer-events-auto translate-y-0"
+                        : "opacity-0 pointer-events-none -translate-y-1",
+                    )}
+                  >
+                    <div className="w-[640px] max-w-[90vw] rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/95 backdrop-blur-xl shadow-[0_24px_80px_-20px_rgba(0,0,0,0.8)] p-4">
+                      <div className="grid grid-cols-2 gap-1">
+                        {projects.map((p) => {
+                          const Icon = categoryIcons[p.category] ?? Sparkles;
+                          return (
+                            <Link
+                              key={p.slug}
+                              to="/proyectos"
+                              onClick={() => setProjectsOpen(false)}
+                              className="group flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-white/5 transition-colors"
+                            >
+                              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/70 group-hover:text-primary group-hover:border-primary/40 transition-colors">
+                                <Icon className="h-4 w-4" />
+                              </span>
+                              <span className="flex-1 min-w-0">
+                                <span className="block text-[13px] font-medium text-white/90 truncate group-hover:text-white">
+                                  {p.title}
+                                </span>
+                                <span className="block text-[10px] uppercase tracking-[0.16em] text-white/45 mt-0.5">
+                                  {p.category}
+                                </span>
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                      <div className="mt-3 border-t border-white/5 pt-3">
+                        <Link
+                          to="/proyectos"
+                          onClick={() => setProjectsOpen(false)}
+                          className="flex items-center justify-between rounded-lg px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 hover:text-primary transition-colors"
+                        >
+                          Ver todos los proyectos
+                          <span className="text-primary">→</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className="text-[11px] font-medium tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
+                  activeProps={{ className: "!text-white" }}
+                  activeOptions={{ exact: l.to === "/" }}
+                >
+                  {l.label}
+                  <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                </Link>
+              ),
+            )}
           </nav>
 
           <div className="hidden md:block">

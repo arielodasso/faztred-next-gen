@@ -213,10 +213,12 @@ import senal1 from "@/assets/projects/senalizacion/senal-1.jpg";
 import senal2 from "@/assets/projects/senalizacion/senal-2.jpg";
 import senal3 from "@/assets/projects/senalizacion/senal-3.jpg";
 
+import industria40Img from "@/assets/services/industria-40.jpg";
+
 export const serviceImages: Record<string, string> = {
   "automatizacion-industrial": bombeo1,
   "tableros-electricos": revampingDespues1,
-  "industria-4-0": revampingTablero1,
+  "industria-4-0": industria40Img,
   "mantenimiento-industrial": flejadora1,
   "instrumentacion-industrial": antiexMontaje3,
   "senalizacion-industrial": senal2,
