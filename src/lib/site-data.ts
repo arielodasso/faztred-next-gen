@@ -273,6 +273,10 @@ export const projects: Project[] = [
       antiexLaser1,
       antiexLaser3,
       antiexLaser2,
+      antiexGevelux5,
+      antiexGevelux4,
+      antiexPlanta1,
+      antiexMontaje5,
     ],
   },
   {
