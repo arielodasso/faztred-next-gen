@@ -264,7 +264,7 @@ function HomePage() {
               const Icon = w.icon;
               return (
                 <div key={w.title} className="group bg-white/[0.02] border border-white/10 rounded-xl hover:border-white/25 hover:bg-white/[0.04] p-7 transition-colors">
-                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/80 group-hover:border-primary/50 group-hover:text-primary transition-colors">
+                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/80 group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-bold text-white">{w.title}</h3>
