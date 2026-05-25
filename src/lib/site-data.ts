@@ -164,9 +164,44 @@ export interface Project {
   technologies: string[];
   /** Cantidad de imágenes de galería (placeholders por ahora). */
   images: number;
+  /** Galería con imágenes reales. Si está presente, reemplaza a `images`. */
+  gallery?: string[];
+  /** Imagen de portada para la card. Si no está, usa la primera de gallery o placeholder. */
+  cover?: string;
 }
 
+import tablero1 from "@/assets/projects/tableros/tablero-1.jpg";
+import tablero2 from "@/assets/projects/tableros/tablero-2.jpg";
+import tablero3 from "@/assets/projects/tableros/tablero-3.jpg";
+import tablero4 from "@/assets/projects/tableros/tablero-4.jpg";
+import tablero5 from "@/assets/projects/tableros/tablero-5.jpg";
+import tablero6 from "@/assets/projects/tableros/tablero-6.jpg";
+import tsa1 from "@/assets/projects/tableros/tsa-1.jpg";
+import tsb1 from "@/assets/projects/tableros/tsb-1.jpg";
+import tsb2 from "@/assets/projects/tableros/tsb-2.jpg";
+import tsb3 from "@/assets/projects/tableros/tsb-3.jpg";
+
 export const projects: Project[] = [
+  {
+    slug: "fabricacion-tableros-electricos",
+    title: "Fabricación de tableros eléctricos",
+    industry: "Industrial",
+    category: "Tableros",
+    problem:
+      "Diseño y fabricación de tableros de control, potencia y PLC para distintas líneas productivas y tableros de barreras de seguridad en planta.",
+    solution: [
+      "Ingeniería eléctrica y selección de componentes bajo norma",
+      "Armado y cableado prolijo con identificación y trazabilidad",
+      "Fabricación de tableros de control, potencia, PLC y barreras de seguridad (TSA / TSB)",
+      "Pruebas en taller, puesta en marcha y entrega de documentación CAO",
+    ],
+    result:
+      "Tableros entregados llave en mano, con cableado normalizado, identificación completa y documentación final lista para mantenimiento.",
+    technologies: ["Siemens", "Phoenix Contact", "Borneras", "Barreras de seguridad", "PLC", "HMI"],
+    images: 0,
+    cover: tablero1,
+    gallery: [tablero1, tablero4, tablero5, tablero6, tablero2, tablero3, tsa1, tsb1, tsb2, tsb3],
+  },
   {
     slug: "instalaciones-antiexplosivas",
     title: "Instalaciones antiexplosivas",
