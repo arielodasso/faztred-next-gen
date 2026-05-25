@@ -276,19 +276,31 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Clients grid — n8n style */}
-      <section className="py-24 md:py-32 bg-[color:var(--surface-darker)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04),transparent_70%)]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.06),transparent_70%)] blur-3xl" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" dark />
-          <div className="mt-14 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-3 md:gap-4">
-            {Array.from({ length: 24 }).map((_, i) => (
+      {/* Clients — dual marquee */}
+      <section className="py-24 md:py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" />
+          <div className="mt-14 space-y-5">
+            {[
+              { items: Array.from({ length: 12 }), reverse: false },
+              { items: Array.from({ length: 12 }), reverse: true },
+            ].map((row, rIdx) => (
               <div
-                key={i}
-                className="aspect-square rounded-xl border border-white/10 bg-white/[0.025] hover:border-white/25 hover:bg-white/[0.05] transition-colors flex items-center justify-center text-white/40 text-[10px] uppercase tracking-widest"
+                key={rIdx}
+                className="group overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
               >
-                Logo
+                <div
+                  className={`flex gap-4 w-max ${row.reverse ? "animate-marquee-reverse" : "animate-marquee"} group-hover:[animation-play-state:paused]`}
+                >
+                  {[...row.items, ...row.items].map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-24 w-44 flex-shrink-0 rounded-xl border border-border bg-white hover:border-foreground/30 transition-colors flex items-center justify-center text-muted-foreground text-[10px] uppercase tracking-widest"
+                    >
+                      Logo
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
