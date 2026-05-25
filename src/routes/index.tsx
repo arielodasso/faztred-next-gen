@@ -376,7 +376,14 @@ function HomePage() {
                 Descargar PDF
               </a>
             </div>
-            <Placeholder ratio="portrait" className="!aspect-[4/5] !border-white/10 !bg-white/[0.03]" label="Portada del brochure" />
+            <div className="relative flex items-center justify-center">
+              <img
+                src={brochureCover}
+                alt="Brochure Faztred 2025 — portada"
+                loading="lazy"
+                className="w-full max-w-xl drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+              />
+            </div>
           </div>
         </div>
       </section>
