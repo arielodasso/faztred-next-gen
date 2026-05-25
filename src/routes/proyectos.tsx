@@ -103,7 +103,13 @@ function ProyectosPage() {
                 key={p.slug}
                 className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-0.5 duration-300"
               >
-                <Placeholder ratio="video" />
+                {p.cover ? (
+                  <div className="aspect-video w-full overflow-hidden bg-muted">
+                    <img src={p.cover} alt={p.title} loading="lazy" className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+                  </div>
+                ) : (
+                  <Placeholder ratio="video" />
+                )}
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="solid">{p.industry}</Badge>
@@ -215,12 +221,18 @@ function ProyectosPage() {
               <div
                 className={cn(
                   "mt-4 grid gap-4",
-                  open.images === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
+                  (open.gallery?.length ?? open.images) >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
                 )}
               >
-                {Array.from({ length: open.images }).map((_, i) => (
-                  <Placeholder key={i} ratio="video" />
-                ))}
+                {open.gallery && open.gallery.length > 0
+                  ? open.gallery.map((src, i) => (
+                      <div key={i} className="aspect-video w-full overflow-hidden rounded-md bg-muted">
+                        <img src={src} alt={`${open.title} ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
+                      </div>
+                    ))
+                  : Array.from({ length: open.images }).map((_, i) => (
+                      <Placeholder key={i} ratio="video" />
+                    ))}
               </div>
 
               {/* CTA modal */}

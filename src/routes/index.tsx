@@ -268,7 +268,13 @@ function HomePage() {
                 to="/proyectos"
                 className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-0.5 duration-300"
               >
-                <Placeholder ratio="video" />
+                {p.cover ? (
+                  <div className="aspect-video w-full overflow-hidden bg-muted">
+                    <img src={p.cover} alt={p.title} loading="lazy" className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+                  </div>
+                ) : (
+                  <Placeholder ratio="video" />
+                )}
                 <div className="p-6 flex-1 flex flex-col">
                   <Badge variant="solid" className="self-start">{p.industry}</Badge>
                   <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
