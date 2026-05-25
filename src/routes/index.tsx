@@ -276,7 +276,7 @@ function HomePage() {
                   <Placeholder ratio="video" />
                 )}
                 <div className="p-6 flex-1 flex flex-col">
-                  <Badge variant="solid" className="self-start">{p.industry}</Badge>
+                  <Badge variant="solid" className="self-start">{p.category}</Badge>
                   <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1 line-clamp-3">{p.problem}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-foreground text-xs font-semibold uppercase tracking-[0.15em] group-hover:text-primary transition-colors">

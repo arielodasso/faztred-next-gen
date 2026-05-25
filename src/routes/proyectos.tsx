@@ -126,10 +126,7 @@ function ProyectosPage() {
                   <Placeholder ratio="video" />
                 )}
                 <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="solid">{p.industry}</Badge>
-                    <Badge variant="ghost">{p.category}</Badge>
-                  </div>
+                  <Badge variant="solid">{p.category}</Badge>
                   <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{p.problem}</p>
                   <ul className="mt-4 space-y-1.5 flex-1">
@@ -175,7 +172,7 @@ function ProyectosPage() {
           >
             <div className="sticky top-0 bg-background/95 backdrop-blur z-10 flex items-center justify-between border-b border-border px-6 py-4">
               <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {open.industry} · {open.category}
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {open.category}
               </span>
               <button
                 onClick={() => setOpen(null)}
