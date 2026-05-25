@@ -220,7 +220,7 @@ function HomePage() {
       </section>
 
       {/* Featured services */}
-      <section className="py-20 md:py-28 bg-background">
+      <section className="py-20 md:py-28 bg-[#e6e7ea]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             eyebrow="Lo que hacemos"
