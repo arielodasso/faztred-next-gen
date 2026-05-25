@@ -199,6 +199,10 @@ import antiexMontaje4 from "@/assets/projects/antiexplosivas/montaje-4.jpg";
 import antiexGevelux1 from "@/assets/projects/antiexplosivas/gevelux-1.jpg";
 import antiexGevelux2 from "@/assets/projects/antiexplosivas/gevelux-2.jpg";
 import antiexGevelux3 from "@/assets/projects/antiexplosivas/gevelux-3.jpg";
+import antiexGevelux4 from "@/assets/projects/antiexplosivas/gevelux-4.jpg";
+import antiexGevelux5 from "@/assets/projects/antiexplosivas/gevelux-5.jpg";
+import antiexPlanta1 from "@/assets/projects/antiexplosivas/planta-1.jpg";
+import antiexMontaje5 from "@/assets/projects/antiexplosivas/montaje-5.jpg";
 
 export const projects: Project[] = [
   {
@@ -269,6 +273,10 @@ export const projects: Project[] = [
       antiexLaser1,
       antiexLaser3,
       antiexLaser2,
+      antiexGevelux5,
+      antiexGevelux4,
+      antiexPlanta1,
+      antiexMontaje5,
     ],
   },
   {
