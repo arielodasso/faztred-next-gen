@@ -220,12 +220,13 @@ function HomePage() {
       </section>
 
       {/* Featured services */}
-      <section className="py-20 md:py-28 bg-[#e6e7ea]">
+      <section className="py-20 md:py-28 bg-[#5e5f60]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             eyebrow="Lo que hacemos"
             title="Servicios destacados"
             description="Una oferta completa de ingeniería, implementación y soporte para procesos industriales."
+            dark
           />
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {featuredServices.map((s) => {
