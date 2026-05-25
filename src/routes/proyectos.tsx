@@ -11,6 +11,9 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/proyectos")({
   component: ProyectosPage,
+  validateSearch: (search: Record<string, unknown>) => ({
+    cat: typeof search.cat === "string" ? (search.cat as string) : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Proyectos realizados — Casos reales de automatización | Faztred" },
@@ -42,9 +45,17 @@ const categories: ("Todos" | ProjectCategory)[] = [
 ];
 
 function ProyectosPage() {
-  const [active, setActive] = useState<(typeof categories)[number]>("Todos");
+  const { cat } = Route.useSearch();
+  const initial = (categories as string[]).includes(cat ?? "") ? (cat as (typeof categories)[number]) : "Todos";
+  const [active, setActive] = useState<(typeof categories)[number]>(initial);
   const [open, setOpen] = useState<Project | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (cat && (categories as string[]).includes(cat)) {
+      setActive(cat as (typeof categories)[number]);
+    }
+  }, [cat]);
 
   const lightboxImages = open?.gallery ?? [];
 

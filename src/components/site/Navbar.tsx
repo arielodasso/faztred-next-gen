@@ -129,6 +129,7 @@ export function Navbar() {
                             <Link
                               key={p.slug}
                               to="/proyectos"
+                              search={{ cat: p.category }}
                               onClick={() => setProjectsOpen(false)}
                               className="group flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-primary transition-colors"
                             >
