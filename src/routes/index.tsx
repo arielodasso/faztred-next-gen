@@ -195,15 +195,15 @@ function HomePage() {
               <Link
                 key={p.slug}
                 to="/proyectos"
-                className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
+                className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-0.5 duration-300"
               >
                 <Placeholder ratio="video" />
                 <div className="p-6 flex-1 flex flex-col">
                   <Badge variant="solid" className="self-start">{p.industry}</Badge>
                   <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground flex-1">{p.situation}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-foreground text-xs font-semibold uppercase tracking-wider group-hover:text-primary transition-colors">
-                    Ver más
+                  <p className="mt-2 text-sm text-muted-foreground flex-1 line-clamp-3">{p.problem}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-foreground text-xs font-semibold uppercase tracking-[0.15em] group-hover:text-primary transition-colors">
+                    Ver caso
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
