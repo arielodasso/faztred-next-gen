@@ -217,7 +217,7 @@ function HomePage() {
       </section>
 
       {/* Featured projects */}
-      <section className="py-20 md:py-28 bg-muted">
+      <section id="proyectos-destacados" className="py-20 md:py-28 bg-muted scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             eyebrow="Casos reales"

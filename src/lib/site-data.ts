@@ -12,8 +12,7 @@ import type { LucideIcon } from "lucide-react";
 export const WHATSAPP_URL =
   "https://api.whatsapp.com/send/?phone=5491162083230&text=Hola+Faztred,+necesito+más+información.";
 
-export const BROCHURE_URL =
-  "http://faztred.com.ar/wp-content/uploads/2025/06/Brochure-Faztred-2025.pdf";
+export const BROCHURE_URL = "/docs/Brochure-Faztred-2025.pdf";
 
 export const PHONE_NUMBER = "+5491162083230";
 export const PHONE_DISPLAY = "(+54) 9 11 6208-3230";
