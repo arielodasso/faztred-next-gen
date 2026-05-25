@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
