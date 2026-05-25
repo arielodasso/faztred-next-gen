@@ -57,7 +57,7 @@ export function HeroSlider() {
               className="cta-press inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
             >
               <MessageCircle className="h-4 w-4" />
-              Hablar por WhatsApp
+              Hablemos sobre tu proyecto
             </a>
           </div>
         </div>
