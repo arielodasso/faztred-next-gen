@@ -4,105 +4,49 @@ import { PageHero } from "@/components/site/PageHero";
 import { Placeholder } from "@/components/site/Placeholder";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Badge } from "@/components/site/Badge";
+import { services } from "@/lib/site-data";
+import { pushEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/servicios")({
   component: ServiciosPage,
   head: () => ({
     meta: [
-      { title: "Servicios de Automatización Industrial | Faztred Soluciones" },
-      { name: "description", content: "PLC, SCADA, tableros eléctricos, revamping, Industria 4.0, mantenimiento e instrumentación industrial. Servicios llave en mano para tu planta." },
+      { title: "Servicios — Automatización Industrial, PLC, SCADA, Tableros | Faztred" },
+      {
+        name: "description",
+        content:
+          "Automatización industrial, PLC, SCADA, tableros eléctricos, revamping, mantenimiento, instrumentación, Industria 4.0 y sistemas especiales. Soluciones llave en mano para tu planta.",
+      },
       { property: "og:title", content: "Servicios | Faztred Soluciones" },
-      { property: "og:description", content: "Soluciones de automatización industrial a medida: ingeniería, programación PLC/HMI/SCADA, tableros, mantenimiento y más." },
+      {
+        property: "og:description",
+        content:
+          "PLC, SCADA, tableros, revamping, mantenimiento, instrumentación, Industria 4.0 y sistemas especiales — ingeniería + implementación.",
+      },
       { property: "og:url", content: "/servicios" },
     ],
     links: [{ rel: "canonical", href: "/servicios" }],
   }),
 });
 
-const mainServices = [
-  {
-    title: "Automatización industrial",
-    description: "Integración de procesos, programación PLC, HMI y SCADA.",
-    items: [
-      "Ingeniería de automatización",
-      "Programación PLC y HMI",
-      "Sistemas SCADA",
-      "Integración industrial",
-      "Migraciones y revamping",
-      "Capacitaciones",
-    ],
-  },
-  {
-    title: "Tableros eléctricos",
-    description: "Diseño y armado con cumplimiento normativo.",
-    items: [
-      "Diseño de ingeniería",
-      "Fabricación",
-      "Armado y montaje",
-      "Tableros de potencia y control",
-      "Tableros PLC",
-    ],
-  },
-  {
-    title: "Industria 4.0 y adquisición de datos",
-    description: "Convertimos tus datos en decisiones operativas.",
-    items: [
-      "Captura de datos industriales",
-      "Dashboards y visualización",
-      "Monitoreo remoto",
-      "Reportes automáticos",
-      "Trazabilidad de procesos",
-    ],
-  },
-  {
-    title: "Mantenimiento industrial",
-    description: "Prevención, predicción y respuesta ante fallas.",
-    items: [
-      "Preventivo",
-      "Predictivo",
-      "Correctivo",
-      "Diagnóstico de fallas",
-      "Puesta en marcha",
-    ],
-  },
-  {
-    title: "Instrumentación industrial",
-    description: "Mediciones precisas, sensores ajustados y calibrados.",
-    items: [
-      "Calibración",
-      "Mediciones en campo",
-      "Diagnóstico de sensores",
-      "Ajustes y configuración",
-    ],
-  },
-  {
-    title: "Señalización industrial y seguridad visual",
-    description: "Información clara en el piso de planta.",
-    items: [
-      "Sistema de señalización industrial",
-      "Alertas visuales",
-      "Señalización dinámica",
-      "Soluciones de seguridad industrial",
-    ],
-  },
-  {
-    title: "Sistemas especiales",
-    description: "Aplicaciones avanzadas y casos específicos.",
-    items: [
-      "Visión artificial",
-      "RFID industrial",
-      "Integraciones especiales",
-      "Automatización personalizada",
-    ],
-  },
-];
-
 const areas = [
-  { title: "Consultoría y asesoramiento", desc: "Análisis de procesos, selección de equipamiento, cumplimiento normativo, ingeniería básica y de detalle." },
-  { title: "Desarrollo e implementación", desc: "Diseño de tableros, programación PLC/HMI/SCADA, integración de sistemas, IoT e Industria 4.0." },
-  { title: "Soporte y mantenimiento", desc: "Asistencia en sitio y remota, mantenimiento mensual, puesta en marcha, capacitación de personal." },
-  { title: "Mantenimiento preventivo y diagnóstico", desc: "Puesta a tierra, termografía infrarroja, calidad de energía, auditoría de instalaciones." },
+  {
+    title: "Consultoría y asesoramiento",
+    desc: "Análisis de procesos, selección de equipamiento, cumplimiento normativo, ingeniería básica y de detalle.",
+  },
+  {
+    title: "Desarrollo e implementación",
+    desc: "Diseño de tableros, programación PLC/HMI/SCADA, integración de sistemas, IoT e Industria 4.0.",
+  },
+  {
+    title: "Soporte y mantenimiento",
+    desc: "Asistencia en sitio y remota, mantenimiento mensual, puesta en marcha, capacitación de personal.",
+  },
+  {
+    title: "Mantenimiento preventivo y diagnóstico",
+    desc: "Puesta a tierra, termografía infrarroja, calidad de energía, auditoría de instalaciones.",
+  },
 ];
 
 function ServiciosPage() {
@@ -115,50 +59,75 @@ function ServiciosPage() {
       />
 
       {/* Main services — alternating layout */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28">
-          {mainServices.map((s, idx) => {
+      <section className="py-24 md:py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 md:space-y-32">
+          {services.map((s, idx) => {
             const reverse = idx % 2 === 1;
+            const Icon = s.icon;
             return (
-              <div
-                key={s.title}
+              <article
+                key={s.slug}
+                id={s.slug}
                 className={cn(
-                  "grid md:grid-cols-2 gap-10 md:gap-16 items-center",
+                  "grid md:grid-cols-2 gap-10 md:gap-16 items-center scroll-mt-32",
                   reverse && "md:[&>*:first-child]:order-2",
                 )}
               >
                 <Placeholder ratio="video" />
                 <div>
                   <Badge variant="ghost" dot>
-                    {String(idx + 1).padStart(2, "0")} / {s.title.split(" ")[0]}
+                    {String(idx + 1).padStart(2, "0")} / {s.title.split(" ")[0].toUpperCase()}
                   </Badge>
-                  <h3 className="mt-5 text-2xl md:text-4xl font-bold tracking-tight">{s.title}</h3>
-                  <p className="mt-4 text-muted-foreground">{s.description}</p>
+                  <div className="mt-5 flex items-start gap-4">
+                    <span className="hidden sm:flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-muted text-foreground">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h2 className="text-2xl md:text-4xl font-bold tracking-tight">{s.title}</h2>
+                  </div>
+                  <p className="mt-4 text-muted-foreground leading-relaxed max-w-xl">
+                    {s.description}
+                  </p>
                   <ul className="mt-7 grid sm:grid-cols-2 gap-x-6 gap-y-3">
                     {s.items.map((it) => (
                       <li key={it} className="flex items-start gap-2.5 text-sm">
-                        <CheckCircle2 className="h-4 w-4 text-foreground/60 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-foreground/55 mt-0.5 flex-shrink-0" />
                         <span>{it}</span>
                       </li>
                     ))}
                   </ul>
+                  <Link
+                    to="/contacto"
+                    onClick={() =>
+                      pushEvent("service_cta_click", {
+                        location: "servicios",
+                        label: s.title,
+                        service_slug: s.slug,
+                      })
+                    }
+                    className="cta-press mt-8 group inline-flex items-center gap-2 text-foreground hover:text-primary text-xs font-semibold uppercase tracking-[0.15em] transition-colors"
+                  >
+                    Consultar este servicio
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
       </section>
 
       {/* Work areas */}
-      <section className="py-20 md:py-28 bg-muted">
+      <section className="py-24 md:py-32 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle eyebrow="Áreas de trabajo" title="Cómo abordamos cada proyecto" />
           <div className="mt-14 grid md:grid-cols-2 gap-px bg-border">
             {areas.map((a, i) => (
               <div key={a.title} className="bg-muted p-8 md:p-10 hover:bg-white transition-colors">
                 <div className="flex items-baseline gap-4">
-                  <span className="text-muted-foreground font-bold text-2xl tabular-nums">0{i + 1}</span>
-                  <h4 className="text-xl font-bold">{a.title}</h4>
+                  <span className="text-muted-foreground/60 font-bold text-2xl tabular-nums">
+                    0{i + 1}
+                  </span>
+                  <h3 className="text-xl font-bold tracking-tight">{a.title}</h3>
                 </div>
                 <p className="mt-4 text-muted-foreground text-sm leading-relaxed">{a.desc}</p>
               </div>
@@ -168,19 +137,20 @@ function ServiciosPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 md:py-28 bg-[color:var(--surface-dark)] relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-[color:var(--surface-dark)] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_60%)]" />
         <div className="absolute top-1/3 left-1/4 w-[40%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.07),transparent_70%)] blur-2xl" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
             ¿Necesitás una solución a medida?
           </h2>
-          <p className="mt-5 text-white/60 text-lg">
+          <p className="mt-5 text-white/60 text-base md:text-lg">
             Coordiná una reunión sin compromiso con nuestro equipo técnico.
           </p>
           <Link
             to="/contacto"
-            className="mt-10 group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-8 py-4 text-xs font-semibold tracking-wider uppercase"
+            onClick={() => pushEvent("meeting_request", { location: "servicios_final_cta" })}
+            className="cta-press mt-10 group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-8 py-4 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
           >
             Hablemos de tu proyecto
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
