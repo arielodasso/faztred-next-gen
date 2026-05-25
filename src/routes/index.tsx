@@ -276,23 +276,19 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Clients marquee */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" />
-        </div>
-        <div className="mt-12 overflow-hidden">
-          <div className="flex gap-12 animate-marquee w-max">
-            {Array.from({ length: 2 }).map((_, dup) => (
-              <div key={dup} className="flex gap-12 items-center">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-20 w-44 bg-muted border border-border flex items-center justify-center text-muted-foreground/60 text-xs uppercase tracking-widest"
-                  >
-                    Cliente {i + 1}
-                  </div>
-                ))}
+      {/* Clients grid — n8n style */}
+      <section className="py-24 md:py-32 bg-[color:var(--surface-darker)] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04),transparent_70%)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.06),transparent_70%)] blur-3xl" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" dark />
+          <div className="mt-14 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-3 md:gap-4">
+            {Array.from({ length: 24 }).map((_, i) => (
+              <div
+                key={i}
+                className="aspect-square rounded-xl border border-white/10 bg-white/[0.025] hover:border-white/25 hover:bg-white/[0.05] transition-colors flex items-center justify-center text-white/40 text-[10px] uppercase tracking-widest"
+              >
+                Logo
               </div>
             ))}
           </div>
@@ -300,33 +296,36 @@ function HomePage() {
       </section>
 
       {/* Brochure */}
-      <section className="py-20 md:py-28 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 md:py-32 bg-[color:var(--surface-dark)] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
+        <div className="absolute top-0 right-0 w-[40%] h-full bg-[radial-gradient(circle_at_right,rgba(204,0,0,0.08),transparent_70%)] blur-2xl" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold flex items-center gap-2.5">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-semibold flex items-center gap-2.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Material
               </span>
-              <h2 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight">Brochure Faztred</h2>
-              <p className="mt-5 text-muted-foreground max-w-md">
+              <h2 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight text-white">Brochure Faztred</h2>
+              <p className="mt-5 text-white/65 max-w-md">
                 Conocé más sobre quiénes somos, qué hacemos y cómo podemos ayudarte
                 a transformar tu planta.
               </p>
               <a
                 href={BROCHURE_URL}
-                target="_blank"
+                target="FaztredBrochure"
                 rel="noopener noreferrer"
-                onClick={() => pushEvent("brochure_download", { location: "home_brochure" })}
+                onClick={openBrochurePopup}
                 className="cta-press mt-8 inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
               >
                 <Download className="h-4 w-4" />
                 Descargar PDF
               </a>
             </div>
-            <Placeholder ratio="portrait" className="!aspect-[4/5]" label="Portada del brochure" />
+            <Placeholder ratio="portrait" className="!aspect-[4/5] !border-white/10 !bg-white/[0.03]" label="Portada del brochure" />
           </div>
         </div>
       </section>
+
 
       {/* Quick contact form */}
       <section className="py-20 md:py-28 bg-background">
