@@ -180,6 +180,15 @@ import tsa1 from "@/assets/projects/tableros/tsa-1.jpg";
 import tsb1 from "@/assets/projects/tableros/tsb-1.jpg";
 import tsb2 from "@/assets/projects/tableros/tsb-2.jpg";
 import tsb3 from "@/assets/projects/tableros/tsb-3.jpg";
+import revampingAntes1 from "@/assets/projects/tableros/revamping-antes-1.png";
+import revampingDespues1 from "@/assets/projects/tableros/revamping-despues-1.png";
+import revampingDespues2 from "@/assets/projects/tableros/revamping-despues-2.png";
+import revampingAntes2 from "@/assets/projects/tableros/revamping-antes-2.png";
+import revampingAntes3 from "@/assets/projects/tableros/revamping-antes-3.png";
+import revampingDespues3 from "@/assets/projects/tableros/revamping-despues-3.png";
+import revampingDespues4 from "@/assets/projects/tableros/revamping-despues-4.png";
+import revampingAntes4 from "@/assets/projects/tableros/revamping-antes-4.png";
+import revampingAntes5 from "@/assets/projects/tableros/revamping-antes-5.png";
 
 export const projects: Project[] = [
   {
@@ -188,19 +197,40 @@ export const projects: Project[] = [
     industry: "Industrial",
     category: "Tableros",
     problem:
-      "Diseño y fabricación de tableros de control, potencia y PLC para distintas líneas productivas y tableros de barreras de seguridad en planta.",
+      "Diseño, revamping y fabricación de tableros de control, potencia y PLC para distintas líneas productivas, incluyendo tableros de barreras de seguridad en planta.",
     solution: [
-      "Ingeniería eléctrica y selección de componentes bajo norma",
+      "Relevamiento del estado inicial de tableros existentes y definición del revamping",
+      "Ingeniería eléctrica, selección de componentes y rediseño del frente de mando",
       "Armado y cableado prolijo con identificación y trazabilidad",
       "Fabricación de tableros de control, potencia, PLC y barreras de seguridad (TSA / TSB)",
       "Pruebas en taller, puesta en marcha y entrega de documentación CAO",
     ],
     result:
-      "Tableros entregados llave en mano, con cableado normalizado, identificación completa y documentación final lista para mantenimiento.",
-    technologies: ["Siemens", "Phoenix Contact", "Borneras", "Barreras de seguridad", "PLC", "HMI"],
+      "Tableros entregados llave en mano, con cableado normalizado, frente de mando renovado, identificación completa y una mejora visible entre el estado original y el resultado final.",
+    technologies: ["Siemens", "Allen Bradley", "Phoenix Contact", "Borneras", "Barreras de seguridad", "PLC", "HMI"],
     images: 0,
-    cover: tablero1,
-    gallery: [tablero1, tablero4, tablero5, tablero6, tablero2, tablero3, tsa1, tsb1, tsb2, tsb3],
+    cover: revampingDespues1,
+    gallery: [
+      revampingAntes1,
+      revampingDespues1,
+      revampingAntes2,
+      revampingDespues3,
+      revampingAntes3,
+      revampingDespues4,
+      revampingAntes4,
+      revampingDespues2,
+      revampingAntes5,
+      tablero1,
+      tablero4,
+      tablero5,
+      tablero6,
+      tablero2,
+      tablero3,
+      tsa1,
+      tsb1,
+      tsb2,
+      tsb3,
+    ],
   },
   {
     slug: "instalaciones-antiexplosivas",
