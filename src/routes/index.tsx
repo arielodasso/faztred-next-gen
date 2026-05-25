@@ -88,13 +88,13 @@ function HomePage() {
             {contactCards.map((c) => {
               const Icon = c.icon;
               const Inner = (
-                <div className="group relative h-full bg-white border border-border rounded-xl p-8 flex flex-col hover:border-primary/50 hover:shadow-[0_20px_60px_-20px_rgba(204,0,0,0.25)] transition-all duration-300 hover:-translate-y-1">
+                <div className="group relative h-full bg-white border border-border rounded-xl p-8 flex flex-col hover:border-foreground/30 hover:shadow-[0_20px_60px_-25px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1">
                   <div className="h-11 w-11 flex items-center justify-center bg-foreground text-white rounded-lg group-hover:bg-primary transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-6 text-xl font-bold text-foreground tracking-tight">{c.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{c.desc}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
+                  <span className="mt-6 inline-flex items-center gap-2 text-foreground text-xs font-semibold uppercase tracking-wider group-hover:text-primary transition-colors">
                     {c.cta}
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -130,7 +130,9 @@ function HomePage() {
               <p className="mt-3 text-white/60 text-sm uppercase tracking-widest">Años de experiencia</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Industrias</p>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-semibold mb-4 flex items-center gap-2.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Industrias
+              </p>
               <ul className="flex flex-wrap gap-2">
                 {industries.map((ind) => (
                   <li key={ind}>
@@ -140,7 +142,7 @@ function HomePage() {
               </ul>
             </div>
           </div>
-          <p className="mt-14 text-white/50 text-sm max-w-3xl border-l-2 border-primary pl-4">
+          <p className="mt-14 text-white/50 text-sm max-w-3xl border-l border-white/15 pl-4">
             Más de 300 proyectos implementados con éxito en sectores como pintura,
             metalurgia, alimentos, farmacéutica y más.
           </p>
@@ -159,9 +161,9 @@ function HomePage() {
             {featuredServices.map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.title} className="group relative bg-background border border-border rounded-xl p-7 hover:border-primary/40 hover:shadow-[0_20px_50px_-25px_rgba(204,0,0,0.3)] transition-all duration-300">
-                  <div className="h-11 w-11 flex items-center justify-center border border-border rounded-lg bg-muted group-hover:border-primary/30 group-hover:bg-primary/5 transition-colors">
-                    <Icon className="h-5 w-5 text-primary" />
+                <div key={s.title} className="group relative bg-background border border-border rounded-xl p-7 hover:border-foreground/30 hover:shadow-[0_20px_50px_-30px_rgba(0,0,0,0.35)] transition-all duration-300">
+                  <div className="h-11 w-11 flex items-center justify-center border border-border rounded-lg bg-muted group-hover:border-primary/40 group-hover:bg-primary/5 transition-colors">
+                    <Icon className="h-5 w-5 text-foreground group-hover:text-primary transition-colors" />
                   </div>
                   <h3 className="mt-5 text-base font-bold tracking-tight">{s.title}</h3>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
@@ -193,14 +195,14 @@ function HomePage() {
               <Link
                 key={p.slug}
                 to="/proyectos"
-                className="group bg-white border border-border rounded-xl hover:border-primary/40 hover:shadow-[0_24px_60px_-25px_rgba(204,0,0,0.3)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
+                className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
               >
                 <Placeholder ratio="video" />
                 <div className="p-6 flex-1 flex flex-col">
                   <Badge variant="solid" className="self-start">{p.industry}</Badge>
                   <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.situation}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
+                  <span className="mt-5 inline-flex items-center gap-2 text-foreground text-xs font-semibold uppercase tracking-wider group-hover:text-primary transition-colors">
                     Ver más
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -219,15 +221,16 @@ function HomePage() {
 
       {/* Why Faztred */}
       <section className="py-20 md:py-28 bg-[color:var(--surface-dark)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(204,0,0,0.15),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.05),transparent_60%)]" />
+        <div className="absolute bottom-0 left-1/4 w-[30%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.06),transparent_70%)] blur-2xl" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle eyebrow="Diferenciales" title="¿Por qué Faztred?" dark />
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyFaztred.map((w) => {
               const Icon = w.icon;
               return (
-                <div key={w.title} className="group bg-white/[0.02] border border-white/10 rounded-xl hover:border-primary/40 hover:bg-white/[0.04] p-7 transition-colors">
-                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div key={w.title} className="group bg-white/[0.02] border border-white/10 rounded-xl hover:border-white/25 hover:bg-white/[0.04] p-7 transition-colors">
+                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/80 group-hover:border-primary/50 group-hover:text-primary transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-bold text-white">{w.title}</h3>
@@ -267,7 +270,9 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">Material</span>
+              <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold flex items-center gap-2.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Material
+              </span>
               <h2 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight">Brochure Faztred</h2>
               <p className="mt-5 text-muted-foreground max-w-md">
                 Conocé más sobre quiénes somos, qué hacemos y cómo podemos ayudarte
