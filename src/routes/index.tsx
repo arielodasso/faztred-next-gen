@@ -35,6 +35,11 @@ import clientFoggia from "@/assets/clients/foggia.png";
 import clientKromberg from "@/assets/clients/kromberg.png";
 import clientTea from "@/assets/clients/tea.png";
 import clientMiller from "@/assets/clients/miller.png";
+import clientDayplas from "@/assets/clients/dayplas.png";
+import clientHqfilms from "@/assets/clients/hqfilms.png";
+import clientTecnoperfiles from "@/assets/clients/tecnoperfiles.png";
+import clientRonalflex from "@/assets/clients/ronalflex.png";
+import clientHixwer from "@/assets/clients/hixwer.png";
 
 const clientLogos = [
   { src: clientYpf, name: "YPF" },
@@ -47,9 +52,15 @@ const clientLogos = [
   { src: clientMiller, name: "Miller" },
   { src: clientFuerzaBruta, name: "Fuerza Bruta" },
   { src: clientFoggia, name: "Foggia Company" },
+  { src: clientDayplas, name: "Dayplas" },
+  { src: clientHqfilms, name: "HQ Films" },
+  { src: clientTecnoperfiles, name: "Tecnoperfiles" },
+  { src: clientRonalflex, name: "Ronalflex" },
+  { src: clientHixwer, name: "Hixwer" },
 ];
-const clientsRowA = clientLogos.slice(0, 5);
-const clientsRowB = clientLogos.slice(5);
+const mid = Math.ceil(clientLogos.length / 2);
+const clientsRowA = clientLogos.slice(0, mid);
+const clientsRowB = clientLogos.slice(mid);
 
 function openBrochurePopup(e: React.MouseEvent) {
   e.preventDefault();
