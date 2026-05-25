@@ -208,7 +208,7 @@ function HomePage() {
             })}
           </div>
           <div className="mt-12 flex justify-center">
-            <Link to="/servicios" className="group inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors">
+            <Link to="/servicios" className="cta-press group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors">
               Ver todos los servicios
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
