@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
@@ -42,6 +42,20 @@ const categories: ("Todos" | ProjectCategory)[] = [
 function ProyectosPage() {
   const [active, setActive] = useState<(typeof categories)[number]>("Todos");
   const [open, setOpen] = useState<Project | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const lightboxImages = open?.gallery ?? [];
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => (i === null ? null : (i + 1) % lightboxImages.length));
+      if (e.key === "ArrowLeft") setLightboxIndex((i) => (i === null ? null : (i - 1 + lightboxImages.length) % lightboxImages.length));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIndex, lightboxImages.length]);
 
   const filtered =
     active === "Todos" ? projects : projects.filter((p) => p.category === active);
@@ -72,7 +86,7 @@ function ProyectosPage() {
       />
 
       {/* Filters */}
-      <section className="py-8 md:py-10 bg-background border-b border-border sticky top-16 md:top-20 z-30 bg-background/95 backdrop-blur">
+      <section className="py-8 md:py-10 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2">
             {categories.map((c) => (
@@ -226,9 +240,15 @@ function ProyectosPage() {
               >
                 {open.gallery && open.gallery.length > 0
                   ? open.gallery.map((src, i) => (
-                      <div key={i} className="aspect-video w-full overflow-hidden rounded-md bg-muted">
-                        <img src={src} alt={`${open.title} ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
-                      </div>
+                      <button
+                        type="button"
+                        key={i}
+                        onClick={() => setLightboxIndex(i)}
+                        className="cta-press aspect-video w-full overflow-hidden rounded-md bg-muted group/img relative"
+                        aria-label={`Ampliar imagen ${i + 1}`}
+                      >
+                        <img src={src} alt={`${open.title} ${i + 1}`} loading="lazy" className="h-full w-full object-cover group-hover/img:scale-[1.04] transition-transform duration-500" />
+                      </button>
                     ))
                   : Array.from({ length: open.images }).map((_, i) => (
                       <Placeholder key={i} ratio="video" />
@@ -254,6 +274,54 @@ function ProyectosPage() {
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Lightbox */}
+      {open && lightboxIndex !== null && lightboxImages.length > 0 && (
+        <div
+          className="fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setLightboxIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Vista ampliada"
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
+            aria-label="Cerrar"
+            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors z-10"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          {lightboxImages.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex((i) => (i === null ? null : (i - 1 + lightboxImages.length) % lightboxImages.length)); }}
+                aria-label="Anterior"
+                className="absolute left-4 md:left-6 p-3 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+              >
+                <ChevronLeft className="h-7 w-7" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex((i) => (i === null ? null : (i + 1) % lightboxImages.length)); }}
+                aria-label="Siguiente"
+                className="absolute right-4 md:right-6 p-3 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+              >
+                <ChevronRight className="h-7 w-7" />
+              </button>
+            </>
+          )}
+          <img
+            src={lightboxImages[lightboxIndex]}
+            alt={`${open.title} ${lightboxIndex + 1}`}
+            className="max-w-full max-h-[90dvh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          {lightboxImages.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-xs uppercase tracking-[0.2em] font-semibold">
+              {lightboxIndex + 1} / {lightboxImages.length}
+            </div>
+          )}
         </div>
       )}
 
