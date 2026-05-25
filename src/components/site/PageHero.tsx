@@ -18,7 +18,9 @@ export function PageHero({ title, subtitle, eyebrow, backgroundImage }: Props) {
           <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--surface-dark)] via-[color:var(--surface-dark)]/85 to-[color:var(--surface-dark)]/40" aria-hidden />
         </>
       )}
-      <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:60px_60px]" />
+      {!backgroundImage && (
+        <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:60px_60px]" />
+      )}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.06),transparent_60%)]" />
       <div className="absolute -top-24 right-1/3 w-[40%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.08),transparent_70%)] blur-2xl" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
