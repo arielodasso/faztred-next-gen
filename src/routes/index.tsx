@@ -254,7 +254,7 @@ function HomePage() {
       </section>
 
       {/* Why Faztred */}
-      <section className="py-20 md:py-28 bg-[color:var(--surface-dark)] relative overflow-hidden">
+      <section id="diferenciales" className="py-20 md:py-28 bg-[color:var(--surface-dark)] relative overflow-hidden scroll-mt-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.05),transparent_60%)]" />
         <div className="absolute bottom-0 left-1/4 w-[30%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.06),transparent_70%)] blur-2xl" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
