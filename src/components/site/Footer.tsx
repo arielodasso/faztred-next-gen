@@ -19,12 +19,12 @@ const companyLinks = [
 ];
 
 const serviceLinks = [
-  { label: "Automatización industrial", slug: "automatizacion" },
-  { label: "Tableros eléctricos", slug: "tableros" },
+  { label: "Automatización industrial", slug: "automatizacion-industrial" },
+  { label: "Tableros eléctricos", slug: "tableros-electricos" },
   { label: "Industria 4.0", slug: "industria-4-0" },
-  { label: "Mantenimiento", slug: "mantenimiento" },
-  { label: "Instrumentación", slug: "instrumentacion" },
-  { label: "Señalización", slug: "senalizacion" },
+  { label: "Mantenimiento", slug: "mantenimiento-industrial" },
+  { label: "Instrumentación", slug: "instrumentacion-industrial" },
+  { label: "Señalización", slug: "senalizacion-industrial" },
   { label: "Sistemas especiales", slug: "sistemas-especiales" },
 ];
 
@@ -50,12 +50,11 @@ const technologies = [
 
 export function Footer() {
   return (
-    <footer className="bg-[color:var(--surface-darker)] px-4 sm:px-6 lg:px-8 pt-12 pb-8">
-      <div className="relative max-w-7xl mx-auto overflow-hidden rounded-3xl bg-[color:var(--surface-dark)] border border-white/[0.06]">
+    <footer className="bg-[color:var(--surface-darker)] px-3 md:px-4 pt-12 pb-8">
+      <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl bg-[color:var(--surface-dark)] border border-white/[0.06]">
         {/* Ember radial glows — n8n signature */}
         <div className="pointer-events-none absolute -top-32 -left-24 w-[55%] h-[70%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.22),transparent_65%)] blur-3xl" />
         <div className="pointer-events-none absolute -bottom-40 -right-24 w-[55%] h-[70%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.18),transparent_65%)] blur-3xl" />
-        <div className="pointer-events-none absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
 
         <div className="relative px-6 sm:px-10 lg:px-14 pt-14 pb-10 text-white">
           {/* Top: brand + nav columns */}
