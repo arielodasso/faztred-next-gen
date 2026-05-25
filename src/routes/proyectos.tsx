@@ -45,8 +45,6 @@ const categories: ("Todos" | ProjectCategory)[] = [
 ];
 
 function ProyectosPage() {
-  const [active, setActive] = useState<(typeof categories)[number]>("Todos");
-function ProyectosPage() {
   const { cat } = Route.useSearch();
   const initial = (categories as string[]).includes(cat ?? "") ? (cat as (typeof categories)[number]) : "Todos";
   const [active, setActive] = useState<(typeof categories)[number]>(initial);
