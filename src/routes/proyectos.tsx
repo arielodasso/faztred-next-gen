@@ -11,6 +11,9 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/proyectos")({
   component: ProyectosPage,
+  validateSearch: (search: Record<string, unknown>) => ({
+    cat: typeof search.cat === "string" ? (search.cat as string) : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Proyectos realizados — Casos reales de automatización | Faztred" },
