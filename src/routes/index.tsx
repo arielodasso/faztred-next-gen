@@ -147,7 +147,7 @@ function HomePage() {
       <HeroSlider />
 
       {/* Contact CTAs */}
-      <section className="bg-[#e6e7ea] py-20 md:py-28">
+      <section className="bg-[#5e5f60] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-6">
             {contactCards.map((c) => {
