@@ -17,6 +17,7 @@ import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
 import { ContactForm } from "@/components/site/ContactForm";
+import { CountUp } from "@/components/site/CountUp";
 import {
   featuredServices,
   projects,
@@ -24,6 +25,20 @@ import {
   BROCHURE_URL,
 } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
+
+function openBrochurePopup(e: React.MouseEvent) {
+  e.preventDefault();
+  pushEvent("brochure_download", { location: "home_brochure" });
+  const w = 900;
+  const h = Math.min(900, window.innerHeight - 40);
+  const left = window.screenX + (window.outerWidth - w) / 2;
+  const top = window.screenY + (window.outerHeight - h) / 2;
+  window.open(
+    BROCHURE_URL,
+    "FaztredBrochure",
+    `popup=yes,width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes`,
+  );
+}
 
 export const Route = createFileRoute("/")({
   component: HomePage,
