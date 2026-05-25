@@ -42,6 +42,20 @@ const categories: ("Todos" | ProjectCategory)[] = [
 function ProyectosPage() {
   const [active, setActive] = useState<(typeof categories)[number]>("Todos");
   const [open, setOpen] = useState<Project | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const lightboxImages = open?.gallery ?? [];
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => (i === null ? null : (i + 1) % lightboxImages.length));
+      if (e.key === "ArrowLeft") setLightboxIndex((i) => (i === null ? null : (i - 1 + lightboxImages.length) % lightboxImages.length));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIndex, lightboxImages.length]);
 
   const filtered =
     active === "Todos" ? projects : projects.filter((p) => p.category === active);
