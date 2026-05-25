@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, Mail, Phone, Clock, Instagram, Linkedin, MessageCircle, CalendarCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import heroImage from "@/assets/hero-industrial.jpg";
 import { ContactForm } from "@/components/site/ContactForm";
 import { WHATSAPP_URL, PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
@@ -44,6 +45,7 @@ function ContactoPage() {
         eyebrow="Hablemos"
         title="Contacto"
         subtitle="Contanos tu desafío. Te respondemos rápido."
+        backgroundImage={heroImage}
       />
 
       <section className="py-24 md:py-32 bg-background">
