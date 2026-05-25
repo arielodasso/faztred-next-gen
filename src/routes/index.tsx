@@ -25,6 +25,31 @@ import {
   BROCHURE_URL,
 } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
+import clientManaos from "@/assets/clients/manaos.png";
+import clientYpf from "@/assets/clients/ypf.png";
+import clientYamaha from "@/assets/clients/yamaha.png";
+import clientIvess from "@/assets/clients/ivess.png";
+import clientJms from "@/assets/clients/jms.png";
+import clientFuerzaBruta from "@/assets/clients/fuerza-bruta.png";
+import clientFoggia from "@/assets/clients/foggia.png";
+import clientKromberg from "@/assets/clients/kromberg.png";
+import clientTea from "@/assets/clients/tea.png";
+import clientMiller from "@/assets/clients/miller.png";
+
+const clientLogos = [
+  { src: clientYpf, name: "YPF" },
+  { src: clientYamaha, name: "Yamaha" },
+  { src: clientManaos, name: "Manaos" },
+  { src: clientIvess, name: "Ivess" },
+  { src: clientJms, name: "JMS" },
+  { src: clientKromberg, name: "Kromberg & Schubert" },
+  { src: clientTea, name: "Manufacturas TEA" },
+  { src: clientMiller, name: "Miller" },
+  { src: clientFuerzaBruta, name: "Fuerza Bruta" },
+  { src: clientFoggia, name: "Foggia Company" },
+];
+const clientsRowA = clientLogos.slice(0, 5);
+const clientsRowB = clientLogos.slice(5);
 
 function openBrochurePopup(e: React.MouseEvent) {
   e.preventDefault();
@@ -282,8 +307,8 @@ function HomePage() {
           <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" />
           <div className="mt-14 space-y-5">
             {[
-              { items: Array.from({ length: 12 }), reverse: false },
-              { items: Array.from({ length: 12 }), reverse: true },
+              { items: clientsRowA, reverse: false },
+              { items: clientsRowB, reverse: true },
             ].map((row, rIdx) => (
               <div
                 key={rIdx}
@@ -292,18 +317,24 @@ function HomePage() {
                 <div
                   className={`flex gap-4 w-max ${row.reverse ? "animate-marquee-reverse" : "animate-marquee"} group-hover:[animation-play-state:paused]`}
                 >
-                  {[...row.items, ...row.items].map((_, i) => (
+                  {[...row.items, ...row.items, ...row.items].map((logo, i) => (
                     <div
                       key={i}
-                      className="h-24 w-44 flex-shrink-0 rounded-xl border border-border bg-white hover:border-foreground/30 transition-colors flex items-center justify-center text-muted-foreground text-[10px] uppercase tracking-widest"
+                      className="h-24 w-44 flex-shrink-0 rounded-xl border border-border bg-white hover:border-foreground/30 transition-colors flex items-center justify-center p-5"
                     >
-                      Logo
+                      <img
+                        src={logo.src}
+                        alt={logo.name}
+                        loading="lazy"
+                        className="max-h-full max-w-full object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      />
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
