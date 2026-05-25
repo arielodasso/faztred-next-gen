@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, Briefcase } from "lucide-react";
 import { Placeholder } from "./Placeholder";
 import { pushEvent } from "@/lib/analytics";
-
-import { WHATSAPP_URL } from "@/lib/site-data";
 
 export function HeroSlider() {
   const [mounted, setMounted] = useState(false);
@@ -49,16 +47,15 @@ export function HeroSlider() {
               Coordinar una reunión
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => pushEvent("whatsapp_click", { location: "hero" })}
+            <Link
+              to="/"
+              hash="proyectos-destacados"
+              onClick={() => pushEvent("project_view", { location: "hero", label: "Ver proyectos" })}
               className="cta-press inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
             >
-              <MessageCircle className="h-4 w-4" />
-              Hablemos sobre tu proyecto
-            </a>
+              <Briefcase className="h-4 w-4" />
+              Ver proyectos
+            </Link>
           </div>
         </div>
       </div>

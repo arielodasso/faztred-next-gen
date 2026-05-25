@@ -22,10 +22,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleLogoClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleLogoClick = () => {
     setOpen(false);
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && window.location.pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
