@@ -203,6 +203,11 @@ import antiexGevelux4 from "@/assets/projects/antiexplosivas/gevelux-4.jpg";
 import antiexGevelux5 from "@/assets/projects/antiexplosivas/gevelux-5.jpg";
 import antiexPlanta1 from "@/assets/projects/antiexplosivas/planta-1.jpg";
 import antiexMontaje5 from "@/assets/projects/antiexplosivas/montaje-5.jpg";
+import yamaha1 from "@/assets/projects/yamaha/yamaha-1.png";
+import cerramiento1 from "@/assets/projects/cerramiento/cerramiento-1.png";
+import revampingTablero1 from "@/assets/projects/revamping-tablero/tablero-1.png";
+import flejadora1 from "@/assets/projects/flejadora/flejadora-1.png";
+import bombeo1 from "@/assets/projects/bombeo/bombeo-1.png";
 
 export const projects: Project[] = [
   {
@@ -299,7 +304,9 @@ export const projects: Project[] = [
       "Barreras infrarrojas",
       "Interlock electromecánico",
     ],
-    images: 2,
+    images: 0,
+    cover: cerramiento1,
+    gallery: [cerramiento1],
   },
   {
     slug: "capacitaciones-yamaha",
@@ -316,7 +323,9 @@ export const projects: Project[] = [
     result:
       "Equipo de planta capacitado y certificado en electricidad industrial, con material de consulta propio.",
     technologies: ["Electricidad industrial", "Material didáctico propio"],
-    images: 2,
+    images: 0,
+    cover: yamaha1,
+    gallery: [yamaha1],
   },
   {
     slug: "revamping-tablero-control",
@@ -333,7 +342,9 @@ export const projects: Project[] = [
     result:
       "Línea de agrupado de pintura modernizada y operativa con tablero nuevo y documentación CAO completa.",
     technologies: ["PLC", "HMI", "Tablero de control"],
-    images: 2,
+    images: 0,
+    cover: revampingTablero1,
+    gallery: [revampingTablero1],
   },
   {
     slug: "automatismo-bombeo-pigmentos",
@@ -352,7 +363,9 @@ export const projects: Project[] = [
     result:
       "Sistema de bombeo migrado a Allen Bradley con HMI integrado, puesta a tierra normalizada y arranque sin paradas.",
     technologies: ["Siemens", "Allen Bradley", "HMI", "Puesta a tierra"],
-    images: 3,
+    images: 0,
+    cover: bombeo1,
+    gallery: [bombeo1],
   },
   {
     slug: "revamping-flejadora",
@@ -368,6 +381,8 @@ export const projects: Project[] = [
     result:
       "Máquina flejadora operativa con sistema de control modernizado y documentación técnica final entregada.",
     technologies: ["PLC", "Tablero de control"],
-    images: 2,
+    images: 0,
+    cover: flejadora1,
+    gallery: [flejadora1],
   },
 ];
