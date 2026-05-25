@@ -4,41 +4,17 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { Placeholder } from "./Placeholder";
 import { pushEvent } from "@/lib/analytics";
 
-import { cn } from "@/lib/utils";
 import { WHATSAPP_URL } from "@/lib/site-data";
 
-const slides = [
-  {
-    title: "¿Cansado de parar la producción por fallas imprevistas?",
-    subtitle:
-      "Diagnosticamos tu planta operativa con informes claros y soluciones que funcionan.",
-    cta: "Solicitá tu visita técnica sin costo",
-  },
-  {
-    title: "¿Tenés que actualizar tus máquinas y no sabés por dónde empezar?",
-    subtitle:
-      "Te acompañamos en un proceso llave en mano desde el relevamiento hasta la puesta en marcha.",
-    cta: "Coordiná tu reunión con un especialista",
-  },
-  {
-    title: "¿Tu proceso podría rendir más con automatización?",
-    subtitle:
-      "Integramos sistemas, programamos PLC y armamos tableros a medida, con foco en resultados.",
-    cta: "Consultá sin compromiso",
-  },
-];
-
 export function HeroSlider() {
-  const [i, setI] = useState(0);
-
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % slides.length), 9000);
-    return () => clearInterval(t);
+    const t = setTimeout(() => setMounted(true), 30);
+    return () => clearTimeout(t);
   }, []);
 
   return (
     <section className="relative h-screen min-h-[560px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-dark)]">
-      {/* Background placeholder layer */}
       <div className="absolute inset-0">
         <Placeholder
           label="Imagen industrial — reemplazar"
@@ -46,72 +22,50 @@ export function HeroSlider() {
           className="!aspect-auto h-full w-full !border-0 opacity-20"
         />
       </div>
-      {/* Overlays — n8n-style deep graphite gradient + subtle red accent */}
       <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--surface-darker)] via-[color:var(--surface-dark)] to-[color:var(--surface-darker)]" />
       <div className="absolute -bottom-1/3 -left-1/4 w-[60%] h-[100%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)] blur-2xl" />
       <div className="absolute top-1/4 right-[-10%] w-[40%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.10),transparent_70%)] blur-2xl" />
       <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:96px_96px]" />
 
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-24">
-        {slides.map((s, idx) => (
-          <div
-            key={idx}
-            className={cn(
-              "absolute inset-x-4 sm:inset-x-6 lg:inset-x-8 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-              idx === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none",
-            )}
-          >
-            <div className="max-w-5xl">
-              <h1 className="h-display font-bold text-white">
-                {s.title}
-              </h1>
-              <p className="mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-2xl leading-relaxed">
-                {s.subtitle}
-              </p>
-              <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3">
-                <Link
-                  to="/contacto"
-                  onClick={() => pushEvent("meeting_request", { location: "hero", label: s.cta })}
-                  className="cta-press group inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
-                >
-                  {s.cta}
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => pushEvent("whatsapp_click", { location: "hero" })}
-                  className="cta-press inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  Hablar por WhatsApp
-                </a>
-              </div>
-            </div>
+        <div
+          className={`max-w-5xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+          }`}
+        >
+          <div className="flex items-center gap-2.5 mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/55">
+              Automatización industrial
+            </span>
           </div>
-        ))}
-
-        {/* Dots */}
-        <div className="absolute bottom-10 left-4 sm:left-6 lg:left-8 flex items-center gap-3 z-10">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setI(idx)}
-              aria-label={`Slide ${idx + 1}`}
-              className={cn(
-                "h-1 rounded-full transition-all duration-300",
-                idx === i ? "w-12 bg-primary" : "w-6 bg-white/25 hover:bg-white/60",
-              )}
-            />
-          ))}
-        </div>
-
-        {/* Counter */}
-        <div className="absolute bottom-10 right-4 sm:right-6 lg:right-8 text-white/60 text-xs tracking-widest z-10 hidden md:block">
-          <span className="text-white font-bold">{String(i + 1).padStart(2, "0")}</span>
-          <span className="mx-2">/</span>
-          <span>{String(slides.length).padStart(2, "0")}</span>
+          <h1 className="h-display font-bold text-white text-balance">
+            Automatización industrial con soluciones reales para planta
+          </h1>
+          <p className="mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-2xl leading-relaxed">
+            Ingeniería, programación, tableros eléctricos, revamping y asistencia
+            técnica para industrias que necesitan resultados concretos.
+          </p>
+          <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3">
+            <Link
+              to="/contacto"
+              onClick={() => pushEvent("meeting_request", { location: "hero", label: "Coordinar reunión" })}
+              className="cta-press group inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
+            >
+              Coordinar una reunión
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => pushEvent("whatsapp_click", { location: "hero" })}
+              className="cta-press inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Hablar por WhatsApp
+            </a>
+          </div>
         </div>
       </div>
     </section>
