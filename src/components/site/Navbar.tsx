@@ -130,16 +130,16 @@ export function Navbar() {
                               key={p.slug}
                               to="/proyectos"
                               onClick={() => setProjectsOpen(false)}
-                              className="group flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-white/5 transition-colors"
+                              className="group flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-primary transition-colors"
                             >
-                              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/70 group-hover:text-primary group-hover:border-primary/40 transition-colors">
+                              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/70 group-hover:text-primary-foreground group-hover:border-primary-foreground/30 group-hover:bg-primary-foreground/10 transition-colors">
                                 <Icon className="h-4 w-4" />
                               </span>
                               <span className="flex-1 min-w-0">
-                                <span className="block text-[13px] font-medium text-white/90 truncate group-hover:text-white">
+                                <span className="block text-[13px] font-medium text-white/90 truncate group-hover:text-primary-foreground">
                                   {p.title}
                                 </span>
-                                <span className="block text-[10px] uppercase tracking-[0.16em] text-white/45 mt-0.5">
+                                <span className="block text-[10px] uppercase tracking-[0.16em] text-white/45 mt-0.5 group-hover:text-primary-foreground/80">
                                   {p.category}
                                 </span>
                               </span>
