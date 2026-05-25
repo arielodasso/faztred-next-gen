@@ -44,10 +44,23 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "Faztred Soluciones | Automatización Industrial llave en mano" },
-      { name: "description", content: "Diagnóstico, automatización, tableros eléctricos, revamping y mantenimiento industrial. Soluciones a medida para tu planta." },
-      { property: "og:title", content: "Faztred Soluciones | Automatización Industrial" },
-      { property: "og:description", content: "Soluciones de automatización industrial llave en mano: PLC, SCADA, tableros y revamping." },
+      { title: "Faztred | Automatización Industrial, PLC, SCADA y Tableros Eléctricos" },
+      {
+        name: "description",
+        content:
+          "Automatización industrial, programación de PLC, SCADA, diseño de tableros eléctricos, revamping, integración industrial, mantenimiento y soluciones Industria 4.0 para procesos productivos.",
+      },
+      {
+        name: "keywords",
+        content:
+          "automatización industrial, PLC, SCADA, tableros eléctricos, revamping, integración industrial, programación PLC, mantenimiento industrial, Industria 4.0, ingeniería industrial, automatización de procesos",
+      },
+      { property: "og:title", content: "Faztred | Automatización Industrial llave en mano" },
+      {
+        property: "og:description",
+        content:
+          "Ingeniería, programación PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias que necesitan resultados concretos.",
+      },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
