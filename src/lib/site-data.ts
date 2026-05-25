@@ -256,7 +256,20 @@ export const projects: Project[] = [
     result:
       "Zona clasificada operativa bajo norma ATEX, con sistema de pesaje validado y montaje libre de riesgos.",
     technologies: ["Gabinetes antideflagrantes", "Norma ATEX", "Sistema de pesaje ATEX"],
-    images: 2,
+    images: 0,
+    cover: antiexGevelux1,
+    gallery: [
+      antiexGevelux1,
+      antiexGevelux3,
+      antiexGevelux2,
+      antiexMontaje1,
+      antiexMontaje2,
+      antiexMontaje4,
+      antiexMontaje3,
+      antiexLaser1,
+      antiexLaser3,
+      antiexLaser2,
+    ],
   },
   {
     slug: "cerramiento-industrial",
