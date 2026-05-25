@@ -13,6 +13,7 @@ import {
   Brain,
 } from "lucide-react";
 import { HeroSlider } from "@/components/site/HeroSlider";
+import brochureCover from "@/assets/brochure-cover.png";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
@@ -147,7 +148,7 @@ function HomePage() {
       <HeroSlider />
 
       {/* Contact CTAs */}
-      <section className="bg-[#e6e7ea] py-20 md:py-28">
+      <section className="bg-[#5e5f60] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-6">
             {contactCards.map((c) => {
@@ -220,12 +221,13 @@ function HomePage() {
       </section>
 
       {/* Featured services */}
-      <section className="py-20 md:py-28 bg-[#e6e7ea]">
+      <section className="py-20 md:py-28 bg-[#5e5f60]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             eyebrow="Lo que hacemos"
             title="Servicios destacados"
             description="Una oferta completa de ingeniería, implementación y soporte para procesos industriales."
+            dark
           />
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {featuredServices.map((s) => {
@@ -375,7 +377,14 @@ function HomePage() {
                 Descargar PDF
               </a>
             </div>
-            <Placeholder ratio="portrait" className="!aspect-[4/5] !border-white/10 !bg-white/[0.03]" label="Portada del brochure" />
+            <div className="relative flex items-center justify-center">
+              <img
+                src={brochureCover}
+                alt="Brochure Faztred 2025 — portada"
+                loading="lazy"
+                className="w-full max-w-xl drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+              />
+            </div>
           </div>
         </div>
       </section>
