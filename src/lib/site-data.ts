@@ -147,7 +147,8 @@ export type ProjectCategory =
   | "Revamping"
   | "Capacitación"
   | "Cerramiento"
-  | "Antiexplosivo";
+  | "Antiexplosivo"
+  | "Señalización";
 
 export interface Project {
   slug: string;
@@ -208,6 +209,9 @@ import cerramiento1 from "@/assets/projects/cerramiento/cerramiento-1.png";
 import revampingTablero1 from "@/assets/projects/revamping-tablero/tablero-1.png";
 import flejadora1 from "@/assets/projects/flejadora/flejadora-1.png";
 import bombeo1 from "@/assets/projects/bombeo/bombeo-1.png";
+import senal1 from "@/assets/projects/senalizacion/senal-1.jpg";
+import senal2 from "@/assets/projects/senalizacion/senal-2.jpg";
+import senal3 from "@/assets/projects/senalizacion/senal-3.jpg";
 
 export const projects: Project[] = [
   {
@@ -384,5 +388,25 @@ export const projects: Project[] = [
     images: 0,
     cover: flejadora1,
     gallery: [flejadora1],
+  },
+  {
+    slug: "senalizacion-industrial",
+    title: "Señalización industrial",
+    industry: "Química",
+    category: "Señalización",
+    problem:
+      "Implementación de señalización de seguridad en depósito de pinturas mediante proyección luminosa de cartelería.",
+    solution: [
+      "Relevamiento de zonas de circulación y puntos críticos",
+      "Provisión e instalación de proyectores GOBO de señalización",
+      "Configuración de pictogramas \"No pasar\" sobre piso",
+      "Puesta en marcha y validación con personal de planta",
+    ],
+    result:
+      "Depósito señalizado con cartelería luminosa proyectada, mejorando la visibilidad de zonas restringidas sin intervenir el piso.",
+    technologies: ["Proyectores GOBO", "Señalización de seguridad", "Pictogramas industriales"],
+    images: 0,
+    cover: senal2,
+    gallery: [senal2, senal1, senal3],
   },
 ];
