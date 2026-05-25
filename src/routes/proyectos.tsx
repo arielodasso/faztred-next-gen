@@ -37,6 +37,7 @@ const categories: ("Todos" | ProjectCategory)[] = [
   "Capacitación",
   "Cerramiento",
   "Antiexplosivo",
+  "Señalización",
 ];
 
 function ProyectosPage() {

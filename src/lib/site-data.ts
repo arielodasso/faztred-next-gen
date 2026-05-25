@@ -147,7 +147,8 @@ export type ProjectCategory =
   | "Revamping"
   | "Capacitación"
   | "Cerramiento"
-  | "Antiexplosivo";
+  | "Antiexplosivo"
+  | "Señalización";
 
 export interface Project {
   slug: string;
@@ -208,6 +209,9 @@ import cerramiento1 from "@/assets/projects/cerramiento/cerramiento-1.png";
 import revampingTablero1 from "@/assets/projects/revamping-tablero/tablero-1.png";
 import flejadora1 from "@/assets/projects/flejadora/flejadora-1.png";
 import bombeo1 from "@/assets/projects/bombeo/bombeo-1.png";
+import senal1 from "@/assets/projects/senalizacion/senal-1.jpg";
+import senal2 from "@/assets/projects/senalizacion/senal-2.jpg";
+import senal3 from "@/assets/projects/senalizacion/senal-3.jpg";
 
 export const projects: Project[] = [
   {
