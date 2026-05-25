@@ -389,4 +389,24 @@ export const projects: Project[] = [
     cover: flejadora1,
     gallery: [flejadora1],
   },
+  {
+    slug: "senalizacion-industrial",
+    title: "Señalización industrial",
+    industry: "Química",
+    category: "Señalización",
+    problem:
+      "Implementación de señalización de seguridad en depósito de pinturas mediante proyección luminosa de cartelería.",
+    solution: [
+      "Relevamiento de zonas de circulación y puntos críticos",
+      "Provisión e instalación de proyectores GOBO de señalización",
+      "Configuración de pictogramas \"No pasar\" sobre piso",
+      "Puesta en marcha y validación con personal de planta",
+    ],
+    result:
+      "Depósito señalizado con cartelería luminosa proyectada, mejorando la visibilidad de zonas restringidas sin intervenir el piso.",
+    technologies: ["Proyectores GOBO", "Señalización de seguridad", "Pictogramas industriales"],
+    images: 0,
+    cover: senal2,
+    gallery: [senal2, senal1, senal3],
+  },
 ];
