@@ -189,6 +189,16 @@ import revampingDespues3 from "@/assets/projects/tableros/revamping-despues-3.pn
 import revampingDespues4 from "@/assets/projects/tableros/revamping-despues-4.png";
 import revampingAntes4 from "@/assets/projects/tableros/revamping-antes-4.png";
 import revampingAntes5 from "@/assets/projects/tableros/revamping-antes-5.png";
+import antiexLaser1 from "@/assets/projects/antiexplosivas/laser-1.jpg";
+import antiexLaser2 from "@/assets/projects/antiexplosivas/laser-2.jpg";
+import antiexLaser3 from "@/assets/projects/antiexplosivas/laser-3.jpg";
+import antiexMontaje1 from "@/assets/projects/antiexplosivas/montaje-1.jpg";
+import antiexMontaje2 from "@/assets/projects/antiexplosivas/montaje-2.jpg";
+import antiexMontaje3 from "@/assets/projects/antiexplosivas/montaje-3.jpg";
+import antiexMontaje4 from "@/assets/projects/antiexplosivas/montaje-4.jpg";
+import antiexGevelux1 from "@/assets/projects/antiexplosivas/gevelux-1.jpg";
+import antiexGevelux2 from "@/assets/projects/antiexplosivas/gevelux-2.jpg";
+import antiexGevelux3 from "@/assets/projects/antiexplosivas/gevelux-3.jpg";
 
 export const projects: Project[] = [
   {
@@ -246,7 +256,20 @@ export const projects: Project[] = [
     result:
       "Zona clasificada operativa bajo norma ATEX, con sistema de pesaje validado y montaje libre de riesgos.",
     technologies: ["Gabinetes antideflagrantes", "Norma ATEX", "Sistema de pesaje ATEX"],
-    images: 2,
+    images: 0,
+    cover: antiexGevelux1,
+    gallery: [
+      antiexGevelux1,
+      antiexGevelux3,
+      antiexGevelux2,
+      antiexMontaje1,
+      antiexMontaje2,
+      antiexMontaje4,
+      antiexMontaje3,
+      antiexLaser1,
+      antiexLaser3,
+      antiexLaser2,
+    ],
   },
   {
     slug: "cerramiento-industrial",
