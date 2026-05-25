@@ -23,6 +23,7 @@ import {
   WHATSAPP_URL,
   BROCHURE_URL,
 } from "@/lib/site-data";
+import { pushEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -100,10 +101,15 @@ function HomePage() {
                   </span>
                 </div>
               );
+              const trackingHandler = () => {
+                if (c.icon === MessageCircle) pushEvent("whatsapp_click", { location: "home_card" });
+                else if (c.icon === Phone) pushEvent("phone_click", { location: "home_card" });
+                else pushEvent("meeting_request", { location: "home_card", label: c.title });
+              };
               return c.external ? (
-                <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer">{Inner}</a>
+                <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" onClick={trackingHandler}>{Inner}</a>
               ) : (
-                <Link key={c.title} to={c.href}>{Inner}</Link>
+                <Link key={c.title} to={c.href} onClick={trackingHandler}>{Inner}</Link>
               );
             })}
           </div>
