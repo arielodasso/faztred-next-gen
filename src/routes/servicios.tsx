@@ -137,7 +137,7 @@ function ServiciosPage() {
                   <ul className="mt-7 grid sm:grid-cols-2 gap-x-6 gap-y-3">
                     {s.items.map((it) => (
                       <li key={it} className="flex items-start gap-2.5 text-sm">
-                        <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-foreground/60 mt-0.5 flex-shrink-0" />
                         <span>{it}</span>
                       </li>
                     ))}
@@ -157,7 +157,7 @@ function ServiciosPage() {
             {areas.map((a, i) => (
               <div key={a.title} className="bg-muted p-8 md:p-10 hover:bg-white transition-colors">
                 <div className="flex items-baseline gap-4">
-                  <span className="text-primary font-bold text-2xl">0{i + 1}</span>
+                  <span className="text-muted-foreground font-bold text-2xl tabular-nums">0{i + 1}</span>
                   <h4 className="text-xl font-bold">{a.title}</h4>
                 </div>
                 <p className="mt-4 text-muted-foreground text-sm leading-relaxed">{a.desc}</p>
@@ -169,7 +169,8 @@ function ServiciosPage() {
 
       {/* Final CTA */}
       <section className="py-20 md:py-28 bg-[color:var(--surface-dark)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(204,0,0,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_60%)]" />
+        <div className="absolute top-1/3 left-1/4 w-[40%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.07),transparent_70%)] blur-2xl" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
             ¿Necesitás una solución a medida?

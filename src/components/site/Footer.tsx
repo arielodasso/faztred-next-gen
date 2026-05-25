@@ -21,33 +21,33 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Dirección</h4>
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-white/50 font-semibold mb-4">Dirección</h4>
             <div className="flex items-start gap-3 text-white/70 text-sm">
-              <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+              <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 text-white/40" />
               <span>Merlo (1761), Buenos Aires, Argentina</span>
             </div>
           </div>
 
           <div>
-            <h4 className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Contacto</h4>
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-white/50 font-semibold mb-4">Contacto</h4>
             <ul className="space-y-3 text-white/70 text-sm">
               <li className="flex items-start gap-3">
-                <Mail className="h-4 w-4 mt-0.5 text-primary" />
-                <a href="mailto:info@faztred.com.ar" className="hover:text-white">info@faztred.com.ar</a>
+                <Mail className="h-4 w-4 mt-0.5 text-white/40" />
+                <a href="mailto:info@faztred.com.ar" className="hover:text-primary transition-colors">info@faztred.com.ar</a>
               </li>
               <li className="flex items-start gap-3">
-                <Phone className="h-4 w-4 mt-0.5 text-primary" />
-                <a href="tel:+5491162083230" className="hover:text-white">(+54) 9 11 6208-3230</a>
+                <Phone className="h-4 w-4 mt-0.5 text-white/40" />
+                <a href="tel:+5491162083230" className="hover:text-primary transition-colors">(+54) 9 11 6208-3230</a>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="h-4 w-4 mt-0.5 text-primary" />
+                <Clock className="h-4 w-4 mt-0.5 text-white/40" />
                 <span>Lun a Vie · 8:00 a 17:00 hs</span>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Seguinos</h4>
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-white/50 font-semibold mb-4">Seguinos</h4>
             <div className="flex items-center gap-3">
               <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
                 <Instagram className="h-4 w-4" />
