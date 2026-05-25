@@ -124,7 +124,7 @@ function ServiciosPage() {
             {areas.map((a, i) => (
               <div key={a.title} className="bg-muted p-8 md:p-10 hover:bg-white transition-colors">
                 <div className="flex items-baseline gap-4">
-                  <span className="text-muted-foreground/60 font-bold text-2xl tabular-nums">
+                  <span className="text-primary font-bold text-2xl tabular-nums">
                     0{i + 1}
                   </span>
                   <h3 className="text-xl font-bold tracking-tight">{a.title}</h3>
