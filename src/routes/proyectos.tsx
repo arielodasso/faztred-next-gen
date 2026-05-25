@@ -240,9 +240,15 @@ function ProyectosPage() {
               >
                 {open.gallery && open.gallery.length > 0
                   ? open.gallery.map((src, i) => (
-                      <div key={i} className="aspect-video w-full overflow-hidden rounded-md bg-muted">
-                        <img src={src} alt={`${open.title} ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
-                      </div>
+                      <button
+                        type="button"
+                        key={i}
+                        onClick={() => setLightboxIndex(i)}
+                        className="cta-press aspect-video w-full overflow-hidden rounded-md bg-muted group/img relative"
+                        aria-label={`Ampliar imagen ${i + 1}`}
+                      >
+                        <img src={src} alt={`${open.title} ${i + 1}`} loading="lazy" className="h-full w-full object-cover group-hover/img:scale-[1.04] transition-transform duration-500" />
+                      </button>
                     ))
                   : Array.from({ length: open.images }).map((_, i) => (
                       <Placeholder key={i} ratio="video" />
