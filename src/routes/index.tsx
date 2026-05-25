@@ -25,6 +25,31 @@ import {
   BROCHURE_URL,
 } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
+import clientManaos from "@/assets/clients/manaos.png";
+import clientYpf from "@/assets/clients/ypf.png";
+import clientYamaha from "@/assets/clients/yamaha.png";
+import clientIvess from "@/assets/clients/ivess.png";
+import clientJms from "@/assets/clients/jms.png";
+import clientFuerzaBruta from "@/assets/clients/fuerza-bruta.png";
+import clientFoggia from "@/assets/clients/foggia.png";
+import clientKromberg from "@/assets/clients/kromberg.png";
+import clientTea from "@/assets/clients/tea.png";
+import clientMiller from "@/assets/clients/miller.png";
+
+const clientLogos = [
+  { src: clientYpf, name: "YPF" },
+  { src: clientYamaha, name: "Yamaha" },
+  { src: clientManaos, name: "Manaos" },
+  { src: clientIvess, name: "Ivess" },
+  { src: clientJms, name: "JMS" },
+  { src: clientKromberg, name: "Kromberg & Schubert" },
+  { src: clientTea, name: "Manufacturas TEA" },
+  { src: clientMiller, name: "Miller" },
+  { src: clientFuerzaBruta, name: "Fuerza Bruta" },
+  { src: clientFoggia, name: "Foggia Company" },
+];
+const clientsRowA = clientLogos.slice(0, 5);
+const clientsRowB = clientLogos.slice(5);
 
 function openBrochurePopup(e: React.MouseEvent) {
   e.preventDefault();
