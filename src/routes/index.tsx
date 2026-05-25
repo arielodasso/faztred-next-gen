@@ -151,14 +151,14 @@ function HomePage() {
           <div className="grid md:grid-cols-3 gap-10 md:gap-6 items-start">
             <div>
               <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">
-                +300
+                <CountUp to={300} prefix="+" />
                 <span className="text-primary">.</span>
               </div>
               <p className="mt-3 text-white/60 text-sm uppercase tracking-widest">Proyectos implementados</p>
             </div>
             <div>
               <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">
-                +15
+                <CountUp to={15} prefix="+" />
                 <span className="text-primary">.</span>
               </div>
               <p className="mt-3 text-white/60 text-sm uppercase tracking-widest">Años de experiencia</p>
