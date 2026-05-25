@@ -76,12 +76,37 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
     letter-spacing: -0.02em;
   }
+  /* Fluid type tokens */
+  .h-display {
+    font-size: clamp(2.4rem, 5vw, 5.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .h-section {
+    font-size: clamp(2rem, 3.4vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  /* Visible focus ring for keyboard users */
+  :where(a, button, input, textarea, select):focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  /* CTA active feedback */
+  .cta-press:active {
+    transform: scale(0.98);
+  }
 }
+
 
 @keyframes marquee {
   0% { transform: translateX(0); }
