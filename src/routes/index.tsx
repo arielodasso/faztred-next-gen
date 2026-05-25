@@ -17,6 +17,7 @@ import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
 import { ContactForm } from "@/components/site/ContactForm";
+import { CountUp } from "@/components/site/CountUp";
 import {
   featuredServices,
   projects,
@@ -25,14 +26,41 @@ import {
 } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
 
+function openBrochurePopup(e: React.MouseEvent) {
+  e.preventDefault();
+  pushEvent("brochure_download", { location: "home_brochure" });
+  const w = 900;
+  const h = Math.min(900, window.innerHeight - 40);
+  const left = window.screenX + (window.outerWidth - w) / 2;
+  const top = window.screenY + (window.outerHeight - h) / 2;
+  window.open(
+    BROCHURE_URL,
+    "FaztredBrochure",
+    `popup=yes,width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes`,
+  );
+}
+
 export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "Faztred Soluciones | Automatización Industrial llave en mano" },
-      { name: "description", content: "Diagnóstico, automatización, tableros eléctricos, revamping y mantenimiento industrial. Soluciones a medida para tu planta." },
-      { property: "og:title", content: "Faztred Soluciones | Automatización Industrial" },
-      { property: "og:description", content: "Soluciones de automatización industrial llave en mano: PLC, SCADA, tableros y revamping." },
+      { title: "Faztred | Automatización Industrial, PLC, SCADA y Tableros Eléctricos" },
+      {
+        name: "description",
+        content:
+          "Automatización industrial, programación de PLC, SCADA, diseño de tableros eléctricos, revamping, integración industrial, mantenimiento y soluciones Industria 4.0 para procesos productivos.",
+      },
+      {
+        name: "keywords",
+        content:
+          "automatización industrial, PLC, SCADA, tableros eléctricos, revamping, integración industrial, programación PLC, mantenimiento industrial, Industria 4.0, ingeniería industrial, automatización de procesos",
+      },
+      { property: "og:title", content: "Faztred | Automatización Industrial llave en mano" },
+      {
+        property: "og:description",
+        content:
+          "Ingeniería, programación PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias que necesitan resultados concretos.",
+      },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -123,14 +151,14 @@ function HomePage() {
           <div className="grid md:grid-cols-3 gap-10 md:gap-6 items-start">
             <div>
               <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">
-                +300
+                <CountUp to={300} prefix="+" />
                 <span className="text-primary">.</span>
               </div>
               <p className="mt-3 text-white/60 text-sm uppercase tracking-widest">Proyectos implementados</p>
             </div>
             <div>
               <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">
-                +15
+                <CountUp to={15} prefix="+" />
                 <span className="text-primary">.</span>
               </div>
               <p className="mt-3 text-white/60 text-sm uppercase tracking-widest">Años de experiencia</p>
@@ -180,7 +208,7 @@ function HomePage() {
             })}
           </div>
           <div className="mt-12 flex justify-center">
-            <Link to="/servicios" className="group inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors">
+            <Link to="/servicios" className="cta-press group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors">
               Ver todos los servicios
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -236,7 +264,7 @@ function HomePage() {
               const Icon = w.icon;
               return (
                 <div key={w.title} className="group bg-white/[0.02] border border-white/10 rounded-xl hover:border-white/25 hover:bg-white/[0.04] p-7 transition-colors">
-                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/80 group-hover:border-primary/50 group-hover:text-primary transition-colors">
+                  <div className="h-11 w-11 flex items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/80 group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-bold text-white">{w.title}</h3>
@@ -248,23 +276,19 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Clients marquee */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" />
-        </div>
-        <div className="mt-12 overflow-hidden">
-          <div className="flex gap-12 animate-marquee w-max">
-            {Array.from({ length: 2 }).map((_, dup) => (
-              <div key={dup} className="flex gap-12 items-center">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-20 w-44 bg-muted border border-border flex items-center justify-center text-muted-foreground/60 text-xs uppercase tracking-widest"
-                  >
-                    Cliente {i + 1}
-                  </div>
-                ))}
+      {/* Clients grid — n8n style */}
+      <section className="py-24 md:py-32 bg-[color:var(--surface-darker)] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04),transparent_70%)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.06),transparent_70%)] blur-3xl" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" dark />
+          <div className="mt-14 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-3 md:gap-4">
+            {Array.from({ length: 24 }).map((_, i) => (
+              <div
+                key={i}
+                className="aspect-square rounded-xl border border-white/10 bg-white/[0.025] hover:border-white/25 hover:bg-white/[0.05] transition-colors flex items-center justify-center text-white/40 text-[10px] uppercase tracking-widest"
+              >
+                Logo
               </div>
             ))}
           </div>
@@ -272,33 +296,36 @@ function HomePage() {
       </section>
 
       {/* Brochure */}
-      <section className="py-20 md:py-28 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 md:py-32 bg-[color:var(--surface-dark)] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
+        <div className="absolute top-0 right-0 w-[40%] h-full bg-[radial-gradient(circle_at_right,rgba(204,0,0,0.08),transparent_70%)] blur-2xl" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold flex items-center gap-2.5">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-semibold flex items-center gap-2.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Material
               </span>
-              <h2 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight">Brochure Faztred</h2>
-              <p className="mt-5 text-muted-foreground max-w-md">
+              <h2 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight text-white">Brochure Faztred</h2>
+              <p className="mt-5 text-white/65 max-w-md">
                 Conocé más sobre quiénes somos, qué hacemos y cómo podemos ayudarte
                 a transformar tu planta.
               </p>
               <a
                 href={BROCHURE_URL}
-                target="_blank"
+                target="FaztredBrochure"
                 rel="noopener noreferrer"
-                onClick={() => pushEvent("brochure_download", { location: "home_brochure" })}
+                onClick={openBrochurePopup}
                 className="cta-press mt-8 inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
               >
                 <Download className="h-4 w-4" />
                 Descargar PDF
               </a>
             </div>
-            <Placeholder ratio="portrait" className="!aspect-[4/5]" label="Portada del brochure" />
+            <Placeholder ratio="portrait" className="!aspect-[4/5] !border-white/10 !bg-white/[0.03]" label="Portada del brochure" />
           </div>
         </div>
       </section>
+
 
       {/* Quick contact form */}
       <section className="py-20 md:py-28 bg-background">
