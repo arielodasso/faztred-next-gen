@@ -23,6 +23,7 @@ import {
   WHATSAPP_URL,
   BROCHURE_URL,
 } from "@/lib/site-data";
+import { pushEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -100,10 +101,15 @@ function HomePage() {
                   </span>
                 </div>
               );
+              const trackingHandler = () => {
+                if (c.icon === MessageCircle) pushEvent("whatsapp_click", { location: "home_card" });
+                else if (c.icon === Phone) pushEvent("phone_click", { location: "home_card" });
+                else pushEvent("meeting_request", { location: "home_card", label: c.title });
+              };
               return c.external ? (
-                <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer">{Inner}</a>
+                <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" onClick={trackingHandler}>{Inner}</a>
               ) : (
-                <Link key={c.title} to={c.href}>{Inner}</Link>
+                <Link key={c.title} to={c.href} onClick={trackingHandler}>{Inner}</Link>
               );
             })}
           </div>
@@ -195,15 +201,15 @@ function HomePage() {
               <Link
                 key={p.slug}
                 to="/proyectos"
-                className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
+                className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-0.5 duration-300"
               >
                 <Placeholder ratio="video" />
                 <div className="p-6 flex-1 flex flex-col">
                   <Badge variant="solid" className="self-start">{p.industry}</Badge>
                   <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground flex-1">{p.situation}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-foreground text-xs font-semibold uppercase tracking-wider group-hover:text-primary transition-colors">
-                    Ver más
+                  <p className="mt-2 text-sm text-muted-foreground flex-1 line-clamp-3">{p.problem}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-foreground text-xs font-semibold uppercase tracking-[0.15em] group-hover:text-primary transition-colors">
+                    Ver caso
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
@@ -282,7 +288,8 @@ function HomePage() {
                 href={BROCHURE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase"
+                onClick={() => pushEvent("brochure_download", { location: "home_brochure" })}
+                className="cta-press mt-8 inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-7 py-4 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
               >
                 <Download className="h-4 w-4" />
                 Descargar PDF

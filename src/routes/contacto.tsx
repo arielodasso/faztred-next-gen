@@ -2,14 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, Mail, Phone, Clock, Instagram, Linkedin, MessageCircle, CalendarCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { ContactForm } from "@/components/site/ContactForm";
-import { WHATSAPP_URL } from "@/lib/site-data";
+import { WHATSAPP_URL, PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
+import { pushEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/contacto")({
   component: ContactoPage,
   head: () => ({
     meta: [
-      { title: "Contacto | Faztred Soluciones — Automatización Industrial" },
-      { name: "description", content: "Contactanos para asesorarte en automatización industrial, tableros eléctricos, PLC, SCADA y revamping. Respondemos rápido." },
+      { title: "Contacto — Asesoramiento en automatización industrial | Faztred" },
+      {
+        name: "description",
+        content:
+          "Contactanos para asesorarte en automatización industrial, tableros eléctricos, PLC, SCADA y revamping. Respondemos rápido por WhatsApp o formulario.",
+      },
       { property: "og:title", content: "Contacto | Faztred Soluciones" },
       { property: "og:description", content: "Contanos tu desafío. Te respondemos rápido." },
       { property: "og:url", content: "/contacto" },
@@ -18,10 +23,17 @@ export const Route = createFileRoute("/contacto")({
   }),
 });
 
-const infoItems = [
+interface InfoItem {
+  icon: typeof MapPin;
+  label: string;
+  href?: string;
+  event?: "phone_click" | "email_click";
+}
+
+const infoItems: InfoItem[] = [
   { icon: MapPin, label: "Merlo (1761), Buenos Aires, Argentina" },
-  { icon: Mail, label: "info@faztred.com.ar", href: "mailto:info@faztred.com.ar" },
-  { icon: Phone, label: "(+54) 9 11 6208-3230", href: "tel:+5491162083230" },
+  { icon: Mail, label: EMAIL, href: `mailto:${EMAIL}`, event: "email_click" },
+  { icon: Phone, label: PHONE_DISPLAY, href: `tel:${PHONE_NUMBER}`, event: "phone_click" },
   { icon: Clock, label: "Lunes a Viernes · 8:00 a 17:00 hs" },
 ];
 
@@ -34,16 +46,18 @@ function ContactoPage() {
         subtitle="Contanos tu desafío. Te respondemos rápido."
       />
 
-      <section className="py-20 md:py-28 bg-background">
+      <section className="py-24 md:py-32 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Left: info */}
             <div className="lg:col-span-2">
-              <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold flex items-center gap-2.5"><span className="h-1.5 w-1.5 rounded-full bg-primary" /> Datos</span>
+              <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold flex items-center gap-2.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Datos
+              </span>
               <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight">
                 Estamos a un mensaje.
               </h2>
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-4 text-muted-foreground leading-relaxed">
                 Coordinamos visitas técnicas, llamadas o videollamadas según te resulte
                 más cómodo.
               </p>
@@ -62,8 +76,16 @@ function ContactoPage() {
                   return (
                     <li key={it.label}>
                       {it.href ? (
-                        <a href={it.href} className="hover:text-primary transition-colors">{Inner}</a>
-                      ) : Inner}
+                        <a
+                          href={it.href}
+                          onClick={() => it.event && pushEvent(it.event, { location: "contacto" })}
+                          className="hover:text-primary transition-colors"
+                        >
+                          {Inner}
+                        </a>
+                      ) : (
+                        Inner
+                      )}
                     </li>
                   );
                 })}
@@ -73,14 +95,15 @@ function ContactoPage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-10 inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5c] text-white rounded-md px-7 py-4 text-xs font-semibold tracking-wider uppercase transition-colors"
+                onClick={() => pushEvent("whatsapp_click", { location: "contacto" })}
+                className="cta-press mt-10 inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5c] text-white rounded-md px-7 py-4 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
               >
                 <MessageCircle className="h-4 w-4" fill="currentColor" />
                 Escribinos por WhatsApp
               </a>
 
               <div className="mt-10 pt-10 border-t border-border">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Seguinos</p>
+                <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-4 font-semibold">Seguinos</p>
                 <div className="flex gap-3">
                   <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-11 w-11 rounded-md border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors">
                     <Instagram className="h-4 w-4" />
@@ -95,7 +118,7 @@ function ContactoPage() {
             {/* Right: form */}
             <div className="lg:col-span-3">
               <div className="bg-muted rounded-xl p-8 md:p-10 border border-border border-l-2 border-l-primary">
-                <h3 className="text-2xl font-bold">Enviá tu consulta</h3>
+                <h3 className="text-2xl font-bold tracking-tight">Enviá tu consulta</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Completá los datos y te respondemos a la brevedad.
                 </p>
@@ -110,7 +133,8 @@ function ContactoPage() {
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white text-foreground rounded-md px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors"
+                    onClick={() => pushEvent("meeting_request", { location: "contacto_form_block" })}
+                    className="cta-press inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white text-foreground rounded-md px-6 py-3.5 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
                   >
                     <CalendarCheck className="h-4 w-4" />
                     Agendá una reunión online

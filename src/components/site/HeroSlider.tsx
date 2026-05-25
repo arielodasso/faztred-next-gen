@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Placeholder } from "./Placeholder";
+import { pushEvent } from "@/lib/analytics";
 
 import { cn } from "@/lib/utils";
 import { WHATSAPP_URL } from "@/lib/site-data";
@@ -56,21 +57,22 @@ export function HeroSlider() {
           <div
             key={idx}
             className={cn(
-              "absolute inset-x-4 sm:inset-x-6 lg:inset-x-8 transition-all duration-700",
-              idx === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none",
+              "absolute inset-x-4 sm:inset-x-6 lg:inset-x-8 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              idx === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none",
             )}
           >
             <div className="max-w-5xl">
-              <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-[5.25rem] xl:text-[5.75rem] font-bold text-white tracking-[-0.03em]">
+              <h1 className="h-display font-bold text-white">
                 {s.title}
               </h1>
               <p className="mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-2xl leading-relaxed">
                 {s.subtitle}
               </p>
-              <div className="mt-12 flex flex-col sm:flex-row gap-3">
+              <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/contacto"
-                  className="group inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
+                  onClick={() => pushEvent("meeting_request", { location: "hero", label: s.cta })}
+                  className="cta-press group inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
                 >
                   {s.cta}
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -79,7 +81,8 @@ export function HeroSlider() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
+                  onClick={() => pushEvent("whatsapp_click", { location: "hero" })}
+                  className="cta-press inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Hablar por WhatsApp

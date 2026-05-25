@@ -1,67 +1,97 @@
-# Sitio web Faztred Soluciones
 
-Sitio multipágina para Faztred (automatización industrial). Estética minimalista premium tipo dashboard industrial, paleta blanco/negro/grafito con rojo #CC0000 sólo en acentos. Tipografía Inter. Todas las imágenes serán placeholders neutros grises con dimensiones correctas — sin generación por IA.
+# Plan — Pase de pulido + estructura + tracking
 
-## Páginas (rutas TanStack Start)
+Tres frentes acotados, sin sumar secciones nuevas más allá de las que pide el brief que ya tenemos.
 
-- `/` Home
-- `/servicios`
-- `/proyectos`
-- `/contacto`
+---
 
-Navegación real entre rutas, no single-page scroll. Cada ruta con su propio `head()` (title + description + og tags) usando keywords: automatización industrial, PLC, SCADA, tableros eléctricos, revamping, Industria 4.0.
+## 1) Auditoría visual fina
 
-## Componentes compartidos
+Pulido sistémico sobre lo que ya existe, alineado al brief (moderno, tecnológico, elegante, industrial, sin recargar).
 
-- **Navbar** sticky, fondo oscuro #1A1A1A, logo blanco, links + CTA rojo "Agendá una reunión", hamburguesa mobile.
-- **Footer** #111111 con dirección, contacto, horarios, redes (Instagram, LinkedIn, WhatsApp), copyright.
-- **WhatsApp flotante** fijo bottom-right en todas las páginas (link a wa.me con mensaje pre-cargado).
-- **PlaceholderImage** component (div gris con dimensiones + label discreto) para todas las fotos.
+- **Tipografía**: cargar Inter desde `<head>` (hoy se referencia pero no se importa). Unificar escala: H1 hero `clamp(2.4rem, 5vw, 5.25rem)`, H2 sección `clamp(2rem, 3.4vw, 3.25rem)`, body `15–16px`, eyebrows `11px / 0.22em`. Activar `font-feature-settings: "ss01","cv11"` y `tracking-tight` sólo en titulares.
+- **Jerarquías**: separación consistente entre eyebrow → título → descripción → CTA (gap 16/24/32). Eliminar dobles bordes y dobles "líneas rojas" donde quedaron juntas.
+- **Espaciados**: secciones a `py-24 md:py-32`, contenedor `max-w-7xl`, grids con `gap-6` en cards y `gap-12` en bloques alternados.
+- **Micro-interacciones (solo Tailwind, sin Framer)**:
+  - Cards: `hover:-translate-y-0.5 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)]` y borde a `foreground/30`.
+  - Botones: estado `:active` con `scale-[0.98]`, foco visible con `ring-1 ring-primary/40`.
+  - Links de "Ver más / Ver proyecto": flecha con `translate-x-1` en hover, color pasa a rojo sólo en hover.
+  - Slider hero: easing `cubic-bezier(0.22,1,0.36,1)`, duración 800ms, fade + slide 8px.
+- **Consistencia de radios y botones**: todos los CTAs con `rounded-md` (8px), pills sólo en badges/filtros, iconos en cuadrados `rounded-lg`.
+- **Responsive**: revisar hero en 360/390/414 (titular sin quedar pegado al header), navbar pill que no toque los bordes (`px-3`), grids de servicios/proyectos en 2 col desde `sm:`, modal de proyecto con `max-h-[90dvh]` y scroll interno.
+- **A11y**: contraste en `text-white/55` (eyebrows) verificado, `aria-current` en navbar activo, foco visible en todos los links.
 
-## Home
+## 2) Reestructurar Servicios con las 7 categorías del brief
 
-1. Hero slider 3 slides con auto-transición suave, overlay oscuro sobre placeholder, título grande, subtítulo, CTA rojo.
-2. "Cómo contactarnos" — 3 cards con íconos Lucide (Calendar, MessageCircle, Phone) sobre fondo claro.
-3. Métricas — fondo #1A1A1A, números grandes blancos, acentos rojos (+300 proyectos, +15 años, industrias).
-4. Servicios destacados — grid de 8 cards con ícono + título + descripción, hover acento rojo, CTA a /servicios.
-5. Proyectos destacados — grid 3 columnas × 6 cards con placeholder, badge industria, título, situación, "VER MÁS".
-6. ¿Por qué Faztred? — fondo oscuro, grid 4 cards (en realidad 6 según contenido) con ícono + título + descripción.
-7. Clientes — marquee horizontal con logos placeholder.
-8. Brochure — fondo gris claro, texto + botón rojo "DESCARGAR" (link al PDF actual) + placeholder.
-9. Formulario rápido — Nombre, Teléfono, Email, Mensaje + botón rojo.
+Reescribir `mainServices` en `src/routes/servicios.tsx` y `featuredServices` en `src/lib/site-data.ts` para que coincidan exactamente con el brief:
 
-## Servicios
+1. Automatización industrial (PLC, HMI, SCADA, integración, migraciones, capacitaciones)
+2. Diseño y fabricación de tableros eléctricos
+3. Industria 4.0 y adquisición de datos
+4. Mantenimiento industrial
+5. Instrumentación industrial
+6. Señalización industrial y seguridad visual
+7. Sistemas especiales (visión artificial, RFID, integraciones a medida)
 
-- Hero interno oscuro.
-- 7 bloques grandes alternados imagen/texto (Automatización industrial, Tableros eléctricos, Industria 4.0, Mantenimiento, Instrumentación, Señalización, Sistemas especiales) con sub-listas de servicios.
-- Áreas de trabajo — grid 4 (Consultoría, Desarrollo, Soporte, Mantenimiento preventivo).
-- CTA final oscuro/rojo a /contacto.
+- Home muestra 4 destacados (los 4 primeros) + link "Ver todos los servicios".
+- Página `/servicios` mantiene layout alternado pero unifica cada bloque con: eyebrow `01/AUTOMATIZACIÓN`, título, descripción corta, lista de capacidades en 2 columnas, CTA "Consultar este servicio" que linkea a `/contacto?servicio={slug}`.
+- Cada servicio recibe un `slug` y un ícono Lucide acorde (ya hay set elegido, se ajustan los faltantes).
+- SEO: en `head()` de `/servicios` se enriquece la meta description con las palabras clave del brief (PLC, SCADA, tableros, revamping, Industria 4.0, mantenimiento, instrumentación).
 
-## Proyectos
+## 3) Proyectos con formato Problema → Solución → Resultado
 
-- Hero interno.
-- Tabs de filtro por categoría (estado client-side): Todos, Automatización, Tableros, Revamping, Capacitación, Cerramiento, Antiexplosivo.
-- Grid de 6 proyectos con placeholder, badge industria, título, situación, tareas, botón "VER PROYECTO" que abre modal con galería de placeholders adicionales.
-- CTA final.
+Refactor del modelo `Project` en `src/lib/site-data.ts`:
 
-## Contacto
+```ts
+interface Project {
+  slug; title; industry; category;
+  problem: string;          // Situación / desafío
+  solution: string[];       // Tareas realizadas (lo que hoy es tasks)
+  result: string;           // Resultado obtenido
+  technologies: string[];   // Stack (PLC, HMI, marcas)
+  images: number;           // placeholders por ahora
+}
+```
 
-- Hero interno.
-- Layout 2 columnas: datos de contacto + botón WhatsApp verde a la izquierda; formulario completo (Nombre, Empresa, Teléfono, Email, Mensaje) + botón "ENVIAR CONSULTA" + "Agendá reunión online" outline a la derecha.
-- Formularios con validación client-side y toast de feedback (sin backend — sólo UI; queda listo para conectar después).
+- Modal de `/proyectos` se reescribe con 4 bloques verticales: **Situación**, **Solución implementada**, **Tecnologías utilizadas**, **Resultado obtenido**, más la galería al final.
+- Card de listado muestra: industria + categoría (badges), título, situación (2 líneas), CTA "Ver caso".
+- Datos: para los 6 proyectos existentes infiero `result` y `technologies` a partir de tasks (ej. revamping bombeo → "Migración exitosa Siemens → Allen Bradley con HMI integrado y puesta en marcha sin paradas" / tech: `Siemens S7`, `Allen Bradley`, `HMI PanelView`). Se marca como editable después con los datos reales del usuario.
+
+## 4) Tracking dataLayer para Google Ads / GA4
+
+Sin instalar GA4 ni GTM (los IDs los pondrás luego). Sólo se dejan los eventos disparándose en `window.dataLayer`:
+
+- Helper nuevo `src/lib/analytics.ts` con `pushEvent(name, payload)` que hace `window.dataLayer = window.dataLayer || []` y push seguro en SSR.
+- Inicialización del array en `<head>` desde `__root.tsx`.
+- Eventos cableados:
+  - `whatsapp_click` → botón flotante, hero, footer, contacto.
+  - `form_submit` → `ContactForm` (con `variant` como prop del evento).
+  - `phone_click` → todos los `<a href="tel:...">`.
+  - `email_click` → mailto en footer y contacto.
+  - `meeting_request` → CTA "Agendá una reunión" / "Coordinar reunión".
+  - `brochure_download` → CTA del brochure.
+  - `service_cta_click` → CTA por servicio (incluye `service_slug`).
+  - `project_view` → cuando se abre el modal de un proyecto.
+- Cada evento mantiene un shape consistente: `{ event, location, label }` para que GTM filtre fácil.
+
+Cuando me pases los IDs (G-XXXX / GTM-XXXX) cargo los snippets en `__root.tsx` y los eventos ya van a funcionar.
+
+---
 
 ## Detalles técnicos
 
-- TanStack Start file-based routing en `src/routes/` (`__root.tsx` con Navbar/Footer/WhatsApp flotante via Outlet, más `index.tsx`, `servicios.tsx`, `proyectos.tsx`, `contacto.tsx`).
-- Tokens de diseño en `src/styles.css` (oklch): background blanco, foreground #111, surface-dark #1A1A1A, footer #111111, accent rojo #CC0000. Sin clases hex directas en componentes.
-- Inter cargada vía Google Fonts en `__root.tsx` `head().links`.
-- Logos: copiar los 2 PNG subidos a `src/assets/` (blanco para header oscuro / negro para fondos claros) e importarlos como ES modules. Favicon: copiar `icono_sitio.ico` a `public/`.
-- Íconos Lucide React.
-- Animaciones con Tailwind transitions + framer-motion para slider hero y reveal on scroll.
-- Mobile-first, breakpoints `md`/`lg`. Menú hamburguesa con sheet.
-- Sin backend: formularios sólo validan y muestran toast. Sin Lovable Cloud por ahora.
-- Sin imágenes generadas — componente `PlaceholderImage` reutilizable con aspect ratio + label "Reemplazar con foto real".
+- Sin Framer Motion. Toda la animación queda en Tailwind + keyframes ya definidos en `styles.css` (`fade-in`, `marquee`).
+- Sin nuevas dependencias.
+- `Placeholder` se mantiene; cuando subas las fotos reales se reemplazan por `<img>` con `loading="lazy"` y `alt` SEO.
+- Inter se carga con `<link rel="preconnect">` + `<link rel="stylesheet">` desde Google Fonts en `__root.tsx`, manteniendo `font-display: swap`.
+- Eventos dataLayer no requieren consent banner para el push en sí, pero el snippet de GA/GTM (cuando lo agreguemos) sí debería convivir con uno — eso queda fuera de este pase.
 
-En la página de Proyectos, cada proyecto debe tener sus placeholders de imagen con el número correcto: proyecto 1 = 2 imágenes, proyecto 2 = 2, proyecto 3 = 2, proyecto 4 = 2, proyecto 5 = 3, proyecto 6 = 2. El modal debe mostrar esa cantidad exacta por proyecto.
+---
 
-Cada ruta debe tener su propio head() con title y meta description únicos — no solo en el root. Ejemplo: /servicios debe tener title 'Servicios de Automatización Industrial | Faztred Soluciones' y su propia description con keywords.
+## Fuera de alcance (para iteración siguiente)
+
+- Sección "Industria 4.0 / Innovación" dedicada (la sumamos cuando tengas screenshots de dashboards reales).
+- Reemplazo de placeholders por fotos reales.
+- Instalación efectiva de GA4 / GTM / Google Ads (necesito los IDs).
+- Blog / noticias técnicas.
+- Calendario embebido para reuniones.

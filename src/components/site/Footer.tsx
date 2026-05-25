@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Mail, Phone, Clock, Instagram, Linkedin, MessageCircle } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
+import { pushEvent } from "@/lib/analytics";
+import { WHATSAPP_URL, PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
 
 export function Footer() {
   const scrollTop = () => {
@@ -33,11 +35,23 @@ export function Footer() {
             <ul className="space-y-3 text-white/70 text-sm">
               <li className="flex items-start gap-3">
                 <Mail className="h-4 w-4 mt-0.5 text-white/40" />
-                <a href="mailto:info@faztred.com.ar" className="hover:text-primary transition-colors">info@faztred.com.ar</a>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  onClick={() => pushEvent("email_click", { location: "footer" })}
+                  className="hover:text-primary transition-colors"
+                >
+                  {EMAIL}
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 mt-0.5 text-white/40" />
-                <a href="tel:+5491162083230" className="hover:text-primary transition-colors">(+54) 9 11 6208-3230</a>
+                <a
+                  href={`tel:${PHONE_NUMBER}`}
+                  onClick={() => pushEvent("phone_click", { location: "footer" })}
+                  className="hover:text-primary transition-colors"
+                >
+                  {PHONE_DISPLAY}
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="h-4 w-4 mt-0.5 text-white/40" />
@@ -55,7 +69,14 @@ export function Footer() {
               <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a href="https://api.whatsapp.com/send/?phone=5491162083230" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                onClick={() => pushEvent("whatsapp_click", { location: "footer" })}
+                className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors"
+              >
                 <MessageCircle className="h-4 w-4" />
               </a>
             </div>
@@ -65,9 +86,9 @@ export function Footer() {
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/40">
           <p>© {new Date().getFullYear()} Faztred Soluciones. Todos los derechos reservados.</p>
           <div className="flex gap-6">
-            <Link to="/servicios" className="hover:text-white/70">Servicios</Link>
-            <Link to="/proyectos" className="hover:text-white/70">Proyectos</Link>
-            <Link to="/contacto" className="hover:text-white/70">Contacto</Link>
+            <Link to="/servicios" className="hover:text-white/70 transition-colors">Servicios</Link>
+            <Link to="/proyectos" className="hover:text-white/70 transition-colors">Proyectos</Link>
+            <Link to="/contacto" className="hover:text-white/70 transition-colors">Contacto</Link>
           </div>
         </div>
       </div>
