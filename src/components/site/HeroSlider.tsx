@@ -33,12 +33,6 @@ export function HeroSlider() {
             mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
           }`}
         >
-          <div className="flex items-center gap-2.5 mb-6">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/55">
-              Automatización industrial
-            </span>
-          </div>
           <h1 className="h-display font-bold text-white text-balance">
             Automatización industrial con soluciones reales para planta
           </h1>
