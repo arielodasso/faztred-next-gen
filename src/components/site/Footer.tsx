@@ -63,10 +63,10 @@ export function Footer() {
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.22em] text-white/50 font-semibold mb-4">Seguinos</h4>
             <div className="flex items-center gap-3">
-              <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
+              <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-colors">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors">
+              <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-colors">
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
@@ -75,7 +75,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
                 onClick={() => pushEvent("whatsapp_click", { location: "footer" })}
-                className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:border-primary hover:text-primary transition-colors"
+                className="h-10 w-10 flex items-center justify-center rounded-md border border-white/10 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-colors"
               >
                 <MessageCircle className="h-4 w-4" />
               </a>
