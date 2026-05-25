@@ -4,7 +4,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { Placeholder } from "@/components/site/Placeholder";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Badge } from "@/components/site/Badge";
-import { services } from "@/lib/site-data";
+import { services, serviceImages } from "@/lib/site-data";
+import heroImage from "@/assets/hero-industrial.jpg";
 import { pushEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -56,6 +57,7 @@ function ServiciosPage() {
         eyebrow="Qué hacemos"
         title="Servicios"
         subtitle="Soluciones de automatización industrial a medida para tu planta."
+        backgroundImage={heroImage}
       />
 
       {/* Main services — alternating layout */}
@@ -73,7 +75,18 @@ function ServiciosPage() {
                   reverse && "md:[&>*:first-child]:order-2",
                 )}
               >
-                <Placeholder ratio="video" />
+                {serviceImages[s.slug] ? (
+                  <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted border border-border">
+                    <img
+                      src={serviceImages[s.slug]}
+                      alt={s.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <Placeholder ratio="video" />
+                )}
                 <div>
                   <Badge variant="ghost" dot>
                     {String(idx + 1).padStart(2, "0")} / {s.title.split(" ")[0].toUpperCase()}

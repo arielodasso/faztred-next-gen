@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import heroImage from "@/assets/hero-industrial.jpg";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
 import { projects, type Project, type ProjectCategory } from "@/lib/site-data";
@@ -84,6 +85,7 @@ function ProyectosPage() {
         eyebrow="Casos reales"
         title="Proyectos realizados"
         subtitle="Experiencia real en planta. Problema, solución y resultado."
+        backgroundImage={heroImage}
       />
 
       {/* Filters */}

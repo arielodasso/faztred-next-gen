@@ -213,6 +213,16 @@ import senal1 from "@/assets/projects/senalizacion/senal-1.jpg";
 import senal2 from "@/assets/projects/senalizacion/senal-2.jpg";
 import senal3 from "@/assets/projects/senalizacion/senal-3.jpg";
 
+export const serviceImages: Record<string, string> = {
+  "automatizacion-industrial": bombeo1,
+  "tableros-electricos": revampingDespues1,
+  "industria-4-0": revampingTablero1,
+  "mantenimiento-industrial": flejadora1,
+  "instrumentacion-industrial": antiexMontaje3,
+  "senalizacion-industrial": senal2,
+  "sistemas-especiales": antiexGevelux1,
+};
+
 export const projects: Project[] = [
   {
     slug: "fabricacion-tableros-electricos",
