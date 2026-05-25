@@ -86,7 +86,7 @@ function ProyectosPage() {
       />
 
       {/* Filters */}
-      <section className="py-8 md:py-10 bg-background border-b border-border sticky top-16 md:top-20 z-30 bg-background/95 backdrop-blur">
+      <section className="py-8 md:py-10 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2">
             {categories.map((c) => (
