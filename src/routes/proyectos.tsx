@@ -221,12 +221,18 @@ function ProyectosPage() {
               <div
                 className={cn(
                   "mt-4 grid gap-4",
-                  open.images === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
+                  (open.gallery?.length ?? open.images) >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
                 )}
               >
-                {Array.from({ length: open.images }).map((_, i) => (
-                  <Placeholder key={i} ratio="video" />
-                ))}
+                {open.gallery && open.gallery.length > 0
+                  ? open.gallery.map((src, i) => (
+                      <div key={i} className="aspect-video w-full overflow-hidden rounded-md bg-muted">
+                        <img src={src} alt={`${open.title} ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
+                      </div>
+                    ))
+                  : Array.from({ length: open.images }).map((_, i) => (
+                      <Placeholder key={i} ratio="video" />
+                    ))}
               </div>
 
               {/* CTA modal */}
