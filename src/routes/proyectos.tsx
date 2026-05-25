@@ -277,6 +277,54 @@ function ProyectosPage() {
         </div>
       )}
 
+      {/* Lightbox */}
+      {open && lightboxIndex !== null && lightboxImages.length > 0 && (
+        <div
+          className="fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setLightboxIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Vista ampliada"
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
+            aria-label="Cerrar"
+            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors z-10"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          {lightboxImages.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex((i) => (i === null ? null : (i - 1 + lightboxImages.length) % lightboxImages.length)); }}
+                aria-label="Anterior"
+                className="absolute left-4 md:left-6 p-3 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+              >
+                <ChevronLeft className="h-7 w-7" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex((i) => (i === null ? null : (i + 1) % lightboxImages.length)); }}
+                aria-label="Siguiente"
+                className="absolute right-4 md:right-6 p-3 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+              >
+                <ChevronRight className="h-7 w-7" />
+              </button>
+            </>
+          )}
+          <img
+            src={lightboxImages[lightboxIndex]}
+            alt={`${open.title} ${lightboxIndex + 1}`}
+            className="max-w-full max-h-[90dvh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          {lightboxImages.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-xs uppercase tracking-[0.2em] font-semibold">
+              {lightboxIndex + 1} / {lightboxImages.length}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Final CTA */}
       <section className="py-24 md:py-32 bg-[color:var(--surface-dark)] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_60%)]" />
