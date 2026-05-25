@@ -45,9 +45,10 @@ export function HeroSlider() {
           className="!aspect-auto h-full w-full !border-0 opacity-20"
         />
       </div>
-      {/* Overlays — n8n-style deep gradient + red glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-black/70" />
-      <div className="absolute -top-1/3 -right-1/4 w-[80%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.25),transparent_60%)] blur-2xl" />
+      {/* Overlays — n8n-style deep graphite gradient + subtle red accent */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--surface-darker)] via-[color:var(--surface-dark)] to-[color:var(--surface-darker)]" />
+      <div className="absolute -bottom-1/3 -left-1/4 w-[60%] h-[100%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)] blur-2xl" />
+      <div className="absolute top-1/4 right-[-10%] w-[40%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.10),transparent_70%)] blur-2xl" />
       <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:96px_96px]" />
 
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-24">

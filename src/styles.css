@@ -57,10 +57,12 @@
   --border: oklch(0.9 0 0);
   --input: oklch(0.9 0 0);
   --ring: oklch(0.518 0.226 27.5);
-  /* Industrial dark surfaces */
-  --surface-dark: oklch(0.205 0 0);         /* #1A1A1A */
-  --surface-darker: oklch(0.155 0 0);       /* #111111 */
+  /* Industrial graphite surfaces — n8n-inspired */
+  --surface-dark: oklch(0.22 0.004 270);    /* graphite #1d1f23 */
+  --surface-darker: oklch(0.17 0.004 270);  /* deep graphite #131418 */
+  --surface-graphite: oklch(0.28 0.004 270);/* card graphite #2a2c31 */
   --surface-muted: oklch(0.97 0 0);         /* #F5F5F5 */
+  --graphite-line: oklch(0.32 0.004 270 / 0.6);
 }
 
 @layer base {

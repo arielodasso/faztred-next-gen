@@ -75,7 +75,7 @@ function ProyectosPage() {
             {filtered.map((p) => (
               <article
                 key={p.slug}
-                className="group bg-white border border-border rounded-xl hover:border-primary/40 hover:shadow-[0_24px_60px_-25px_rgba(204,0,0,0.3)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
+                className="group bg-white border border-border rounded-xl hover:border-foreground/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-all overflow-hidden flex flex-col hover:-translate-y-1 duration-300"
               >
                 <Placeholder ratio="video" />
                 <div className="p-6 flex-1 flex flex-col">
@@ -88,14 +88,14 @@ function ProyectosPage() {
                   <ul className="mt-4 space-y-1.5">
                     {p.tasks.slice(0, 2).map((t) => (
                       <li key={t} className="flex items-start gap-2 text-xs text-muted-foreground">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-primary mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-3.5 w-3.5 text-foreground/50 mt-0.5 flex-shrink-0" />
                         <span>{t}</span>
                       </li>
                     ))}
                   </ul>
                   <button
                     onClick={() => setOpen(p)}
-                    className="mt-6 inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider self-start"
+                    className="mt-6 inline-flex items-center gap-2 text-foreground group-hover:text-primary transition-colors text-xs font-semibold uppercase tracking-wider self-start"
                   >
                     Ver proyecto
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -124,8 +124,8 @@ function ProyectosPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-background z-10 flex items-center justify-between border-b border-border px-6 py-4">
-              <span className="text-xs uppercase tracking-widest text-primary font-semibold">
-                {open.industry} · {open.category}
+              <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold flex items-center gap-2.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {open.industry} · {open.category}
               </span>
               <button onClick={() => setOpen(null)} aria-label="Cerrar" className="p-2 hover:bg-muted">
                 <X className="h-5 w-5" />
@@ -135,19 +135,19 @@ function ProyectosPage() {
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight">{open.title}</h3>
               <p className="mt-4 text-muted-foreground">{open.situation}</p>
 
-              <h4 className="mt-8 text-xs uppercase tracking-widest text-primary font-semibold">
+              <h4 className="mt-8 text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold">
                 Tareas realizadas
               </h4>
               <ul className="mt-4 space-y-2">
                 {open.tasks.map((t) => (
                   <li key={t} className="flex items-start gap-3 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-foreground/50 mt-0.5 flex-shrink-0" />
                     <span>{t}</span>
                   </li>
                 ))}
               </ul>
 
-              <h4 className="mt-8 text-xs uppercase tracking-widest text-primary font-semibold">
+              <h4 className="mt-8 text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold">
                 Galería
               </h4>
               <div className={cn(
@@ -165,7 +165,8 @@ function ProyectosPage() {
 
       {/* Final CTA */}
       <section className="py-20 md:py-28 bg-[color:var(--surface-dark)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(204,0,0,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_60%)]" />
+        <div className="absolute bottom-0 right-1/4 w-[40%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.07),transparent_70%)] blur-2xl" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
             ¿Querés ver cómo podemos resolver tu desafío?
