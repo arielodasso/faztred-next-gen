@@ -128,7 +128,7 @@ function ProyectosPage() {
                   <Placeholder ratio="video" />
                 )}
                 <div className="p-6 flex-1 flex flex-col">
-                  <Badge variant="solid">{p.category}</Badge>
+                  <Badge variant="solid" className="self-start">{p.category}</Badge>
                   <h3 className="mt-4 text-lg font-bold tracking-tight">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{p.problem}</p>
                   <ul className="mt-4 space-y-1.5 flex-1">
