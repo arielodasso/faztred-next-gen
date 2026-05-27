@@ -182,7 +182,7 @@ export function Footer() {
                 {industries.map((i) => (
                   <li key={i}>
                     <Link
-                      to="/proyectos"
+                      to="/servicios"
                       className="text-white/55 hover:text-white transition-colors"
                     >
                       {i}
