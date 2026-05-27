@@ -110,7 +110,7 @@ function ContactoPage() {
                   <a href="https://instagram.com/faztred" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-11 w-11 rounded-md border border-border hover:bg-primary hover:border-primary hover:text-primary-foreground flex items-center justify-center transition-colors">
                     <Instagram className="h-4 w-4" />
                   </a>
-                  <a href="https://linkedin.com/company/faztred" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-11 w-11 rounded-md border border-border hover:bg-primary hover:border-primary hover:text-primary-foreground flex items-center justify-center transition-colors">
+                  <a href="https://www.linkedin.com/in/faztred/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="h-11 w-11 rounded-md border border-border hover:bg-primary hover:border-primary hover:text-primary-foreground flex items-center justify-center transition-colors">
                     <Linkedin className="h-4 w-4" />
                   </a>
                 </div>
