@@ -207,16 +207,12 @@ function HomePage() {
               <ul className="flex flex-wrap gap-2">
                 {industries.map((ind) => (
                   <li key={ind}>
-                    <Badge variant="dark">{ind}</Badge>
+                    <Badge variant="dark" className="transition-colors hover:bg-primary hover:border-primary hover:text-primary-foreground cursor-default">{ind}</Badge>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-          <p className="mt-14 text-white/50 text-sm max-w-3xl border-l border-white/15 pl-4">
-            Más de 300 proyectos implementados con éxito en sectores como pintura,
-            metalurgia, alimentos, farmacéutica y más.
-          </p>
         </div>
       </section>
 
