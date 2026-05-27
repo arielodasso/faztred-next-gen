@@ -195,10 +195,10 @@ function HomePage() {
             </div>
             <div>
               <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">
-                <CountUp to={15} prefix="+" />
+                <CountUp to={50} prefix="+" />
                 <span className="text-primary">.</span>
               </div>
-              <p className="mt-3 text-white/60 text-sm uppercase tracking-widest">Años de experiencia</p>
+              <p className="mt-3 text-white/60 text-sm uppercase tracking-widest">Clientes</p>
             </div>
             <div>
               <p className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-semibold mb-4 flex items-center gap-2.5">
