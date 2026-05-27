@@ -258,7 +258,7 @@ function HomePage() {
             description="Soluciones implementadas en industrias exigentes."
           />
           <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((p) => (
+            {projects.slice(0, 6).map((p) => (
               <Link
                 key={p.slug}
                 to="/proyectos"
