@@ -1,97 +1,102 @@
+## Resumen
 
-# Plan — Pase de pulido + estructura + tracking
-
-Tres frentes acotados, sin sumar secciones nuevas más allá de las que pide el brief que ya tenemos.
+Activo Lovable Cloud (base de datos + auth + storage + mails) y construyo todo en 4 fases. Cada fase queda usable en sí misma, así podés revisar antes de avanzar.
 
 ---
 
-## 1) Auditoría visual fina
+## Fase 1 — Popups (rápido, sin Cloud)
 
-Pulido sistémico sobre lo que ya existe, alineado al brief (moderno, tecnológico, elegante, industrial, sin recargar).
+**1.1 Popup de "Agendar reunión" estilo Sigma**
+- Reemplazo todos los CTAs de "Agendar reunión", "Coordinar reunión", "Agendá una reunión" para que abran `https://calendar.app.google/aFcAAPqGVBe72yF27` en un popup centrado (window.open con `width=800,height=700,centered`), no en pestaña nueva.
+- Mantengo el tracking `meeting_request` en dataLayer.
+- Archivos: `src/lib/calendar-popup.ts` (helper), `src/routes/index.tsx`, `src/routes/contacto.tsx`, footer si aplica.
 
-- **Tipografía**: cargar Inter desde `<head>` (hoy se referencia pero no se importa). Unificar escala: H1 hero `clamp(2.4rem, 5vw, 5.25rem)`, H2 sección `clamp(2rem, 3.4vw, 3.25rem)`, body `15–16px`, eyebrows `11px / 0.22em`. Activar `font-feature-settings: "ss01","cv11"` y `tracking-tight` sólo en titulares.
-- **Jerarquías**: separación consistente entre eyebrow → título → descripción → CTA (gap 16/24/32). Eliminar dobles bordes y dobles "líneas rojas" donde quedaron juntas.
-- **Espaciados**: secciones a `py-24 md:py-32`, contenedor `max-w-7xl`, grids con `gap-6` en cards y `gap-12` en bloques alternados.
-- **Micro-interacciones (solo Tailwind, sin Framer)**:
-  - Cards: `hover:-translate-y-0.5 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)]` y borde a `foreground/30`.
-  - Botones: estado `:active` con `scale-[0.98]`, foco visible con `ring-1 ring-primary/40`.
-  - Links de "Ver más / Ver proyecto": flecha con `translate-x-1` en hover, color pasa a rojo sólo en hover.
-  - Slider hero: easing `cubic-bezier(0.22,1,0.36,1)`, duración 800ms, fade + slide 8px.
-- **Consistencia de radios y botones**: todos los CTAs con `rounded-md` (8px), pills sólo en badges/filtros, iconos en cuadrados `rounded-lg`.
-- **Responsive**: revisar hero en 360/390/414 (titular sin quedar pegado al header), navbar pill que no toque los bordes (`px-3`), grids de servicios/proyectos en 2 col desde `sm:`, modal de proyecto con `max-h-[90dvh]` y scroll interno.
-- **A11y**: contraste en `text-white/55` (eyebrows) verificado, `aria-current` en navbar activo, foco visible en todos los links.
+**1.2 Popup de novedades en home (primera visita)**
+- Componente `WelcomePopup` que aparece a los 1.2s si no existe `localStorage.faztred_welcome_seen`.
+- Lee contenido desde Cloud (fase 2) — mientras tanto tira contenido hardcodeado de prueba.
+- Estructura: imagen + título + descripción + botón con link.
+- Cierre con X o clic fuera, marca el flag en localStorage.
 
-## 2) Reestructurar Servicios con las 7 categorías del brief
+---
 
-Reescribir `mainServices` en `src/routes/servicios.tsx` y `featuredServices` en `src/lib/site-data.ts` para que coincidan exactamente con el brief:
+## Fase 2 — Lovable Cloud + Auth + esquema
 
-1. Automatización industrial (PLC, HMI, SCADA, integración, migraciones, capacitaciones)
-2. Diseño y fabricación de tableros eléctricos
-3. Industria 4.0 y adquisición de datos
-4. Mantenimiento industrial
-5. Instrumentación industrial
-6. Señalización industrial y seguridad visual
-7. Sistemas especiales (visión artificial, RFID, integraciones a medida)
+**2.1 Activar Cloud** (Supabase nativo de Lovable).
 
-- Home muestra 4 destacados (los 4 primeros) + link "Ver todos los servicios".
-- Página `/servicios` mantiene layout alternado pero unifica cada bloque con: eyebrow `01/AUTOMATIZACIÓN`, título, descripción corta, lista de capacidades en 2 columnas, CTA "Consultar este servicio" que linkea a `/contacto?servicio={slug}`.
-- Cada servicio recibe un `slug` y un ícono Lucide acorde (ya hay set elegido, se ajustan los faltantes).
-- SEO: en `head()` de `/servicios` se enriquece la meta description con las palabras clave del brief (PLC, SCADA, tableros, revamping, Industria 4.0, mantenimiento, instrumentación).
+**2.2 Esquema de base de datos**
+- `profiles` (id, email, full_name, company_name, created_at) — 1:1 con auth.users.
+- `user_roles` con enum `app_role` = `superadmin | client_admin` (tabla separada, política `has_role()` security definer).
+- `client_attachments` (id, client_user_id, file_name, file_path, file_size, mime_type, uploaded_by, created_at).
+- `contact_submissions` (id, name, email, phone, company, message, source, created_at, read).
+- `popup_config` (id singleton, enabled, title, description, image_url, button_label, button_url, updated_at).
+- `trust_logos` (id, name, image_url, sort_order, visible).
+- `app_settings` (id singleton, contact_email, whatsapp_number, whatsapp_default_message).
 
-## 3) Proyectos con formato Problema → Solución → Resultado
+**2.3 Storage buckets**
+- `client-attachments` (privado, 50MB, cualquier MIME) — RLS: solo superadmin sube, cliente solo ve los suyos.
+- `popup-images` (público, imágenes).
+- `trust-logos` (público, imágenes).
 
-Refactor del modelo `Project` en `src/lib/site-data.ts`:
+**2.4 RLS** — políticas por tabla usando `has_role(auth.uid(), 'superadmin')`. Adjuntos visibles solo al cliente asignado o superadmin.
 
-```ts
-interface Project {
-  slug; title; industry; category;
-  problem: string;          // Situación / desafío
-  solution: string[];       // Tareas realizadas (lo que hoy es tasks)
-  result: string;           // Resultado obtenido
-  technologies: string[];   // Stack (PLC, HMI, marcas)
-  images: number;           // placeholders por ahora
-}
-```
+**2.5 Seed del superadmin** — usuario `info@faztred.com.ar` / `infoFaztred!2026` creado vía edge admin con rol `superadmin`. Email auto-confirmado.
 
-- Modal de `/proyectos` se reescribe con 4 bloques verticales: **Situación**, **Solución implementada**, **Tecnologías utilizadas**, **Resultado obtenido**, más la galería al final.
-- Card de listado muestra: industria + categoría (badges), título, situación (2 líneas), CTA "Ver caso".
-- Datos: para los 6 proyectos existentes infiero `result` y `technologies` a partir de tasks (ej. revamping bombeo → "Migración exitosa Siemens → Allen Bradley con HMI integrado y puesta en marcha sin paradas" / tech: `Siemens S7`, `Allen Bradley`, `HMI PanelView`). Se marca como editable después con los datos reales del usuario.
+**2.6 Auth pages**
+- `/auth/login` — email + password, sin OAuth.
+- `/auth/forgot-password` — envía mail de reset (Lovable Emails).
+- `/auth/reset-password` — captura el token y permite nueva password.
+- Layout `_authenticated/route.tsx` (manejado por la integración) que protege `/admin/*`.
+- Redirect post-login: superadmin → `/admin`, client_admin → `/admin/adjuntos`.
 
-## 4) Tracking dataLayer para Google Ads / GA4
+---
 
-Sin instalar GA4 ni GTM (los IDs los pondrás luego). Sólo se dejan los eventos disparándose en `window.dataLayer`:
+## Fase 3 — Panel del Superadmin
 
-- Helper nuevo `src/lib/analytics.ts` con `pushEvent(name, payload)` que hace `window.dataLayer = window.dataLayer || []` y push seguro en SSR.
-- Inicialización del array en `<head>` desde `__root.tsx`.
-- Eventos cableados:
-  - `whatsapp_click` → botón flotante, hero, footer, contacto.
-  - `form_submit` → `ContactForm` (con `variant` como prop del evento).
-  - `phone_click` → todos los `<a href="tel:...">`.
-  - `email_click` → mailto en footer y contacto.
-  - `meeting_request` → CTA "Agendá una reunión" / "Coordinar reunión".
-  - `brochure_download` → CTA del brochure.
-  - `service_cta_click` → CTA por servicio (incluye `service_slug`).
-  - `project_view` → cuando se abre el modal de un proyecto.
-- Cada evento mantiene un shape consistente: `{ event, location, label }` para que GTM filtre fácil.
+**3.1 Layout `/admin`** con sidebar lateral inspirado en la captura, adaptado a la identidad Faztred (fondo negro/charcoal, acento rojo, tipografía Inter, logo Faztred arriba, "Sesión activa" abajo con el email, "Cerrar sesión").
 
-Cuando me pases los IDs (G-XXXX / GTM-XXXX) cargo los snippets en `__root.tsx` y los eventos ya van a funcionar.
+**Tabs (rutas):**
+- `/admin` — Dashboard simple (contadores: formularios nuevos, clientes, adjuntos).
+- `/admin/usuarios` — listar/crear/eliminar superadmins.
+- `/admin/clientes` — CRUD de empresas cliente + sección de adjuntos por cliente (upload, listar, eliminar). Crear cliente = crear auth user + profile + rol `client_admin` + invitación por mail con password temporal.
+- `/admin/formularios` — lista de envíos del form de contacto, filtro por email y rango de fechas, marcar leído, exportar CSV. Estilo similar a Mobihunter pero con identidad Faztred.
+- `/admin/popup` — editor del popup (toggle on/off, título, descripción, upload de imagen, label y URL del botón) con preview.
+- `/admin/confianza` — gestionar logos de "Algunos de nuestros clientes" (upload, reordenar, mostrar/ocultar, eliminar).
+- `/admin/configuracion` — editar `contact_email`, `whatsapp_number`, `whatsapp_default_message`. Los CTAs del front leen estos valores.
+- "Ver sitio web" en el footer del sidebar → abre `/` en pestaña nueva.
+
+**3.2 Wiring del front con la base**
+- `WelcomePopup` lee de `popup_config`.
+- Sección "Algunos de nuestros clientes" en home lee de `trust_logos`.
+- Botón flotante de WhatsApp + links de contacto leen de `app_settings`.
+- `ContactForm` inserta en `contact_submissions` y dispara mail al `contact_email` configurado (Lovable Emails).
+
+---
+
+## Fase 4 — Panel del Cliente
+
+**4.1 Layout y rutas**
+- Mismo sidebar, versión reducida: "Mis adjuntos" + "Ver sitio web".
+- `/admin/adjuntos` — lista de archivos asignados a su user, descarga con signed URL (privado).
+- Si el cliente intenta entrar a otra ruta admin, redirect a `/admin/adjuntos`.
 
 ---
 
 ## Detalles técnicos
 
-- Sin Framer Motion. Toda la animación queda en Tailwind + keyframes ya definidos en `styles.css` (`fade-in`, `marquee`).
-- Sin nuevas dependencias.
-- `Placeholder` se mantiene; cuando subas las fotos reales se reemplazan por `<img>` con `loading="lazy"` y `alt` SEO.
-- Inter se carga con `<link rel="preconnect">` + `<link rel="stylesheet">` desde Google Fonts en `__root.tsx`, manteniendo `font-display: swap`.
-- Eventos dataLayer no requieren consent banner para el push en sí, pero el snippet de GA/GTM (cuando lo agreguemos) sí debería convivir con uno — eso queda fuera de este pase.
+- Stack: TanStack Start + Supabase (Lovable Cloud), `createServerFn` para operaciones admin (crear users, listar formularios), `supabaseAdmin` para creación de users.
+- Roles: tabla `user_roles` separada + función `has_role()` security definer (nunca rol en `profiles`).
+- Storage privado para adjuntos, signed URLs de 1h al descargar.
+- Mails transaccionales: Lovable Emails (al activarse Cloud configuro el dominio si hace falta).
+- Validación con Zod en todos los formularios (cliente y server).
+- Diseño del admin: usa los tokens existentes de `styles.css` (charcoal `--background`, rojo `--primary`, Inter). Sidebar fijo a la izquierda, ancho `260px`, ítem activo con borde izquierdo rojo + fondo `--muted`, igual feel que Mobihunter pero con paleta Faztred.
+
+## Fuera de alcance (lo aclaro para que decidas si lo querés sumar)
+
+- Notificaciones por mail al cliente cuando el superadmin le sube un nuevo adjunto.
+- Auditoría (log de quién hizo qué).
+- 2FA para superadmin.
+- Mail dominio propio (`@faztred.com.ar`) para el remitente — por defecto sale desde el dominio Lovable hasta que configures DNS.
 
 ---
 
-## Fuera de alcance (para iteración siguiente)
-
-- Sección "Industria 4.0 / Innovación" dedicada (la sumamos cuando tengas screenshots de dashboards reales).
-- Reemplazo de placeholders por fotos reales.
-- Instalación efectiva de GA4 / GTM / Google Ads (necesito los IDs).
-- Blog / noticias técnicas.
-- Calendario embebido para reuniones.
+¿Avanzo con la Fase 1 ahora (popup de calendario + popup de bienvenida con contenido temporal) y después arranco Fase 2 activando Cloud? ¿O preferís que active Cloud primero y construya todo de corrido?
