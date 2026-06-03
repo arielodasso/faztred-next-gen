@@ -12,11 +12,11 @@ export const Route = createFileRoute("/contacto")({
   component: ContactoPage,
   head: () => ({
     meta: [
-      { title: "Contacto — Asesoramiento en automatización industrial | Faztred" },
+      { title: "Contacto | Faztred Soluciones" },
       {
         name: "description",
         content:
-          "Contactanos para asesorarte en automatización industrial, tableros eléctricos, PLC, SCADA y revamping. Respondemos rápido por WhatsApp o formulario.",
+          "Contactanos para automatización industrial, tableros, PLC, SCADA y revamping. Respondemos rápido por WhatsApp o formulario.",
       },
       { property: "og:title", content: "Contacto | Faztred Soluciones" },
       { property: "og:description", content: "Contanos tu desafío. Te respondemos rápido." },

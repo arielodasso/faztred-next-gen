@@ -84,11 +84,11 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "Faztred | Automatización Industrial, PLC, SCADA y Tableros Eléctricos" },
+      { title: "Faztred | Automatización Industrial, PLC y SCADA" },
       {
         name: "description",
         content:
-          "Automatización industrial, programación de PLC, SCADA, diseño de tableros eléctricos, revamping, integración industrial, mantenimiento y soluciones Industria 4.0 para procesos productivos.",
+          "Automatización industrial, PLC, SCADA, tableros eléctricos, revamping e Industria 4.0 para procesos productivos.",
       },
       {
         name: "keywords",
@@ -99,7 +99,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Ingeniería, programación PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias que necesitan resultados concretos.",
+          "PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -162,8 +162,9 @@ function HomePage() {
 
 
       {/* Contact CTAs */}
-      <section className="bg-[#e6e7ea] py-20 md:py-28">
+      <section className="bg-[#e6e7ea] py-20 md:py-28" aria-labelledby="home-contact-cta-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="home-contact-cta-heading" className="sr-only">Cómo contactarnos</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {contactCards.map((c) => {
               const Icon = c.icon;
@@ -208,9 +209,10 @@ function HomePage() {
       </section>
 
       {/* Metrics */}
-      <section className="bg-[color:var(--surface-dark)] py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-[color:var(--surface-dark)] py-20 md:py-28 relative overflow-hidden" aria-labelledby="home-metrics-heading">
         <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:60px_60px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="home-metrics-heading" className="sr-only">Faztred en números</h2>
           <div className="grid md:grid-cols-3 gap-10 md:gap-6 items-start">
             <div>
               <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">
@@ -364,7 +366,7 @@ function HomePage() {
                     >
                       <img
                         src={logo.src}
-                        alt={logo.name}
+                        alt={`Logo de ${logo.name}`}
                         loading="lazy"
                         className="max-h-full max-w-full object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                       />

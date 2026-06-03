@@ -16,11 +16,11 @@ export const Route = createFileRoute("/proyectos")({
   }),
   head: () => ({
     meta: [
-      { title: "Proyectos realizados — Casos reales de automatización | Faztred" },
+      { title: "Proyectos — Casos reales | Faztred" },
       {
         name: "description",
         content:
-          "Casos reales de automatización industrial, tableros eléctricos, revamping, instalaciones antiexplosivas y capacitaciones. Problema, solución y resultado.",
+          "Casos reales de automatización industrial, tableros eléctricos, revamping y capacitaciones. Problema, solución y resultado.",
       },
       { property: "og:title", content: "Proyectos | Faztred Soluciones" },
       {
@@ -30,6 +30,20 @@ export const Route = createFileRoute("/proyectos")({
       { property: "og:url", content: "/proyectos" },
     ],
     links: [{ rel: "canonical", href: "/proyectos" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Proyectos realizados — Faztred Soluciones",
+          description:
+            "Portfolio de proyectos de automatización industrial, tableros eléctricos, revamping y capacitaciones ejecutados por Faztred en Argentina.",
+          url: "https://faztred.com.ar/proyectos",
+          isPartOf: { "@type": "WebSite", name: "Faztred Soluciones", url: "https://faztred.com.ar" },
+        }),
+      },
+    ],
   }),
 });
 
@@ -123,8 +137,9 @@ function ProyectosPage() {
       </section>
 
       {/* Grid */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background" aria-labelledby="proyectos-grid-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="proyectos-grid-heading" className="sr-only">Casos de éxito</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((p) => (
               <article

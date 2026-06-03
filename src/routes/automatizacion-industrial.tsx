@@ -12,9 +12,9 @@ import { pushEvent } from "@/lib/analytics";
 import heroIndustrial from "@/assets/hero-industrial.jpg";
 
 const PATH = "/automatizacion-industrial";
-const TITLE = "Automatización Industrial en Argentina | PLC, SCADA y Tableros — Faztred";
+const TITLE = "Automatización Industrial en Argentina | Faztred";
 const DESCRIPTION =
-  "Automatización industrial llave en mano: ingeniería, PLC, SCADA, tableros eléctricos, revamping y soporte 24/7. Más de 30 plantas optimizadas en Argentina.";
+  "Automatización industrial llave en mano: PLC, SCADA, tableros, revamping y soporte 24/7. +30 plantas optimizadas en Argentina.";
 
 const includes = [
   { icon: Cpu, title: "Ingeniería de automatización a medida",
@@ -68,7 +68,7 @@ export const Route = createFileRoute("/automatizacion-industrial")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "article" },
       { property: "og:url", content: PATH },
-      { property: "og:image", content: "/assets/hero-industrial.jpg" },
+      { property: "og:image", content: "https://faztred.com.ar/og-automatizacion-industrial.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },

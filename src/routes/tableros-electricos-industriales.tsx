@@ -12,9 +12,9 @@ import { pushEvent } from "@/lib/analytics";
 import heroIndustrial from "@/assets/hero-industrial.jpg";
 
 const PATH = "/tableros-electricos-industriales";
-const TITLE = "Fabricación de Tableros Eléctricos Industriales | Control, Potencia y Automatización — Faztred";
+const TITLE = "Tableros Eléctricos Industriales | Faztred";
 const DESCRIPTION =
-  "Diseño y fabricación de tableros eléctricos industriales: control, potencia, fuerza motriz, variadores de frecuencia y automatización con PLC, HMI y SCADA. Ingeniería, fabricación y puesta en marcha.";
+  "Diseño y fabricación de tableros eléctricos de control, potencia y automatización con PLC, HMI, SCADA y variadores.";
 
 const types = [
   { icon: CircuitBoard, title: "Tableros de Control",
@@ -78,7 +78,7 @@ export const Route = createFileRoute("/tableros-electricos-industriales")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "article" },
       { property: "og:url", content: PATH },
-      { property: "og:image", content: "/assets/hero-industrial.jpg" },
+      { property: "og:image", content: "https://faztred.com.ar/og-tableros-electricos.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
