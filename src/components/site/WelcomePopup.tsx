@@ -1,50 +1,50 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { pushEvent } from "@/lib/analytics";
+import { supabase } from "@/integrations/supabase/client";
 
-const STORAGE_KEY = "faztred_welcome_seen_v1";
+const STORAGE_KEY = "faztred_welcome_seen_v";
 
-// Contenido por defecto — editable desde el panel de superadmin
-// cuando se conecte con la tabla popup_config en Lovable Cloud.
-const defaultConfig = {
-  enabled: true,
-  title: "Industria 4.0 llave en mano",
-  description:
-    "Nuevos servicios de adquisición de datos, dashboards en tiempo real y visión artificial. Conocé cómo podemos ayudarte a llevar tu planta al próximo nivel.",
-  imageUrl: "",
-  buttonLabel: "Ver servicios",
-  buttonUrl: "/servicios",
-};
+interface Cfg {
+  enabled: boolean;
+  title: string;
+  description: string;
+  image_url: string | null;
+  button_label: string | null;
+  button_url: string | null;
+  version: number;
+}
 
 export function WelcomePopup() {
   const [open, setOpen] = useState(false);
-  const [config] = useState(defaultConfig);
+  const [config, setConfig] = useState<Cfg | null>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!config.enabled) return;
-    try {
-      if (localStorage.getItem(STORAGE_KEY)) return;
-    } catch {
-      return;
-    }
-    const t = setTimeout(() => {
-      setOpen(true);
-      pushEvent("popup_view", { location: "home_welcome" });
-    }, 1200);
-    return () => clearTimeout(t);
-  }, [config.enabled]);
+    let active = true;
+    supabase.from("popup_config").select("*").eq("id", 1).single().then(({ data }) => {
+      if (!active || !data) return;
+      const cfg = data as Cfg;
+      setConfig(cfg);
+      if (!cfg.enabled) return;
+      try {
+        if (localStorage.getItem(STORAGE_KEY + cfg.version)) return;
+      } catch { return; }
+      setTimeout(() => {
+        setOpen(true);
+        pushEvent("popup_view", { location: "home_welcome" });
+      }, 1200);
+    });
+    return () => { active = false; };
+  }, []);
 
   const close = () => {
     setOpen(false);
-    try {
-      localStorage.setItem(STORAGE_KEY, new Date().toISOString());
-    } catch {
-      // ignore
+    if (config) {
+      try { localStorage.setItem(STORAGE_KEY + config.version, new Date().toISOString()); } catch { /* ignore */ }
     }
   };
 
-  if (!open) return null;
+  if (!open || !config) return null;
 
   return (
     <div
@@ -67,14 +67,9 @@ export function WelcomePopup() {
           <X className="h-4 w-4" />
         </button>
 
-        {config.imageUrl && (
+        {config.image_url && (
           <div className="aspect-[16/9] w-full overflow-hidden bg-black">
-            <img
-              src={config.imageUrl}
-              alt=""
-              className="h-full w-full object-cover"
-              loading="eager"
-            />
+            <img src={config.image_url} alt="" className="h-full w-full object-cover" loading="eager" />
           </div>
         )}
 
@@ -82,28 +77,22 @@ export function WelcomePopup() {
           <span className="text-[11px] uppercase tracking-[0.22em] text-primary font-semibold flex items-center gap-2.5">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Novedades
           </span>
-          <h2
-            id="welcome-popup-title"
-            className="mt-4 text-2xl md:text-3xl font-bold text-white tracking-tight"
-          >
+          <h2 id="welcome-popup-title" className="mt-4 text-2xl md:text-3xl font-bold text-white tracking-tight">
             {config.title}
           </h2>
           <p className="mt-3 text-sm md:text-base text-white/65 leading-relaxed">
             {config.description}
           </p>
-          {config.buttonLabel && config.buttonUrl && (
+          {config.button_label && config.button_url && (
             <a
-              href={config.buttonUrl}
+              href={config.button_url}
               onClick={() => {
-                pushEvent("popup_click", {
-                  location: "home_welcome",
-                  label: config.buttonLabel,
-                });
+                pushEvent("popup_click", { location: "home_welcome", label: config.button_label ?? undefined });
                 close();
               }}
               className="cta-press mt-8 inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-6 py-3 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
             >
-              {config.buttonLabel}
+              {config.button_label}
             </a>
           )}
         </div>

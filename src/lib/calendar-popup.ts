@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import { pushEvent } from "./analytics";
 
 export const CALENDAR_URL = "https://calendar.app.google/aFcAAPqGVBe72yF27";
@@ -42,7 +43,7 @@ export function openCalendarPopup(location = "unknown") {
  * Handler listo para onClick que abre el popup y previene navegación.
  */
 export function calendarPopupHandler(location: string) {
-  return (e: React.MouseEvent) => {
+  return (e: MouseEvent) => {
     e.preventDefault();
     openCalendarPopup(location);
   };

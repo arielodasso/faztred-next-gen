@@ -12,7 +12,20 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as ProyectosRouteImport } from './routes/proyectos'
 import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
+import { Route as AdminPopupRouteImport } from './routes/admin.popup'
+import { Route as AdminFormulariosRouteImport } from './routes/admin.formularios'
+import { Route as AdminConfiguracionRouteImport } from './routes/admin.configuracion'
+import { Route as AdminConfianzaRouteImport } from './routes/admin.confianza'
+import { Route as AdminClientesRouteImport } from './routes/admin.clientes'
+import { Route as AdminAdjuntosRouteImport } from './routes/admin.adjuntos'
 
 const ServiciosRoute = ServiciosRouteImport.update({
   id: '/servicios',
@@ -29,41 +42,197 @@ const ContactoRoute = ContactoRouteImport.update({
   path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPopupRoute = AdminPopupRouteImport.update({
+  id: '/popup',
+  path: '/popup',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFormulariosRoute = AdminFormulariosRouteImport.update({
+  id: '/formularios',
+  path: '/formularios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConfiguracionRoute = AdminConfiguracionRouteImport.update({
+  id: '/configuracion',
+  path: '/configuracion',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConfianzaRoute = AdminConfianzaRouteImport.update({
+  id: '/confianza',
+  path: '/confianza',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminClientesRoute = AdminClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdjuntosRoute = AdminAdjuntosRouteImport.update({
+  id: '/adjuntos',
+  path: '/adjuntos',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/auth': typeof AuthRouteWithChildren
   '/contacto': typeof ContactoRoute
   '/proyectos': typeof ProyectosRoute
   '/servicios': typeof ServiciosRoute
+  '/admin/adjuntos': typeof AdminAdjuntosRoute
+  '/admin/clientes': typeof AdminClientesRoute
+  '/admin/confianza': typeof AdminConfianzaRoute
+  '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/formularios': typeof AdminFormulariosRoute
+  '/admin/popup': typeof AdminPopupRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRouteWithChildren
   '/contacto': typeof ContactoRoute
   '/proyectos': typeof ProyectosRoute
   '/servicios': typeof ServiciosRoute
+  '/admin/adjuntos': typeof AdminAdjuntosRoute
+  '/admin/clientes': typeof AdminClientesRoute
+  '/admin/confianza': typeof AdminConfianzaRoute
+  '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/formularios': typeof AdminFormulariosRoute
+  '/admin/popup': typeof AdminPopupRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/auth': typeof AuthRouteWithChildren
   '/contacto': typeof ContactoRoute
   '/proyectos': typeof ProyectosRoute
   '/servicios': typeof ServiciosRoute
+  '/admin/adjuntos': typeof AdminAdjuntosRoute
+  '/admin/clientes': typeof AdminClientesRoute
+  '/admin/confianza': typeof AdminConfianzaRoute
+  '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/formularios': typeof AdminFormulariosRoute
+  '/admin/popup': typeof AdminPopupRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contacto' | '/proyectos' | '/servicios'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/contacto'
+    | '/proyectos'
+    | '/servicios'
+    | '/admin/adjuntos'
+    | '/admin/clientes'
+    | '/admin/confianza'
+    | '/admin/configuracion'
+    | '/admin/formularios'
+    | '/admin/popup'
+    | '/admin/usuarios'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/reset-password'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contacto' | '/proyectos' | '/servicios'
-  id: '__root__' | '/' | '/contacto' | '/proyectos' | '/servicios'
+  to:
+    | '/'
+    | '/auth'
+    | '/contacto'
+    | '/proyectos'
+    | '/servicios'
+    | '/admin/adjuntos'
+    | '/admin/clientes'
+    | '/admin/confianza'
+    | '/admin/configuracion'
+    | '/admin/formularios'
+    | '/admin/popup'
+    | '/admin/usuarios'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/reset-password'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/contacto'
+    | '/proyectos'
+    | '/servicios'
+    | '/admin/adjuntos'
+    | '/admin/clientes'
+    | '/admin/confianza'
+    | '/admin/configuracion'
+    | '/admin/formularios'
+    | '/admin/popup'
+    | '/admin/usuarios'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/reset-password'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
   ContactoRoute: typeof ContactoRoute
   ProyectosRoute: typeof ProyectosRoute
   ServiciosRoute: typeof ServiciosRoute
@@ -92,6 +261,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -99,11 +282,128 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/forgot-password': {
+      id: '/auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/popup': {
+      id: '/admin/popup'
+      path: '/popup'
+      fullPath: '/admin/popup'
+      preLoaderRoute: typeof AdminPopupRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/formularios': {
+      id: '/admin/formularios'
+      path: '/formularios'
+      fullPath: '/admin/formularios'
+      preLoaderRoute: typeof AdminFormulariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/configuracion': {
+      id: '/admin/configuracion'
+      path: '/configuracion'
+      fullPath: '/admin/configuracion'
+      preLoaderRoute: typeof AdminConfiguracionRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/confianza': {
+      id: '/admin/confianza'
+      path: '/confianza'
+      fullPath: '/admin/confianza'
+      preLoaderRoute: typeof AdminConfianzaRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/clientes': {
+      id: '/admin/clientes'
+      path: '/clientes'
+      fullPath: '/admin/clientes'
+      preLoaderRoute: typeof AdminClientesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/adjuntos': {
+      id: '/admin/adjuntos'
+      path: '/adjuntos'
+      fullPath: '/admin/adjuntos'
+      preLoaderRoute: typeof AdminAdjuntosRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAdjuntosRoute: typeof AdminAdjuntosRoute
+  AdminClientesRoute: typeof AdminClientesRoute
+  AdminConfianzaRoute: typeof AdminConfianzaRoute
+  AdminConfiguracionRoute: typeof AdminConfiguracionRoute
+  AdminFormulariosRoute: typeof AdminFormulariosRoute
+  AdminPopupRoute: typeof AdminPopupRoute
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdjuntosRoute: AdminAdjuntosRoute,
+  AdminClientesRoute: AdminClientesRoute,
+  AdminConfianzaRoute: AdminConfianzaRoute,
+  AdminConfiguracionRoute: AdminConfiguracionRoute,
+  AdminFormulariosRoute: AdminFormulariosRoute,
+  AdminPopupRoute: AdminPopupRoute,
+  AdminUsuariosRoute: AdminUsuariosRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface AuthRouteChildren {
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
   ContactoRoute: ContactoRoute,
   ProyectosRoute: ProyectosRoute,
   ServiciosRoute: ServiciosRoute,
