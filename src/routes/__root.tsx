@@ -14,6 +14,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { Toaster } from "@/components/ui/sonner";
+import { CalendarModal } from "@/components/site/CalendarModal";
 
 function NotFoundComponent() {
   return (
@@ -145,6 +146,7 @@ function RootComponent() {
       {isChrome && <Footer />}
       {isChrome && <WhatsAppFloat />}
       <Toaster position="bottom-left" />
+      {isChrome && <CalendarModal />}
     </QueryClientProvider>
   );
 }
