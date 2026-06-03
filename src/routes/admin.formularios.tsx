@@ -26,6 +26,7 @@ function FormulariosPage() {
   const [items, setItems] = useState<Submission[]>([]);
   const [selected, setSelected] = useState<Submission | null>(null);
   const [loading, setLoading] = useState(true);
+  const [toDelete, setToDelete] = useState<Submission | null>(null);
 
   const load = async () => {
     const { data } = await supabase
@@ -43,11 +44,12 @@ function FormulariosPage() {
     load();
   };
 
-  const remove = async (id: string) => {
-    if (!confirm("¿Eliminar este envío?")) return;
-    await supabase.from("contact_submissions").delete().eq("id", id);
-    if (selected?.id === id) setSelected(null);
-    toast.success("Eliminado");
+  const confirmRemove = async () => {
+    if (!toDelete) return;
+    await supabase.from("contact_submissions").delete().eq("id", toDelete.id);
+    if (selected?.id === toDelete.id) setSelected(null);
+    setToDelete(null);
+    toast.success("Envío eliminado");
     load();
   };
 
