@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Briefcase } from "lucide-react";
 import heroPlanta from "@/assets/hero-planta.jpg";
 import { pushEvent } from "@/lib/analytics";
+import { calendarPopupHandler } from "@/lib/calendar-popup";
 
 export function HeroSlider() {
   const [mounted, setMounted] = useState(false);
