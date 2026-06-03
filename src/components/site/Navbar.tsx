@@ -22,6 +22,7 @@ import { calendarPopupHandler } from "@/lib/calendar-popup";
 const links = [
   { to: "/", label: "HOME" },
   { to: "/servicios", label: "SERVICIOS" },
+  { to: "/productos", label: "PRODUCTOS" },
   { to: "/proyectos", label: "PROYECTOS", hasMenu: true },
   { to: "/contacto", label: "CONTACTO" },
 ] as const;
