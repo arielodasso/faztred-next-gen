@@ -102,14 +102,14 @@ function ProyectosPage() {
       {/* Filters */}
       <section className="py-8 md:py-10 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex md:flex-wrap gap-2 overflow-x-auto md:overflow-visible -mx-4 px-4 md:mx-0 md:px-0 snap-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {categories.map((c) => (
               <button
                 key={c}
                 onClick={() => setActive(c)}
                 aria-pressed={active === c}
                 className={cn(
-                  "px-4 py-2 text-[11px] uppercase tracking-[0.15em] font-semibold border rounded-full transition-colors cta-press",
+                  "shrink-0 snap-start px-4 py-2 text-[11px] uppercase tracking-[0.15em] font-semibold border rounded-full transition-colors cta-press",
                   active === c
                     ? "bg-foreground text-white border-foreground"
                     : "border-border text-muted-foreground hover:border-foreground hover:text-foreground",
