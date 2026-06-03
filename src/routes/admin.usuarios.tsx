@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ConfirmDialog } from "@/components/site/ConfirmDialog";
 import { toast } from "sonner";
 import { Trash2, Plus } from "lucide-react";
 
@@ -28,6 +29,7 @@ function UsuariosPage() {
   const [rows, setRows] = useState<UserRow[]>([]);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", full_name: "", role: "client_admin" as "superadmin" | "client_admin" });
+  const [toDelete, setToDelete] = useState<UserRow | null>(null);
 
   const load = async () => {
     const { data: profiles } = await supabase.from("profiles").select("id, email, full_name");
@@ -52,11 +54,12 @@ function UsuariosPage() {
     }
   };
 
-  const remove = async (id: string) => {
-    if (!confirm("¿Eliminar usuario? Esta acción es irreversible.")) return;
+  const confirmRemove = async () => {
+    if (!toDelete) return;
     try {
-      await deleteFn({ data: { user_id: id } });
+      await deleteFn({ data: { user_id: toDelete.id } });
       toast.success("Usuario eliminado");
+      setToDelete(null);
       load();
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Error");
@@ -117,7 +120,7 @@ function UsuariosPage() {
                   </span>
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <button onClick={() => remove(r.id)} className="text-white/40 hover:text-red-400">
+                  <button onClick={() => setToDelete(r)} className="text-white/60 hover:text-red-400" aria-label={`Eliminar ${r.full_name ?? r.email}`}>
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </td>
@@ -126,6 +129,14 @@ function UsuariosPage() {
           </tbody>
         </table>
       </div>
+
+      <ConfirmDialog
+        open={!!toDelete}
+        onOpenChange={(o) => !o && setToDelete(null)}
+        title="Eliminar usuario"
+        description={toDelete ? `¿Eliminar a "${toDelete.full_name ?? toDelete.email}"? Esta acción es irreversible.` : ""}
+        onConfirm={confirmRemove}
+      />
     </div>
   );
 }

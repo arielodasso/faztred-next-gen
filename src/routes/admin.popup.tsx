@@ -24,11 +24,23 @@ interface Cfg {
 
 function PopupPage() {
   const [cfg, setCfg] = useState<Cfg | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+
+  const resolvePreview = async (path: string | null) => {
+    if (!path) { setPreviewUrl(null); return; }
+    if (/^https?:\/\//i.test(path)) { setPreviewUrl(path); return; }
+    const { data } = await supabase.storage.from("popup-images").createSignedUrl(path, 60 * 60);
+    setPreviewUrl(data?.signedUrl ?? null);
+  };
 
   useEffect(() => {
     supabase.from("popup_config").select("*").eq("id", 1).single().then(({ data }) => {
-      if (data) setCfg(data as Cfg);
+      if (data) {
+        const c = data as Cfg;
+        setCfg(c);
+        resolvePreview(c.image_url);
+      }
     });
   }, []);
 
@@ -47,8 +59,8 @@ function PopupPage() {
     const path = `popup-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_")}`;
     const { error } = await supabase.storage.from("popup-images").upload(path, file, { upsert: true });
     if (error) { toast.error(error.message); setUploading(false); return; }
-    const { data } = supabase.storage.from("popup-images").getPublicUrl(path);
-    setCfg((c) => c ? { ...c, image_url: data.publicUrl } : c);
+    setCfg((c) => c ? { ...c, image_url: path } : c);
+    await resolvePreview(path);
     setUploading(false);
   };
 
@@ -83,12 +95,12 @@ function PopupPage() {
               <input type="file" accept="image/*" hidden onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])} />
             </label>
             {cfg.image_url && (
-              <button onClick={() => setCfg({ ...cfg, image_url: null })} className="text-xs text-white/50 hover:text-red-400">
+              <button onClick={() => { setCfg({ ...cfg, image_url: null }); setPreviewUrl(null); }} className="text-xs text-white/70 hover:text-red-400">
                 Quitar
               </button>
             )}
           </div>
-          {cfg.image_url && <img src={cfg.image_url} alt="" className="mt-3 max-h-40 rounded-md border border-white/10" />}
+          {previewUrl && <img src={previewUrl} alt="" className="mt-3 max-h-40 rounded-md border border-white/10" />}
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>

@@ -54,7 +54,17 @@ export function useTrustLogos() {
         .eq("is_active", true)
         .order("display_order", { ascending: true });
       if (error) throw error;
-      return (data ?? []) as TrustLogo[];
+      const rows = (data ?? []) as TrustLogo[];
+      const resolved = await Promise.all(
+        rows.map(async (r) => {
+          if (/^https?:\/\//i.test(r.logo_url)) return r;
+          const { data: signed } = await supabase.storage
+            .from("trust-logos")
+            .createSignedUrl(r.logo_url, 60 * 60 * 24 * 365);
+          return { ...r, logo_url: signed?.signedUrl ?? r.logo_url };
+        }),
+      );
+      return resolved;
     },
     staleTime: 5 * 60 * 1000,
   });

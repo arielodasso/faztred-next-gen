@@ -57,7 +57,11 @@ function AdjuntosPage() {
                   {((a.size_bytes ?? 0) / 1024 / 1024).toFixed(2)} MB · {new Date(a.created_at).toLocaleDateString("es-AR")}
                 </p>
               </div>
-              <Button size="sm" variant="outline" onClick={() => download(a)}>
+              <Button
+                size="sm"
+                onClick={() => download(a)}
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/15"
+              >
                 <Download className="h-4 w-4 mr-1" /> Descargar
               </Button>
             </li>

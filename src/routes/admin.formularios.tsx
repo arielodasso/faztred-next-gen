@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { ConfirmDialog } from "@/components/site/ConfirmDialog";
 import { Mail, Phone, Building2, Check, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -25,6 +26,7 @@ function FormulariosPage() {
   const [items, setItems] = useState<Submission[]>([]);
   const [selected, setSelected] = useState<Submission | null>(null);
   const [loading, setLoading] = useState(true);
+  const [toDelete, setToDelete] = useState<Submission | null>(null);
 
   const load = async () => {
     const { data } = await supabase
@@ -42,11 +44,12 @@ function FormulariosPage() {
     load();
   };
 
-  const remove = async (id: string) => {
-    if (!confirm("¿Eliminar este envío?")) return;
-    await supabase.from("contact_submissions").delete().eq("id", id);
-    if (selected?.id === id) setSelected(null);
-    toast.success("Eliminado");
+  const confirmRemove = async () => {
+    if (!toDelete) return;
+    await supabase.from("contact_submissions").delete().eq("id", toDelete.id);
+    if (selected?.id === toDelete.id) setSelected(null);
+    setToDelete(null);
+    toast.success("Envío eliminado");
     load();
   };
 
@@ -100,29 +103,46 @@ function FormulariosPage() {
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline" onClick={() => markRead(selected.id, !selected.is_read)}>
+                  <Button
+                    size="sm"
+                    onClick={() => markRead(selected.id, !selected.is_read)}
+                    className="bg-white/10 hover:bg-white/20 text-white border border-white/15"
+                  >
                     <Check className="h-4 w-4 mr-1" /> {selected.is_read ? "Marcar no leído" : "Marcar leído"}
                   </Button>
-                  <Button size="sm" variant="outline" onClick={() => remove(selected.id)} className="text-red-400 hover:text-red-300">
+                  <Button
+                    size="sm"
+                    onClick={() => setToDelete(selected)}
+                    className="bg-red-600/15 hover:bg-red-600/25 text-red-300 hover:text-red-200 border border-red-500/40"
+                    aria-label="Eliminar envío"
+                  >
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
               <div className="space-y-2 text-sm">
-                <p className="flex items-center gap-2 text-white/70"><Mail className="h-4 w-4" /> <a href={`mailto:${selected.email}`} className="hover:text-white">{selected.email}</a></p>
-                {selected.phone && <p className="flex items-center gap-2 text-white/70"><Phone className="h-4 w-4" /> {selected.phone}</p>}
-                {selected.company && <p className="flex items-center gap-2 text-white/70"><Building2 className="h-4 w-4" /> {selected.company}</p>}
+                <p className="flex items-center gap-2 text-white/80"><Mail className="h-4 w-4" /> <a href={`mailto:${selected.email}`} className="hover:text-white">{selected.email}</a></p>
+                {selected.phone && <p className="flex items-center gap-2 text-white/80"><Phone className="h-4 w-4" /> {selected.phone}</p>}
+                {selected.company && <p className="flex items-center gap-2 text-white/80"><Building2 className="h-4 w-4" /> {selected.company}</p>}
               </div>
               <div className="pt-4 border-t border-white/10">
-                <p className="text-xs uppercase tracking-widest text-white/40 mb-2">Mensaje</p>
-                <p className="text-sm whitespace-pre-wrap leading-relaxed">{selected.message}</p>
+                <p className="text-xs uppercase tracking-widest text-white/60 mb-2">Mensaje</p>
+                <p className="text-sm whitespace-pre-wrap leading-relaxed text-white">{selected.message}</p>
               </div>
             </div>
           ) : (
-            <p className="text-sm text-white/50">Seleccioná un envío.</p>
+            <p className="text-sm text-white/60">Seleccioná un envío.</p>
           )}
         </div>
       </div>
+
+      <ConfirmDialog
+        open={!!toDelete}
+        onOpenChange={(o) => !o && setToDelete(null)}
+        title="Eliminar envío"
+        description={toDelete ? `¿Eliminar el envío de "${toDelete.name}"? Esta acción no se puede deshacer.` : ""}
+        onConfirm={confirmRemove}
+      />
     </div>
   );
 }
