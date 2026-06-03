@@ -3,12 +3,12 @@ import { Instagram, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-
 import logoWhite from "@/assets/logo-white.png";
 import { pushEvent } from "@/lib/analytics";
 import {
-  WHATSAPP_URL,
   PHONE_NUMBER,
   PHONE_DISPLAY,
   EMAIL,
   BROCHURE_URL,
 } from "@/lib/site-data";
+import { useAppSettings } from "@/lib/use-site-config";
 
 const companyLinks = [
   { label: "Sobre nosotros", to: "/" as const, hash: "diferenciales" },
@@ -49,6 +49,7 @@ const technologies = [
 ];
 
 export function Footer() {
+  const { whatsappUrl } = useAppSettings();
   return (
     <footer className="bg-[color:var(--surface-darker)] px-3 md:px-4 pt-12 pb-8">
       <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl bg-[color:var(--surface-dark)] border border-white/[0.06]">
@@ -75,7 +76,7 @@ export function Footer() {
                 {[
                   { href: "https://instagram.com/faztred", label: "Instagram", Icon: Instagram },
                   { href: "https://www.linkedin.com/in/faztred/", label: "LinkedIn", Icon: Linkedin },
-                  { href: WHATSAPP_URL, label: "WhatsApp", Icon: MessageCircle, event: true },
+                  { href: whatsappUrl, label: "WhatsApp", Icon: MessageCircle, event: true },
                 ].map(({ href, label, Icon, event }) => (
                   <a
                     key={label}

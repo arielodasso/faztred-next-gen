@@ -28,6 +28,7 @@ import {
 } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
+import { useAppSettings, useTrustLogos } from "@/lib/use-site-config";
 import clientManaos from "@/assets/clients/manaos.png";
 import clientYpf from "@/assets/clients/ypf.png";
 import clientYamaha from "@/assets/clients/yamaha.png";
@@ -145,10 +146,19 @@ const whyFaztred = [
 const industries = ["Química", "Metalúrgica", "Alimenticia", "Automotriz", "Farmacéutica"];
 
 function HomePage() {
+  const { whatsappUrl } = useAppSettings();
+  const dynamicLogos = useTrustLogos();
+  const logosToRender = dynamicLogos.length > 0
+    ? dynamicLogos.map((l) => ({ src: l.logo_url, name: l.name }))
+    : clientLogos;
+  const midDyn = Math.ceil(logosToRender.length / 2);
+  const rowA = logosToRender.slice(0, midDyn);
+  const rowB = logosToRender.slice(midDyn);
   return (
     <>
       <WelcomePopup />
       <HeroSlider />
+
 
 
       {/* Contact CTAs */}
@@ -188,7 +198,7 @@ function HomePage() {
                 );
               }
               return c.external ? (
-                <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" onClick={trackingHandler}>{Inner}</a>
+                <a key={c.title} href={c.icon === MessageCircle ? whatsappUrl : c.href} target="_blank" rel="noopener noreferrer" onClick={trackingHandler}>{Inner}</a>
               ) : (
                 <Link key={c.title} to={c.href} onClick={trackingHandler}>{Inner}</Link>
               );
@@ -337,8 +347,8 @@ function HomePage() {
           <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" />
           <div className="mt-14 space-y-5">
             {[
-              { items: clientsRowA, reverse: false },
-              { items: clientsRowB, reverse: true },
+              { items: rowA, reverse: false },
+              { items: rowB, reverse: true },
             ].map((row, rIdx) => (
               <div
                 key={rIdx}

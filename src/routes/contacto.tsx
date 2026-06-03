@@ -3,9 +3,10 @@ import { MapPin, Mail, Phone, Clock, Instagram, Linkedin, MessageCircle, Calenda
 import { PageHero } from "@/components/site/PageHero";
 import heroImage from "@/assets/hero-industrial.jpg";
 import { ContactForm } from "@/components/site/ContactForm";
-import { WHATSAPP_URL, PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
+import { PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
+import { useAppSettings } from "@/lib/use-site-config";
 
 export const Route = createFileRoute("/contacto")({
   component: ContactoPage,
@@ -40,6 +41,7 @@ const infoItems: InfoItem[] = [
 ];
 
 function ContactoPage() {
+  const { whatsappUrl } = useAppSettings();
   return (
     <>
       <PageHero
@@ -95,7 +97,7 @@ function ContactoPage() {
               </ul>
 
               <a
-                href={WHATSAPP_URL}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => pushEvent("whatsapp_click", { location: "contacto" })}
