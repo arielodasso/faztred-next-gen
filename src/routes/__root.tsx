@@ -134,7 +134,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isChrome = !pathname.startsWith("/auth") && !pathname.startsWith("/admin");
+  const authPaths = ["/login", "/forgot-password", "/reset-password"];
+  const isChrome = !authPaths.includes(pathname) && !pathname.startsWith("/admin");
   return (
     <QueryClientProvider client={queryClient}>
       {isChrome && <Navbar />}
