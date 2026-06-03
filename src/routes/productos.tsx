@@ -9,6 +9,7 @@ import { SectionTitle } from "@/components/site/SectionTitle";
 import { PHONE_NUMBER } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
+import heroImage from "@/assets/hero-industrial.jpg";
 
 const PATH = "/productos";
 const TITLE = "Productos y Soluciones Industriales | Catálogo Faztred";
