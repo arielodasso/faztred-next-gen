@@ -9,12 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TablerosRouteImport } from './routes/tableros-electricos-industriales'
+import { Route as SitemapXmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProyectosRouteImport } from './routes/proyectos'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as AutomatizacionRouteImport } from './routes/automatizacion-industrial'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
@@ -26,6 +29,16 @@ import { Route as AdminConfianzaRouteImport } from './routes/admin.confianza'
 import { Route as AdminClientesRouteImport } from './routes/admin.clientes'
 import { Route as AdminAdjuntosRouteImport } from './routes/admin.adjuntos'
 
+const TablerosRoute = TablerosRouteImport.update({
+  id: '/tableros-electricos-industriales',
+  path: '/tableros-electricos-industriales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapXmlRoute = SitemapXmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServiciosRoute = ServiciosRouteImport.update({
   id: '/servicios',
   path: '/servicios',
@@ -54,6 +67,11 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
 const ContactoRoute = ContactoRouteImport.update({
   id: '/contacto',
   path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutomatizacionRoute = AutomatizacionRouteImport.update({
+  id: '/automatizacion-industrial',
+  path: '/automatizacion-industrial',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -110,12 +128,15 @@ const AdminAdjuntosRoute = AdminAdjuntosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/automatizacion-industrial': typeof AutomatizacionRoute
   '/contacto': typeof ContactoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/proyectos': typeof ProyectosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/servicios': typeof ServiciosRoute
+  '/sitemap.xml': typeof SitemapXmlRoute
+  '/tableros-electricos-industriales': typeof TablerosRoute
   '/admin/adjuntos': typeof AdminAdjuntosRoute
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
@@ -127,12 +148,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/automatizacion-industrial': typeof AutomatizacionRoute
   '/contacto': typeof ContactoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/proyectos': typeof ProyectosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/servicios': typeof ServiciosRoute
+  '/sitemap.xml': typeof SitemapXmlRoute
+  '/tableros-electricos-industriales': typeof TablerosRoute
   '/admin/adjuntos': typeof AdminAdjuntosRoute
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
@@ -146,12 +170,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/automatizacion-industrial': typeof AutomatizacionRoute
   '/contacto': typeof ContactoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/proyectos': typeof ProyectosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/servicios': typeof ServiciosRoute
+  '/sitemap.xml': typeof SitemapXmlRoute
+  '/tableros-electricos-industriales': typeof TablerosRoute
   '/admin/adjuntos': typeof AdminAdjuntosRoute
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
@@ -166,12 +193,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/automatizacion-industrial'
     | '/contacto'
     | '/forgot-password'
     | '/login'
     | '/proyectos'
     | '/reset-password'
     | '/servicios'
+    | '/sitemap.xml'
+    | '/tableros-electricos-industriales'
     | '/admin/adjuntos'
     | '/admin/clientes'
     | '/admin/confianza'
@@ -183,12 +213,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/automatizacion-industrial'
     | '/contacto'
     | '/forgot-password'
     | '/login'
     | '/proyectos'
     | '/reset-password'
     | '/servicios'
+    | '/sitemap.xml'
+    | '/tableros-electricos-industriales'
     | '/admin/adjuntos'
     | '/admin/clientes'
     | '/admin/confianza'
@@ -201,12 +234,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/automatizacion-industrial'
     | '/contacto'
     | '/forgot-password'
     | '/login'
     | '/proyectos'
     | '/reset-password'
     | '/servicios'
+    | '/sitemap.xml'
+    | '/tableros-electricos-industriales'
     | '/admin/adjuntos'
     | '/admin/clientes'
     | '/admin/confianza'
@@ -220,16 +256,33 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AutomatizacionRoute: typeof AutomatizacionRoute
   ContactoRoute: typeof ContactoRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   ProyectosRoute: typeof ProyectosRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServiciosRoute: typeof ServiciosRoute
+  SitemapXmlRoute: typeof SitemapXmlRoute
+  TablerosRoute: typeof TablerosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tableros-electricos-industriales': {
+      id: '/tableros-electricos-industriales'
+      path: '/tableros-electricos-industriales'
+      fullPath: '/tableros-electricos-industriales'
+      preLoaderRoute: typeof TablerosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapXmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/servicios': {
       id: '/servicios'
       path: '/servicios'
@@ -270,6 +323,13 @@ declare module '@tanstack/react-router' {
       path: '/contacto'
       fullPath: '/contacto'
       preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/automatizacion-industrial': {
+      id: '/automatizacion-industrial'
+      path: '/automatizacion-industrial'
+      fullPath: '/automatizacion-industrial'
+      preLoaderRoute: typeof AutomatizacionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -372,12 +432,15 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AutomatizacionRoute: AutomatizacionRoute,
   ContactoRoute: ContactoRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   ProyectosRoute: ProyectosRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ServiciosRoute: ServiciosRoute,
+  SitemapXmlRoute: SitemapXmlRoute,
+  TablerosRoute: TablerosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
