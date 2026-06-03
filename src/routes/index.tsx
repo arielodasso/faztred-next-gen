@@ -198,7 +198,7 @@ function HomePage() {
                 );
               }
               return c.external ? (
-                <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" onClick={trackingHandler}>{Inner}</a>
+                <a key={c.title} href={c.icon === MessageCircle ? whatsappUrl : c.href} target="_blank" rel="noopener noreferrer" onClick={trackingHandler}>{Inner}</a>
               ) : (
                 <Link key={c.title} to={c.href} onClick={trackingHandler}>{Inner}</Link>
               );
