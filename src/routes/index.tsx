@@ -366,7 +366,7 @@ function HomePage() {
                     >
                       <img
                         src={logo.src}
-                        alt={logo.name}
+                        alt={`Logo de ${logo.name}`}
                         loading="lazy"
                         className="max-h-full max-w-full object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                       />
