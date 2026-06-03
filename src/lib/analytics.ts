@@ -12,7 +12,9 @@ type EventName =
   | "meeting_request"
   | "brochure_download"
   | "service_cta_click"
-  | "project_view";
+  | "project_view"
+  | "popup_view"
+  | "popup_click";
 
 interface BasePayload {
   /** Sección o componente desde donde se dispara (e.g. "hero", "footer", "float"). */

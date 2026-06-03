@@ -17,6 +17,7 @@ import type { LucideIcon } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { cn } from "@/lib/utils";
 import { projects, type ProjectCategory } from "@/lib/site-data";
+import { calendarPopupHandler } from "@/lib/calendar-popup";
 
 const links = [
   { to: "/", label: "HOME" },
@@ -177,18 +178,14 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <Link
-              to="/contacto"
-              onClick={() => {
-                import("@/lib/analytics").then((m) =>
-                  m.pushEvent("meeting_request", { location: "navbar" }),
-                );
-              }}
+            <button
+              type="button"
+              onClick={calendarPopupHandler("navbar")}
               className="cta-press inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-5 py-2.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
             >
               <CalendarCheck className="h-4 w-4" />
               Agendá una reunión
-            </Link>
+            </button>
           </div>
 
           <button
@@ -220,14 +217,17 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link
-              to="/contacto"
-              onClick={() => setOpen(false)}
+            <button
+              type="button"
+              onClick={(e) => {
+                setOpen(false);
+                calendarPopupHandler("navbar_mobile")(e);
+              }}
               className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
             >
               <CalendarCheck className="h-4 w-4" />
               Agendá una reunión
-            </Link>
+            </button>
           </nav>
         </div>
       </div>

@@ -13,6 +13,7 @@ import {
   Brain,
 } from "lucide-react";
 import { HeroSlider } from "@/components/site/HeroSlider";
+import { WelcomePopup } from "@/components/site/WelcomePopup";
 import brochureCover from "@/assets/brochure-cover.png";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
@@ -26,6 +27,7 @@ import {
   BROCHURE_URL,
 } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
+import { calendarPopupHandler } from "@/lib/calendar-popup";
 import clientManaos from "@/assets/clients/manaos.png";
 import clientYpf from "@/assets/clients/ypf.png";
 import clientYamaha from "@/assets/clients/yamaha.png";
@@ -145,7 +147,9 @@ const industries = ["Química", "Metalúrgica", "Alimenticia", "Automotriz", "Fa
 function HomePage() {
   return (
     <>
+      <WelcomePopup />
       <HeroSlider />
+
 
       {/* Contact CTAs */}
       <section className="bg-[#e6e7ea] py-20 md:py-28">
@@ -171,6 +175,18 @@ function HomePage() {
                 else if (c.icon === Phone) pushEvent("phone_click", { location: "home_card" });
                 else pushEvent("meeting_request", { location: "home_card", label: c.title });
               };
+              if (c.icon === CalendarCheck) {
+                return (
+                  <button
+                    key={c.title}
+                    type="button"
+                    onClick={calendarPopupHandler("home_card")}
+                    className="text-left"
+                  >
+                    {Inner}
+                  </button>
+                );
+              }
               return c.external ? (
                 <a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" onClick={trackingHandler}>{Inner}</a>
               ) : (

@@ -5,6 +5,7 @@ import heroImage from "@/assets/hero-industrial.jpg";
 import { ContactForm } from "@/components/site/ContactForm";
 import { WHATSAPP_URL, PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
+import { calendarPopupHandler } from "@/lib/calendar-popup";
 
 export const Route = createFileRoute("/contacto")({
   component: ContactoPage,
@@ -131,16 +132,14 @@ function ContactoPage() {
                   <p className="text-sm text-muted-foreground mb-4">
                     También podés agendar una reunión directamente:
                   </p>
-                  <a
-                    href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => pushEvent("meeting_request", { location: "contacto_form_block" })}
+                  <button
+                    type="button"
+                    onClick={calendarPopupHandler("contacto_form_block")}
                     className="cta-press inline-flex items-center gap-3 border border-foreground hover:bg-foreground hover:text-white text-foreground rounded-md px-6 py-3.5 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
                   >
                     <CalendarCheck className="h-4 w-4" />
                     Agendá una reunión online
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
