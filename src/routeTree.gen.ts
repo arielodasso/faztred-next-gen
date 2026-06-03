@@ -19,10 +19,13 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as AdminPopupRouteImport } from './routes/admin.popup'
 import { Route as AdminFormulariosRouteImport } from './routes/admin.formularios'
 import { Route as AdminConfiguracionRouteImport } from './routes/admin.configuracion'
 import { Route as AdminConfianzaRouteImport } from './routes/admin.confianza'
+import { Route as AdminClientesRouteImport } from './routes/admin.clientes'
+import { Route as AdminAdjuntosRouteImport } from './routes/admin.adjuntos'
 
 const ServiciosRoute = ServiciosRouteImport.update({
   id: '/servicios',
@@ -74,6 +77,11 @@ const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => AuthRoute,
 } as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminPopupRoute = AdminPopupRouteImport.update({
   id: '/popup',
   path: '/popup',
@@ -94,6 +102,16 @@ const AdminConfianzaRoute = AdminConfianzaRouteImport.update({
   path: '/confianza',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminClientesRoute = AdminClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdjuntosRoute = AdminAdjuntosRouteImport.update({
+  id: '/adjuntos',
+  path: '/adjuntos',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -102,10 +120,13 @@ export interface FileRoutesByFullPath {
   '/contacto': typeof ContactoRoute
   '/proyectos': typeof ProyectosRoute
   '/servicios': typeof ServiciosRoute
+  '/admin/adjuntos': typeof AdminAdjuntosRoute
+  '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -117,10 +138,13 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/proyectos': typeof ProyectosRoute
   '/servicios': typeof ServiciosRoute
+  '/admin/adjuntos': typeof AdminAdjuntosRoute
+  '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -134,10 +158,13 @@ export interface FileRoutesById {
   '/contacto': typeof ContactoRoute
   '/proyectos': typeof ProyectosRoute
   '/servicios': typeof ServiciosRoute
+  '/admin/adjuntos': typeof AdminAdjuntosRoute
+  '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -152,10 +179,13 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/proyectos'
     | '/servicios'
+    | '/admin/adjuntos'
+    | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
     | '/admin/formularios'
     | '/admin/popup'
+    | '/admin/usuarios'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -167,10 +197,13 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/proyectos'
     | '/servicios'
+    | '/admin/adjuntos'
+    | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
     | '/admin/formularios'
     | '/admin/popup'
+    | '/admin/usuarios'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -183,10 +216,13 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/proyectos'
     | '/servicios'
+    | '/admin/adjuntos'
+    | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
     | '/admin/formularios'
     | '/admin/popup'
+    | '/admin/usuarios'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -274,6 +310,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/popup': {
       id: '/admin/popup'
       path: '/popup'
@@ -302,22 +345,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminConfianzaRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/clientes': {
+      id: '/admin/clientes'
+      path: '/clientes'
+      fullPath: '/admin/clientes'
+      preLoaderRoute: typeof AdminClientesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/adjuntos': {
+      id: '/admin/adjuntos'
+      path: '/adjuntos'
+      fullPath: '/admin/adjuntos'
+      preLoaderRoute: typeof AdminAdjuntosRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminAdjuntosRoute: typeof AdminAdjuntosRoute
+  AdminClientesRoute: typeof AdminClientesRoute
   AdminConfianzaRoute: typeof AdminConfianzaRoute
   AdminConfiguracionRoute: typeof AdminConfiguracionRoute
   AdminFormulariosRoute: typeof AdminFormulariosRoute
   AdminPopupRoute: typeof AdminPopupRoute
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdjuntosRoute: AdminAdjuntosRoute,
+  AdminClientesRoute: AdminClientesRoute,
   AdminConfianzaRoute: AdminConfianzaRoute,
   AdminConfiguracionRoute: AdminConfiguracionRoute,
   AdminFormulariosRoute: AdminFormulariosRoute,
   AdminPopupRoute: AdminPopupRoute,
+  AdminUsuariosRoute: AdminUsuariosRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
