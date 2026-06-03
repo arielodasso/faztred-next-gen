@@ -49,6 +49,7 @@ const technologies = [
 ];
 
 export function Footer() {
+  const { whatsappUrl } = useAppSettings();
   return (
     <footer className="bg-[color:var(--surface-darker)] px-3 md:px-4 pt-12 pb-8">
       <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl bg-[color:var(--surface-dark)] border border-white/[0.06]">
