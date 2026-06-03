@@ -1,13 +1,12 @@
 import { MessageCircle } from "lucide-react";
 import { pushEvent } from "@/lib/analytics";
-
-const WA_URL =
-  "https://api.whatsapp.com/send/?phone=5491162083230&text=Hola+Faztred,+necesito+más+información.";
+import { useAppSettings } from "@/lib/use-site-config";
 
 export function WhatsAppFloat() {
+  const { whatsappUrl } = useAppSettings();
   return (
     <a
-      href={WA_URL}
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Hablar por WhatsApp"
