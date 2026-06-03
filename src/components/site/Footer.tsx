@@ -13,6 +13,7 @@ import { useAppSettings } from "@/lib/use-site-config";
 const companyLinks = [
   { label: "Sobre nosotros", to: "/" as const, hash: "diferenciales" },
   { label: "Servicios", to: "/servicios" as const },
+  { label: "Productos", to: "/productos" as const },
   { label: "Proyectos", to: "/proyectos" as const },
   { label: "Contacto", to: "/contacto" as const },
   { label: "Brochure 2025", href: BROCHURE_URL, external: true },
@@ -28,13 +29,12 @@ const serviceLinks = [
   { label: "Sistemas especiales", slug: "sistemas-especiales" },
 ];
 
-const industries = [
-  "Química",
-  "Metalúrgica",
-  "Alimenticia",
-  "Automotriz",
-  "Farmacéutica",
-  "Pintura",
+const moreAboutLinks: { label: string; to: "/automatizacion-industrial" | "/tableros-electricos-industriales" | "/productos" | "/servicios" | "/proyectos" }[] = [
+  { label: "Automatización industrial", to: "/automatizacion-industrial" },
+  { label: "Tableros eléctricos industriales", to: "/tableros-electricos-industriales" },
+  { label: "Productos y soluciones", to: "/productos" },
+  { label: "Todos los servicios", to: "/servicios" },
+  { label: "Proyectos realizados", to: "/proyectos" },
 ];
 
 const technologies = [
@@ -175,18 +175,18 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Divider — industries + tech */}
+          {/* Divider — Más sobre Faztred + tech */}
           <div className="mt-14 pt-10 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
-              <h4 className="text-white text-sm font-semibold mb-5">Industrias que automatizamos</h4>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-                {industries.map((i) => (
-                  <li key={i}>
+              <h4 className="text-white text-sm font-semibold mb-5">Más sobre Faztred Soluciones</h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                {moreAboutLinks.map((l) => (
+                  <li key={l.to}>
                     <Link
-                      to="/servicios"
+                      to={l.to}
                       className="text-white/55 hover:text-white transition-colors"
                     >
-                      {i}
+                      {l.label}
                     </Link>
                   </li>
                 ))}
@@ -212,8 +212,9 @@ export function Footer() {
           {/* Bottom bar */}
           <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/40">
             <p>© {new Date().getFullYear()} Faztred Soluciones. Todos los derechos reservados.</p>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center">
               <Link to="/servicios" className="hover:text-white transition-colors">Servicios</Link>
+              <Link to="/productos" className="hover:text-white transition-colors">Productos</Link>
               <Link to="/proyectos" className="hover:text-white transition-colors">Proyectos</Link>
               <Link to="/contacto" className="hover:text-white transition-colors">Contacto</Link>
             </div>
