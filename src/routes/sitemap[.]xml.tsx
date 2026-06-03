@@ -8,6 +8,7 @@ const entries: Entry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/servicios", changefreq: "monthly", priority: "0.8" },
   { path: "/proyectos", changefreq: "monthly", priority: "0.8" },
+  { path: "/productos", changefreq: "monthly", priority: "0.9" },
   { path: "/contacto", changefreq: "yearly", priority: "0.6" },
   { path: "/automatizacion-industrial", changefreq: "monthly", priority: "0.9" },
   { path: "/tableros-electricos-industriales", changefreq: "monthly", priority: "0.9" },
