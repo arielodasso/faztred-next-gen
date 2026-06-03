@@ -175,18 +175,18 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Divider — industries + tech */}
+          {/* Divider — Más sobre Faztred + tech */}
           <div className="mt-14 pt-10 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
-              <h4 className="text-white text-sm font-semibold mb-5">Industrias que automatizamos</h4>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-                {industries.map((i) => (
-                  <li key={i}>
+              <h4 className="text-white text-sm font-semibold mb-5">Más sobre Faztred Soluciones</h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                {moreAboutLinks.map((l) => (
+                  <li key={l.to}>
                     <Link
-                      to="/servicios"
+                      to={l.to}
                       className="text-white/55 hover:text-white transition-colors"
                     >
-                      {i}
+                      {l.label}
                     </Link>
                   </li>
                 ))}
