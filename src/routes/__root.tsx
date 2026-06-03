@@ -69,13 +69,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Faztred Soluciones | Automatización Industrial en Argentina" },
-      { name: "description", content: "Empresa argentina de automatización industrial: PLC, SCADA, tableros eléctricos, revamping e Industria 4.0. Soluciones llave en mano con experiencia real en planta." },
+      { title: "Faztred | Automatización Industrial en Argentina" },
+      { name: "description", content: "Automatización industrial llave en mano: PLC, SCADA, tableros eléctricos, revamping e Industria 4.0 con experiencia real en planta." },
       { name: "author", content: "Faztred Soluciones" },
       { property: "og:site_name", content: "Faztred Soluciones" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Faztred Soluciones | Automatización Industrial" },
-      { property: "og:description", content: "Automatización industrial, tableros eléctricos, PLC, SCADA y revamping. Experiencia real en planta." },
+      { property: "og:title", content: "Faztred | Automatización Industrial" },
+      { property: "og:description", content: "PLC, SCADA, tableros eléctricos y revamping. Experiencia real en planta." },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
