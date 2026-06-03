@@ -146,10 +146,19 @@ const whyFaztred = [
 const industries = ["Química", "Metalúrgica", "Alimenticia", "Automotriz", "Farmacéutica"];
 
 function HomePage() {
+  const { whatsappUrl } = useAppSettings();
+  const dynamicLogos = useTrustLogos();
+  const logosToRender = dynamicLogos.length > 0
+    ? dynamicLogos.map((l) => ({ src: l.logo_url, name: l.name }))
+    : clientLogos;
+  const midDyn = Math.ceil(logosToRender.length / 2);
+  const rowA = logosToRender.slice(0, midDyn);
+  const rowB = logosToRender.slice(midDyn);
   return (
     <>
       <WelcomePopup />
       <HeroSlider />
+
 
 
       {/* Contact CTAs */}
