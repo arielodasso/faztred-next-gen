@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import heroPlanta from "@/assets/hero-planta.jpg";
+import logoWhite from "@/assets/logo-white.png";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
