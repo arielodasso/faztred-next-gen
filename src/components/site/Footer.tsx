@@ -3,12 +3,12 @@ import { Instagram, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-
 import logoWhite from "@/assets/logo-white.png";
 import { pushEvent } from "@/lib/analytics";
 import {
-  WHATSAPP_URL,
   PHONE_NUMBER,
   PHONE_DISPLAY,
   EMAIL,
   BROCHURE_URL,
 } from "@/lib/site-data";
+import { useAppSettings } from "@/lib/use-site-config";
 
 const companyLinks = [
   { label: "Sobre nosotros", to: "/" as const, hash: "diferenciales" },
