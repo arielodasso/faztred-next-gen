@@ -16,11 +16,11 @@ export const Route = createFileRoute("/proyectos")({
   }),
   head: () => ({
     meta: [
-      { title: "Proyectos realizados — Casos reales de automatización | Faztred" },
+      { title: "Proyectos — Casos reales | Faztred" },
       {
         name: "description",
         content:
-          "Casos reales de automatización industrial, tableros eléctricos, revamping, instalaciones antiexplosivas y capacitaciones. Problema, solución y resultado.",
+          "Casos reales de automatización industrial, tableros eléctricos, revamping y capacitaciones. Problema, solución y resultado.",
       },
       { property: "og:title", content: "Proyectos | Faztred Soluciones" },
       {
@@ -30,6 +30,20 @@ export const Route = createFileRoute("/proyectos")({
       { property: "og:url", content: "/proyectos" },
     ],
     links: [{ rel: "canonical", href: "/proyectos" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Proyectos realizados — Faztred Soluciones",
+          description:
+            "Portfolio de proyectos de automatización industrial, tableros eléctricos, revamping y capacitaciones ejecutados por Faztred en Argentina.",
+          url: "https://faztred.com.ar/proyectos",
+          isPartOf: { "@type": "WebSite", name: "Faztred Soluciones", url: "https://faztred.com.ar" },
+        }),
+      },
+    ],
   }),
 });
 
