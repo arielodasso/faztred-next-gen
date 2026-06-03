@@ -57,7 +57,7 @@ const faqs = [
     a: "Operamos en toda Argentina desde nuestra base en Merlo, Buenos Aires, con proyectos en industrias alimenticia, química, plásticos, metalúrgica y más." },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/automatizacion-industrial")({
   component: AutomatizacionIndustrialPage,
   head: () => ({
     meta: [

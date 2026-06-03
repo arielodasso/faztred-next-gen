@@ -67,7 +67,7 @@ const faqs = [
     a: "Trabajamos con componentes de primeras marcas y nos adaptamos a la marca preferida del cliente: Siemens, Schneider, Allen Bradley, ABB y otras." },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/tableros-electricos-industriales")({
   component: TablerosPage,
   head: () => ({
     meta: [
