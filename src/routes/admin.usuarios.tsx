@@ -120,7 +120,7 @@ function UsuariosPage() {
                   </span>
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <button onClick={() => remove(r.id)} className="text-white/40 hover:text-red-400">
+                  <button onClick={() => setToDelete(r)} className="text-white/60 hover:text-red-400" aria-label={`Eliminar ${r.full_name ?? r.email}`}>
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </td>
@@ -129,6 +129,14 @@ function UsuariosPage() {
           </tbody>
         </table>
       </div>
+
+      <ConfirmDialog
+        open={!!toDelete}
+        onOpenChange={(o) => !o && setToDelete(null)}
+        title="Eliminar usuario"
+        description={toDelete ? `¿Eliminar a "${toDelete.full_name ?? toDelete.email}"? Esta acción es irreversible.` : ""}
+        onConfirm={confirmRemove}
+      />
     </div>
   );
 }
