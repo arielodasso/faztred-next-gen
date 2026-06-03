@@ -26,6 +26,7 @@ import {
   BROCHURE_URL,
 } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
+import { calendarPopupHandler } from "@/lib/calendar-popup";
 import clientManaos from "@/assets/clients/manaos.png";
 import clientYpf from "@/assets/clients/ypf.png";
 import clientYamaha from "@/assets/clients/yamaha.png";
