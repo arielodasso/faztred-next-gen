@@ -96,11 +96,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
+          "@type": "LocalBusiness",
           name: "Faztred Soluciones",
           url: "https://faztred.com.ar",
           email: "info@faztred.com.ar",
           telephone: "+5491162083230",
+          areaServed: { "@type": "Country", name: "Argentina" },
           address: {
             "@type": "PostalAddress",
             addressLocality: "Merlo",
