@@ -21,9 +21,16 @@ export function WelcomePopup() {
 
   useEffect(() => {
     let active = true;
-    supabase.from("popup_config").select("*").eq("id", 1).single().then(({ data }) => {
+    supabase.from("popup_config").select("*").eq("id", 1).single().then(async ({ data }) => {
       if (!active || !data) return;
       const cfg = data as Cfg;
+      if (cfg.image_url && !/^https?:\/\//i.test(cfg.image_url)) {
+        const { data: signed } = await supabase.storage
+          .from("popup-images")
+          .createSignedUrl(cfg.image_url, 60 * 60 * 24 * 365);
+        cfg.image_url = signed?.signedUrl ?? null;
+      }
+      if (!active) return;
       setConfig(cfg);
       if (!cfg.enabled) return;
       try {
