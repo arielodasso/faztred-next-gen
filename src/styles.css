@@ -71,6 +71,7 @@
   }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     background-color: var(--color-background);
@@ -80,6 +81,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
   }
   h1, h2, h3, h4 {
     letter-spacing: -0.02em;

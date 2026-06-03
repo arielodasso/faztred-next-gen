@@ -90,7 +90,7 @@ export function Navbar() {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {links.map((l) =>
               "hasMenu" in l && l.hasMenu ? (
                 <div
@@ -178,7 +178,7 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <button
               type="button"
               onClick={calendarPopupHandler("navbar")}
@@ -190,7 +190,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="md:hidden text-white p-2 -mr-2"
+            className="lg:hidden text-white p-2 -mr-2"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menú"
           >
@@ -201,7 +201,7 @@ export function Navbar() {
         {/* Mobile menu */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
+            "lg:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
             open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0 border-transparent",
           )}
         >
