@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProyectosRouteImport } from './routes/proyectos'
+import { Route as ProductosRouteImport } from './routes/productos'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ContactoRouteImport } from './routes/contacto'
@@ -53,6 +54,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const ProyectosRoute = ProyectosRouteImport.update({
   id: '/proyectos',
   path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosRoute = ProductosRouteImport.update({
+  id: '/productos',
+  path: '/productos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/contacto': typeof ContactoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/productos': typeof ProductosRoute
   '/proyectos': typeof ProyectosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/servicios': typeof ServiciosRoute
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/productos': typeof ProductosRoute
   '/proyectos': typeof ProyectosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/servicios': typeof ServiciosRoute
@@ -176,6 +184,7 @@ export interface FileRoutesById {
   '/contacto': typeof ContactoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/productos': typeof ProductosRoute
   '/proyectos': typeof ProyectosRoute
   '/reset-password': typeof ResetPasswordRoute
   '/servicios': typeof ServiciosRoute
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/forgot-password'
     | '/login'
+    | '/productos'
     | '/proyectos'
     | '/reset-password'
     | '/servicios'
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/forgot-password'
     | '/login'
+    | '/productos'
     | '/proyectos'
     | '/reset-password'
     | '/servicios'
@@ -240,6 +251,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/forgot-password'
     | '/login'
+    | '/productos'
     | '/proyectos'
     | '/reset-password'
     | '/servicios'
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   ContactoRoute: typeof ContactoRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
+  ProductosRoute: typeof ProductosRoute
   ProyectosRoute: typeof ProyectosRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServiciosRoute: typeof ServiciosRoute
@@ -304,6 +317,13 @@ declare module '@tanstack/react-router' {
       path: '/proyectos'
       fullPath: '/proyectos'
       preLoaderRoute: typeof ProyectosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos': {
+      id: '/productos'
+      path: '/productos'
+      fullPath: '/productos'
+      preLoaderRoute: typeof ProductosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -438,6 +458,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactoRoute: ContactoRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
+  ProductosRoute: ProductosRoute,
   ProyectosRoute: ProyectosRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ServiciosRoute: ServiciosRoute,
