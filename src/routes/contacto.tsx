@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { WHATSAPP_URL, PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
+import { useAppSettings } from "@/lib/use-site-config";
 
 export const Route = createFileRoute("/contacto")({
   component: ContactoPage,
