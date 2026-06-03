@@ -201,7 +201,7 @@ export function Navbar() {
         {/* Mobile menu */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
+            "lg:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
             open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0 border-transparent",
           )}
         >
