@@ -79,10 +79,10 @@ function AdminLayout() {
     <div className="min-h-screen flex bg-[#0a0a0a] text-white">
       <aside className="w-64 shrink-0 border-r border-white/10 bg-[#0d0d0d] flex flex-col">
         <div className="px-5 py-5 border-b border-white/10">
-          <Link to="/" className="text-lg font-bold tracking-tight">
-            Faztred <span className="text-primary">·</span> Admin
+          <Link to="/" className="flex items-center">
+            <img src={logoWhite} alt="Faztred Soluciones" className="h-10 w-auto" />
           </Link>
-          <p className="mt-1 text-[11px] uppercase tracking-widest text-white/40">
+          <p className="mt-2 text-[11px] uppercase tracking-widest text-white/40">
             {isSuper ? "Superadministrador" : "Cliente"}
           </p>
         </div>
