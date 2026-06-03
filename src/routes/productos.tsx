@@ -12,9 +12,9 @@ import { calendarPopupHandler } from "@/lib/calendar-popup";
 import heroImage from "@/assets/hero-industrial.jpg";
 
 const PATH = "/productos";
-const TITLE = "Productos y Soluciones Industriales | Catálogo Faztred";
+const TITLE = "Productos Industriales | Catálogo Faztred";
 const DESCRIPTION =
-  "Catálogo de equipamiento industrial: PLCs, HMIs, SCADA, variadores, servos, sensores, redes industriales, instrumentación, visión artificial y seguridad. Asesoramiento técnico y consulta por WhatsApp.";
+  "PLCs, HMIs, SCADA, variadores, sensores, redes industriales, instrumentación y seguridad. Consulta por WhatsApp.";
 
 interface ProductCategory {
   slug: string;
