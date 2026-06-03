@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import heroPlanta from "@/assets/hero-planta.jpg";
+import logoWhite from "@/assets/logo-white.png";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
@@ -54,10 +55,10 @@ function LoginPage() {
       <div className="relative min-h-screen flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md bg-[color:var(--surface-dark,#111)]/90 backdrop-blur border border-white/10 rounded-2xl p-8 shadow-2xl">
           <div className="text-center mb-6">
-            <Link to="/" className="text-2xl font-bold tracking-tight text-white">
-              Faztred
+            <Link to="/" className="inline-flex items-center justify-center">
+              <img src={logoWhite} alt="Faztred Soluciones" className="h-16 md:h-20 w-auto" />
             </Link>
-            <p className="mt-2 text-sm text-white/60">Panel de administración</p>
+            <p className="mt-3 text-sm text-white/60">Panel de administración</p>
           </div>
           <form onSubmit={onSubmit} className="space-y-4">
             <div>
