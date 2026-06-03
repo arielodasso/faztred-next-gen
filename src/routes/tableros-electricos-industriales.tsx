@@ -78,7 +78,7 @@ export const Route = createFileRoute("/tableros-electricos-industriales")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "article" },
       { property: "og:url", content: PATH },
-      { property: "og:image", content: "/assets/hero-industrial.jpg" },
+      { property: "og:image", content: "https://faztred.com.ar/og-tableros-electricos.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
