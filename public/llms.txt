@@ -1,0 +1,17 @@
+# Faztred Soluciones
+
+> Empresa argentina de automatización industrial: ingeniería, PLC, SCADA, tableros eléctricos, revamping e Industria 4.0. Soluciones llave en mano para plantas industriales en Argentina.
+
+Faztred Soluciones diseña, fabrica e integra sistemas de automatización industrial y tableros eléctricos para industrias alimenticia, química, farmacéutica, plásticos, metalúrgica, logística y manufactura general. Con base en Merlo, Buenos Aires, opera en todo el país con más de 10 años de experiencia, soporte 24/7 y documentación técnica completa.
+
+## Servicios
+
+- [Automatización industrial](/automatizacion-industrial): Ingeniería, PLC, SCADA, programación, revamping, puesta en marcha e Industria 4.0.
+- [Fabricación de tableros eléctricos industriales](/tableros-electricos-industriales): Tableros de control, potencia, fuerza motriz, variadores de frecuencia y automatización con PLC y HMI.
+- [Listado de servicios](/servicios): Catálogo completo de servicios industriales de Faztred.
+- [Proyectos](/proyectos): Casos reales en industrias alimenticia, química, plásticos y metalúrgica.
+
+## Contacto
+
+- [Contacto](/contacto): Formulario, datos de contacto y ubicación.
+- [Inicio](/): Visión general de la empresa y propuesta de valor.
