@@ -178,7 +178,7 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <button
               type="button"
               onClick={calendarPopupHandler("navbar")}
@@ -190,7 +190,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="md:hidden text-white p-2 -mr-2"
+            className="lg:hidden text-white p-2 -mr-2"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menú"
           >
