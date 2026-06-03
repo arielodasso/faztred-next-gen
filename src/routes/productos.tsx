@@ -301,9 +301,9 @@ function ProductosPage() {
                     key={p}
                     className="group flex items-center justify-between gap-3 rounded-lg border border-border bg-background px-4 py-3 hover:border-primary/40 transition-colors"
                   >
-                    <div className="flex items-start gap-2.5 min-w-0">
+                    <div className="flex items-start gap-2.5 min-w-0 flex-1">
                       <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-foreground truncate">{p}</span>
+                      <span className="text-sm text-foreground break-words">{p}</span>
                     </div>
                     <a
                       href={whatsappLink(productMessage(cat, p))}
