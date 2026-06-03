@@ -4,3 +4,5 @@ Disallow: /admin
 Disallow: /login
 Disallow: /forgot-password
 Disallow: /reset-password
+
+Sitemap: https://faztred.com.ar/sitemap.xml
