@@ -15,6 +15,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, hasRole } from "@/lib/use-auth";
 import { toast } from "sonner";
+import logoWhite from "@/assets/logo-white.png";
 
 export const Route = createFileRoute("/admin")({
   component: AdminLayout,
