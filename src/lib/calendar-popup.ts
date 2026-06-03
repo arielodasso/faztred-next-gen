@@ -43,7 +43,7 @@ export function openCalendarPopup(location = "unknown") {
  * Handler listo para onClick que abre el popup y previene navegación.
  */
 export function calendarPopupHandler(location: string) {
-  return (e: React.MouseEvent) => {
+  return (e: MouseEvent) => {
     e.preventDefault();
     openCalendarPopup(location);
   };
