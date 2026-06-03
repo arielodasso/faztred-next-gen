@@ -87,7 +87,7 @@ export function WelcomePopup() {
             <a
               href={config.button_url}
               onClick={() => {
-                pushEvent("popup_click", { location: "home_welcome", label: config.button_label });
+                pushEvent("popup_click", { location: "home_welcome", label: config.button_label ?? undefined });
                 close();
               }}
               className="cta-press mt-8 inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-6 py-3 text-xs font-semibold tracking-[0.15em] uppercase transition-colors"
