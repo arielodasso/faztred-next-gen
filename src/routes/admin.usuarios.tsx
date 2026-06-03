@@ -29,6 +29,7 @@ function UsuariosPage() {
   const [rows, setRows] = useState<UserRow[]>([]);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", full_name: "", role: "client_admin" as "superadmin" | "client_admin" });
+  const [toDelete, setToDelete] = useState<UserRow | null>(null);
 
   const load = async () => {
     const { data: profiles } = await supabase.from("profiles").select("id, email, full_name");
