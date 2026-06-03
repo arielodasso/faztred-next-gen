@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import { pushEvent } from "./analytics";
 
 export const CALENDAR_URL = "https://calendar.app.google/aFcAAPqGVBe72yF27";
