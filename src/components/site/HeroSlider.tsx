@@ -42,14 +42,14 @@ export function HeroSlider() {
             técnica para industrias que necesitan resultados concretos.
           </p>
           <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3">
-            <Link
-              to="/contacto"
-              onClick={() => pushEvent("meeting_request", { location: "hero", label: "Coordinar reunión" })}
+            <button
+              type="button"
+              onClick={calendarPopupHandler("hero")}
               className="cta-press group inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3.5 text-sm font-semibold rounded-md transition-colors"
             >
               Coordinar una reunión
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </button>
             <Link
               to="/"
               hash="proyectos-destacados"
