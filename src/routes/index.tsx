@@ -13,6 +13,7 @@ import {
   Brain,
 } from "lucide-react";
 import { HeroSlider } from "@/components/site/HeroSlider";
+import { WelcomePopup } from "@/components/site/WelcomePopup";
 import brochureCover from "@/assets/brochure-cover.png";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Placeholder } from "@/components/site/Placeholder";
@@ -146,7 +147,9 @@ const industries = ["Química", "Metalúrgica", "Alimenticia", "Automotriz", "Fa
 function HomePage() {
   return (
     <>
+      <WelcomePopup />
       <HeroSlider />
+
 
       {/* Contact CTAs */}
       <section className="bg-[#e6e7ea] py-20 md:py-28">
