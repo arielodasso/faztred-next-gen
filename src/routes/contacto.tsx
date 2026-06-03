@@ -41,6 +41,7 @@ const infoItems: InfoItem[] = [
 ];
 
 function ContactoPage() {
+  const { whatsappUrl } = useAppSettings();
   return (
     <>
       <PageHero
