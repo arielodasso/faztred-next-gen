@@ -97,7 +97,7 @@ function ContactoPage() {
               </ul>
 
               <a
-                href={WHATSAPP_URL}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => pushEvent("whatsapp_click", { location: "contacto" })}
