@@ -49,12 +49,12 @@ function AdminLayout() {
   useEffect(() => {
     if (loading) return;
     if (!session) {
-      navigate({ to: "/auth/login" });
+      navigate({ to: "/login" });
       return;
     }
     if (roles.length === 0) {
       toast.error("Tu usuario no tiene acceso");
-      supabase.auth.signOut().then(() => navigate({ to: "/auth/login" }));
+      supabase.auth.signOut().then(() => navigate({ to: "/login" }));
     }
   }, [loading, session, roles, navigate]);
 
@@ -71,7 +71,7 @@ function AdminLayout() {
 
   const logout = async () => {
     await supabase.auth.signOut();
-    navigate({ to: "/auth/login" });
+    navigate({ to: "/login" });
   };
 
   return (
