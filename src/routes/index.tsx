@@ -84,11 +84,11 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "Faztred | Automatización Industrial, PLC, SCADA y Tableros Eléctricos" },
+      { title: "Faztred | Automatización Industrial, PLC y SCADA" },
       {
         name: "description",
         content:
-          "Automatización industrial, programación de PLC, SCADA, diseño de tableros eléctricos, revamping, integración industrial, mantenimiento y soluciones Industria 4.0 para procesos productivos.",
+          "Automatización industrial, PLC, SCADA, tableros eléctricos, revamping e Industria 4.0 para procesos productivos.",
       },
       {
         name: "keywords",
@@ -99,7 +99,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Ingeniería, programación PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias que necesitan resultados concretos.",
+          "PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias.",
       },
       { property: "og:url", content: "/" },
     ],
