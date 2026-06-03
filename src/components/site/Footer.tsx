@@ -29,13 +29,12 @@ const serviceLinks = [
   { label: "Sistemas especiales", slug: "sistemas-especiales" },
 ];
 
-const industries = [
-  "Química",
-  "Metalúrgica",
-  "Alimenticia",
-  "Automotriz",
-  "Farmacéutica",
-  "Pintura",
+const moreAboutLinks: { label: string; to: "/automatizacion-industrial" | "/tableros-electricos-industriales" | "/productos" | "/servicios" | "/proyectos" }[] = [
+  { label: "Automatización industrial", to: "/automatizacion-industrial" },
+  { label: "Tableros eléctricos industriales", to: "/tableros-electricos-industriales" },
+  { label: "Productos y soluciones", to: "/productos" },
+  { label: "Todos los servicios", to: "/servicios" },
+  { label: "Proyectos realizados", to: "/proyectos" },
 ];
 
 const technologies = [
