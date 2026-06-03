@@ -15,7 +15,6 @@ import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProyectosRouteImport } from './routes/proyectos'
 import { Route as ProductosRouteImport } from './routes/productos'
-import { Route as ProductosRouteImport } from './routes/productos'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ContactoRouteImport } from './routes/contacto'
@@ -55,6 +54,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const ProyectosRoute = ProyectosRouteImport.update({
   id: '/proyectos',
   path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosRoute = ProductosRouteImport.update({
+  id: '/productos',
+  path: '/productos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductosRoute = ProductosRouteImport.update({
