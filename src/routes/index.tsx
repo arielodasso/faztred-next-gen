@@ -347,8 +347,8 @@ function HomePage() {
           <SectionTitle eyebrow="Confianza" title="Algunos de nuestros clientes" align="center" />
           <div className="mt-14 space-y-5">
             {[
-              { items: clientsRowA, reverse: false },
-              { items: clientsRowB, reverse: true },
+              { items: rowA, reverse: false },
+              { items: rowB, reverse: true },
             ].map((row, rIdx) => (
               <div
                 key={rIdx}
