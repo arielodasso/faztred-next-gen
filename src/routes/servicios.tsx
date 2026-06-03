@@ -13,21 +13,46 @@ export const Route = createFileRoute("/servicios")({
   component: ServiciosPage,
   head: () => ({
     meta: [
-      { title: "Servicios — Automatización Industrial, PLC, SCADA, Tableros | Faztred" },
+      { title: "Servicios de Automatización Industrial | Faztred" },
       {
         name: "description",
         content:
-          "Automatización industrial, PLC, SCADA, tableros eléctricos, revamping, mantenimiento, instrumentación, Industria 4.0 y sistemas especiales. Soluciones llave en mano para tu planta.",
+          "PLC, SCADA, tableros, revamping, mantenimiento, instrumentación e Industria 4.0. Soluciones llave en mano para tu planta.",
       },
       { property: "og:title", content: "Servicios | Faztred Soluciones" },
       {
         property: "og:description",
         content:
-          "PLC, SCADA, tableros, revamping, mantenimiento, instrumentación, Industria 4.0 y sistemas especiales — ingeniería + implementación.",
+          "PLC, SCADA, tableros, revamping, mantenimiento e Industria 4.0 — ingeniería + implementación.",
       },
       { property: "og:url", content: "/servicios" },
     ],
     links: [{ rel: "canonical", href: "/servicios" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Servicios de Faztred Soluciones",
+          itemListElement: services.map((s, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "Service",
+              name: s.title,
+              description: s.description,
+              provider: {
+                "@type": "Organization",
+                name: "Faztred Soluciones",
+                url: "https://faztred.com.ar",
+              },
+              areaServed: { "@type": "Country", name: "Argentina" },
+            },
+          })),
+        }),
+      },
+    ],
   }),
 });
 
