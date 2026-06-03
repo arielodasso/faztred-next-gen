@@ -209,9 +209,10 @@ function HomePage() {
       </section>
 
       {/* Metrics */}
-      <section className="bg-[color:var(--surface-dark)] py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-[color:var(--surface-dark)] py-20 md:py-28 relative overflow-hidden" aria-labelledby="home-metrics-heading">
         <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:60px_60px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="home-metrics-heading" className="sr-only">Faztred en números</h2>
           <div className="grid md:grid-cols-3 gap-10 md:gap-6 items-start">
             <div>
               <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">
