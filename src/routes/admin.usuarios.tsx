@@ -54,11 +54,12 @@ function UsuariosPage() {
     }
   };
 
-  const remove = async (id: string) => {
-    if (!confirm("¿Eliminar usuario? Esta acción es irreversible.")) return;
+  const confirmRemove = async () => {
+    if (!toDelete) return;
     try {
-      await deleteFn({ data: { user_id: id } });
+      await deleteFn({ data: { user_id: toDelete.id } });
       toast.success("Usuario eliminado");
+      setToDelete(null);
       load();
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Error");
