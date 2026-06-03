@@ -13,6 +13,7 @@ import { useAppSettings } from "@/lib/use-site-config";
 const companyLinks = [
   { label: "Sobre nosotros", to: "/" as const, hash: "diferenciales" },
   { label: "Servicios", to: "/servicios" as const },
+  { label: "Productos", to: "/productos" as const },
   { label: "Proyectos", to: "/proyectos" as const },
   { label: "Contacto", to: "/contacto" as const },
   { label: "Brochure 2025", href: BROCHURE_URL, external: true },
