@@ -212,8 +212,9 @@ export function Footer() {
           {/* Bottom bar */}
           <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/40">
             <p>© {new Date().getFullYear()} Faztred Soluciones. Todos los derechos reservados.</p>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center">
               <Link to="/servicios" className="hover:text-white transition-colors">Servicios</Link>
+              <Link to="/productos" className="hover:text-white transition-colors">Productos</Link>
               <Link to="/proyectos" className="hover:text-white transition-colors">Proyectos</Link>
               <Link to="/contacto" className="hover:text-white transition-colors">Contacto</Link>
             </div>
