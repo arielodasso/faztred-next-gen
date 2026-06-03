@@ -17,6 +17,7 @@ import type { LucideIcon } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { cn } from "@/lib/utils";
 import { projects, type ProjectCategory } from "@/lib/site-data";
+import { calendarPopupHandler } from "@/lib/calendar-popup";
 
 const links = [
   { to: "/", label: "HOME" },
