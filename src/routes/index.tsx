@@ -162,8 +162,9 @@ function HomePage() {
 
 
       {/* Contact CTAs */}
-      <section className="bg-[#e6e7ea] py-20 md:py-28">
+      <section className="bg-[#e6e7ea] py-20 md:py-28" aria-labelledby="home-contact-cta-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="home-contact-cta-heading" className="sr-only">Cómo contactarnos</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {contactCards.map((c) => {
               const Icon = c.icon;
