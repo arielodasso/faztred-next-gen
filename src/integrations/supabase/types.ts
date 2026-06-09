@@ -17,6 +17,7 @@ export type Database = {
       app_settings: {
         Row: {
           contact_email: string
+          gtm_id: string
           id: number
           updated_at: string
           whatsapp_message: string
@@ -24,6 +25,7 @@ export type Database = {
         }
         Insert: {
           contact_email?: string
+          gtm_id?: string
           id?: number
           updated_at?: string
           whatsapp_message?: string
@@ -31,6 +33,7 @@ export type Database = {
         }
         Update: {
           contact_email?: string
+          gtm_id?: string
           id?: number
           updated_at?: string
           whatsapp_message?: string
