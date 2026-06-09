@@ -66,30 +66,27 @@ export function Navbar() {
     >
       <div
         className={cn(
-          "mx-auto transition-all duration-300 ease-out",
-          scrolled
-            ? "max-w-6xl px-3 md:px-4"
-            : "max-w-7xl px-4 sm:px-6 lg:px-8",
+          "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-300 ease-out",
         )}
       >
         <div
           className={cn(
-            "flex items-center justify-between h-20 md:h-24 px-4 md:px-6 transition-all duration-300 ease-out",
+            "grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 h-20 md:h-24 px-4 md:px-6 transition-all duration-300 ease-out",
             scrolled || open
               ? "bg-[color:var(--surface-dark)]/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
               : "border border-transparent rounded-none",
           )}
         >
-          <Link to="/" className="flex items-center" onClick={handleLogoClick}>
+          <Link to="/" className="flex min-w-0 items-center" onClick={handleLogoClick}>
             <img
               src={logoWhite}
               alt="Faztred Soluciones"
-              className="w-auto h-12 md:h-16"
+              className="w-auto h-11 md:h-14 xl:h-16"
             />
           </Link>
 
 
-          <nav className="hidden xl:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden xl:flex min-w-0 items-center justify-center gap-5 2xl:gap-8">
             {links.map((l) =>
               "hasMenu" in l && l.hasMenu ? (
                 <div
@@ -177,7 +174,7 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden xl:flex items-center gap-2">
+          <div className="hidden xl:flex shrink-0 items-center gap-2 justify-self-end">
             <Link
               to="/login"
               className="inline-flex items-center gap-2 bg-neutral-700 hover:bg-neutral-600 border border-neutral-600 text-white rounded-md px-4 py-2.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
@@ -197,7 +194,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="xl:hidden text-white p-2 -mr-2"
+            className="xl:hidden text-white p-2 -mr-2 justify-self-end"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menú"
           >
