@@ -1,0 +1,1 @@
+ALTER TABLE public.app_settings ADD COLUMN IF NOT EXISTS gtm_id text NOT NULL DEFAULT 'GTM-PG2T4NGD';
