@@ -228,7 +228,7 @@ export function Navbar() {
             <Link
               to="/login"
               onClick={() => setOpen(false)}
-              className="mt-3 inline-flex items-center justify-center gap-2 border border-white/15 text-white/90 hover:bg-white/5 rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
+              className="mt-3 inline-flex items-center justify-center gap-2 bg-neutral-700 hover:bg-neutral-600 border border-neutral-600 text-white rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
             >
               <LogIn className="h-4 w-4" />
               Login
