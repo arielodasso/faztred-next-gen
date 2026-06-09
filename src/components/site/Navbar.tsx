@@ -60,13 +60,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 z-50 transition-all duration-500 ease-out",
+        "fixed inset-x-0 z-50 transition-all duration-300 ease-out",
         scrolled ? "top-3 md:top-5" : "top-0",
       )}
     >
       <div
         className={cn(
-          "mx-auto transition-all duration-500 ease-out",
+          "mx-auto transition-all duration-300 ease-out",
           scrolled
             ? "max-w-6xl px-3 md:px-4"
             : "max-w-7xl px-4 sm:px-6 lg:px-8",
@@ -74,22 +74,20 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "flex items-center justify-between transition-all duration-500 ease-out",
+            "flex items-center justify-between h-20 md:h-24 px-4 md:px-6 transition-all duration-300 ease-out",
             scrolled || open
-              ? "h-16 md:h-20 px-4 md:px-6 bg-[color:var(--surface-dark)]/70 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
-              : "h-24 md:h-32 border border-transparent rounded-none",
+              ? "bg-[color:var(--surface-dark)]/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
+              : "border border-transparent rounded-none",
           )}
         >
           <Link to="/" className="flex items-center" onClick={handleLogoClick}>
             <img
               src={logoWhite}
               alt="Faztred Soluciones"
-              className={cn(
-                "w-auto transition-all duration-500 ease-out",
-                scrolled ? "h-10 md:h-12" : "h-16 md:h-24",
-              )}
+              className="w-auto h-12 md:h-16"
             />
           </Link>
+
 
           <nav className="hidden xl:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {links.map((l) =>
@@ -182,11 +180,12 @@ export function Navbar() {
           <div className="hidden xl:flex items-center gap-2">
             <Link
               to="/login"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/10 text-white rounded-md px-4 py-2.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
+              className="inline-flex items-center gap-2 bg-neutral-700 hover:bg-neutral-600 border border-neutral-600 text-white rounded-md px-4 py-2.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
             >
               <LogIn className="h-4 w-4" />
               Login
             </Link>
+
             <button
               type="button"
               onClick={calendarPopupHandler("navbar")}
@@ -229,7 +228,7 @@ export function Navbar() {
             <Link
               to="/login"
               onClick={() => setOpen(false)}
-              className="mt-3 inline-flex items-center justify-center gap-2 border border-white/15 text-white/90 hover:bg-white/5 rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
+              className="mt-3 inline-flex items-center justify-center gap-2 bg-neutral-700 hover:bg-neutral-600 border border-neutral-600 text-white rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
             >
               <LogIn className="h-4 w-4" />
               Login

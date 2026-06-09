@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   CircuitBoard, Zap, Gauge, Network, CheckCircle2, ArrowRight, MessageCircle,
   ClipboardList, Hammer, PlayCircle,
+  UtensilsCrossed, FlaskConical, Pill, Layers, PackageSearch, Droplets, Factory,
 } from "lucide-react";
+
 import { PageHero } from "@/components/site/PageHero";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { ContactForm } from "@/components/site/ContactForm";
@@ -51,10 +53,15 @@ const benefits = [
 ];
 
 const sectors = [
-  "Industria alimenticia", "Industria química", "Industria farmacéutica",
-  "Extrusión y conversión de plásticos", "Logística y almacenamiento",
-  "Tratamiento de agua", "Manufactura general",
+  { name: "Industria alimenticia", icon: UtensilsCrossed },
+  { name: "Industria química", icon: FlaskConical },
+  { name: "Industria farmacéutica", icon: Pill },
+  { name: "Extrusión y conversión de plásticos", icon: Layers },
+  { name: "Logística y almacenamiento", icon: PackageSearch },
+  { name: "Tratamiento de agua", icon: Droplets },
+  { name: "Manufactura general", icon: Factory },
 ];
+
 
 const faqs = [
   { q: "¿Qué tipo de tableros eléctricos fabrican?",
@@ -219,9 +226,9 @@ function TablerosPage() {
             <SectionTitle eyebrow="Beneficios" title="Por qué trabajar con Faztred" />
             <ul className="mt-8 space-y-3">
               {benefits.map((b) => (
-                <li key={b} className="flex items-start gap-3 rounded-lg border border-border bg-card px-4 py-3">
+                <li key={b} className="flex items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
                   <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-sm md:text-base text-foreground">{b}</span>
+                  <span className="text-sm md:text-base text-foreground font-medium">{b}</span>
                 </li>
               ))}
             </ul>
@@ -230,12 +237,16 @@ function TablerosPage() {
             <SectionTitle eyebrow="Sectores que atendemos" title="Industrias donde ya operamos" />
             <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {sectors.map((s) => (
-                <li key={s} className="rounded-lg border border-border bg-card px-4 py-3 text-sm md:text-base text-foreground">
-                  {s}
+                <li key={s.name} className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 text-sm md:text-base text-foreground font-medium shadow-sm">
+                  <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    <s.icon className="h-4 w-4" />
+                  </span>
+                  {s.name}
                 </li>
               ))}
             </ul>
           </div>
+
         </div>
       </section>
 
