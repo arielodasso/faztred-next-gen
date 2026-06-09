@@ -60,13 +60,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 z-50 transition-all duration-500 ease-out",
+        "fixed inset-x-0 z-50 transition-all duration-300 ease-out",
         scrolled ? "top-3 md:top-5" : "top-0",
       )}
     >
       <div
         className={cn(
-          "mx-auto transition-all duration-500 ease-out",
+          "mx-auto transition-all duration-300 ease-out",
           scrolled
             ? "max-w-6xl px-3 md:px-4"
             : "max-w-7xl px-4 sm:px-6 lg:px-8",
@@ -74,22 +74,20 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "flex items-center justify-between transition-all duration-500 ease-out",
+            "flex items-center justify-between h-20 md:h-24 px-4 md:px-6 transition-all duration-300 ease-out",
             scrolled || open
-              ? "h-16 md:h-20 px-4 md:px-6 bg-[color:var(--surface-dark)]/70 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
-              : "h-24 md:h-32 border border-transparent rounded-none",
+              ? "bg-[color:var(--surface-dark)]/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
+              : "border border-transparent rounded-none",
           )}
         >
           <Link to="/" className="flex items-center" onClick={handleLogoClick}>
             <img
               src={logoWhite}
               alt="Faztred Soluciones"
-              className={cn(
-                "w-auto transition-all duration-500 ease-out",
-                scrolled ? "h-10 md:h-12" : "h-16 md:h-24",
-              )}
+              className="w-auto h-12 md:h-16"
             />
           </Link>
+
 
           <nav className="hidden xl:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {links.map((l) =>
