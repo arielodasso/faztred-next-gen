@@ -127,6 +127,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const loaderData = Route.useLoaderData() as { gtmId?: string } | undefined;
+  const gtmId = loaderData?.gtmId ?? "GTM-PG2T4NGD";
   return (
     <html lang="es">
       <head>
@@ -135,7 +137,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <body>
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PG2T4NGD"
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
