@@ -64,8 +64,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+import { getPublicSiteConfig } from "@/lib/site-config.functions";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
+  loader: () => getPublicSiteConfig(),
+  head: ({ loaderData }) => {
+    const gtmId = (loaderData as { gtmId?: string } | undefined)?.gtmId ?? "GTM-PG2T4NGD";
+    return ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
