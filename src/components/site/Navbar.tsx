@@ -86,7 +86,7 @@ export function Navbar() {
           </Link>
 
 
-          <nav className="hidden xl:flex min-w-0 items-center justify-center gap-5 2xl:gap-8">
+          <nav className="hidden min-[1320px]:flex min-w-0 items-center justify-center gap-5 2xl:gap-8">
             {links.map((l) =>
               "hasMenu" in l && l.hasMenu ? (
                 <div
@@ -174,7 +174,7 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden xl:flex shrink-0 items-center gap-2 justify-self-end">
+          <div className="hidden min-[1320px]:flex shrink-0 items-center gap-2 justify-self-end">
             <Link
               to="/login"
               className="inline-flex items-center gap-2 bg-neutral-700 hover:bg-neutral-600 border border-neutral-600 text-white rounded-md px-4 py-2.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
@@ -194,7 +194,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="xl:hidden text-white p-2 -mr-2 justify-self-end"
+            className="min-[1320px]:hidden text-white p-2 -mr-2 justify-self-end"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menú"
           >
@@ -205,7 +205,7 @@ export function Navbar() {
         {/* Mobile menu */}
         <div
           className={cn(
-            "xl:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
+            "min-[1320px]:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
             open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0 border-transparent",
           )}
         >
