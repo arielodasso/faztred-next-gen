@@ -53,10 +53,15 @@ const benefits = [
 ];
 
 const sectors = [
-  "Industria alimenticia", "Industria química", "Industria farmacéutica",
-  "Extrusión y conversión de plásticos", "Logística y almacenamiento",
-  "Tratamiento de agua", "Manufactura general",
+  { name: "Industria alimenticia", icon: UtensilsCrossed },
+  { name: "Industria química", icon: FlaskConical },
+  { name: "Industria farmacéutica", icon: Pill },
+  { name: "Extrusión y conversión de plásticos", icon: Layers },
+  { name: "Logística y almacenamiento", icon: PackageSearch },
+  { name: "Tratamiento de agua", icon: Droplets },
+  { name: "Manufactura general", icon: Factory },
 ];
+
 
 const faqs = [
   { q: "¿Qué tipo de tableros eléctricos fabrican?",
