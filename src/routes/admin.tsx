@@ -11,6 +11,7 @@ import {
   Paperclip,
   ExternalLink,
   LogOut,
+  Tag,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, hasRole } from "@/lib/use-auth";
@@ -36,6 +37,7 @@ const superadminNav: NavItem[] = [
   { to: "/admin/popup", label: "Popup", icon: Megaphone },
   { to: "/admin/confianza", label: "Confianza", icon: ShieldCheck },
   { to: "/admin/configuracion", label: "Configuración", icon: Settings },
+  { to: "/admin/gtm", label: "Google Tag Manager", icon: Tag },
 ];
 
 const clientNav: NavItem[] = [
