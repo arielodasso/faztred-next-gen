@@ -71,7 +71,7 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 xl:gap-4 h-20 md:h-24 px-4 md:px-6 xl:px-4 2xl:px-6 transition-all duration-300 ease-out",
+            "grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 lg:gap-4 h-20 md:h-24 px-4 md:px-6 lg:px-4 2xl:px-6 transition-all duration-300 ease-out",
             scrolled || open
               ? "bg-[color:var(--surface-dark)]/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
               : "border border-transparent rounded-none",
@@ -81,12 +81,12 @@ export function Navbar() {
             <img
               src={logoWhite}
               alt="Faztred Soluciones"
-              className="w-auto h-11 md:h-14 2xl:h-16"
+              className="w-auto h-11 md:h-14 lg:h-12 xl:h-14 2xl:h-16"
             />
           </Link>
 
 
-          <nav className="hidden min-[1180px]:flex min-w-0 items-center justify-center gap-4 2xl:gap-8">
+          <nav className="hidden lg:flex min-w-0 items-center justify-center gap-3 xl:gap-4 2xl:gap-8">
             {links.map((l) =>
               "hasMenu" in l && l.hasMenu ? (
                 <div
@@ -97,7 +97,7 @@ export function Navbar() {
                 >
                   <Link
                     to={l.to}
-                    className="inline-flex items-center gap-1 text-[10px] 2xl:text-[11px] font-medium tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
+                    className="inline-flex items-center gap-1 text-[9px] xl:text-[10px] 2xl:text-[11px] font-medium tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
                     activeProps={{ className: "!text-white" }}
                   >
                     {l.label}
@@ -163,7 +163,7 @@ export function Navbar() {
                 <Link
                   key={l.to}
                   to={l.to}
-                  className="text-[10px] 2xl:text-[11px] font-medium tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
+                  className="text-[9px] xl:text-[10px] 2xl:text-[11px] font-medium tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
                   activeProps={{ className: "!text-white" }}
                   activeOptions={{ exact: l.to === "/" }}
                 >
@@ -174,10 +174,10 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden min-[1180px]:flex shrink-0 items-center gap-2 justify-self-end">
+          <div className="hidden lg:flex shrink-0 items-center gap-2 justify-self-end">
             <Link
               to="/login"
-              className="inline-flex items-center gap-1.5 2xl:gap-2 bg-neutral-700 hover:bg-neutral-600 border border-neutral-600 text-white rounded-md px-3 2xl:px-4 py-2.5 text-[10px] 2xl:text-[11px] font-semibold tracking-[0.1em] 2xl:tracking-[0.15em] uppercase transition-colors"
+              className="inline-flex items-center gap-1.5 2xl:gap-2 bg-neutral-700 hover:bg-neutral-600 border border-neutral-600 text-white rounded-md px-2.5 xl:px-3 2xl:px-4 py-2.5 text-[9px] xl:text-[10px] 2xl:text-[11px] font-semibold tracking-[0.08em] xl:tracking-[0.1em] 2xl:tracking-[0.15em] uppercase transition-colors"
             >
               <LogIn className="h-4 w-4" />
               Login
@@ -186,7 +186,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={calendarPopupHandler("navbar")}
-              className="cta-press inline-flex items-center gap-1.5 2xl:gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-3 2xl:px-5 py-2.5 text-[10px] 2xl:text-[11px] font-semibold tracking-[0.1em] 2xl:tracking-[0.15em] uppercase transition-colors"
+              className="cta-press inline-flex items-center gap-1.5 2xl:gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-2.5 xl:px-3 2xl:px-5 py-2.5 text-[9px] xl:text-[10px] 2xl:text-[11px] font-semibold tracking-[0.08em] xl:tracking-[0.1em] 2xl:tracking-[0.15em] uppercase transition-colors"
             >
               <CalendarCheck className="h-4 w-4" />
               Agendá una reunión
@@ -194,7 +194,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="min-[1180px]:hidden text-white p-2 -mr-2 justify-self-end"
+            className="lg:hidden text-white p-2 -mr-2 justify-self-end"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menú"
           >
@@ -205,7 +205,7 @@ export function Navbar() {
         {/* Mobile menu */}
         <div
           className={cn(
-            "min-[1180px]:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
+            "lg:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
             open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0 border-transparent",
           )}
         >
