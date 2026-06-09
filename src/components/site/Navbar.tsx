@@ -179,7 +179,7 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden xl:flex items-center gap-2">
             <Link
               to="/login"
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/10 text-white rounded-md px-4 py-2.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
@@ -198,7 +198,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="lg:hidden text-white p-2 -mr-2"
+            className="xl:hidden text-white p-2 -mr-2"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menú"
           >
@@ -209,7 +209,7 @@ export function Navbar() {
         {/* Mobile menu */}
         <div
           className={cn(
-            "lg:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
+            "xl:hidden overflow-hidden transition-all duration-300 mt-2 rounded-2xl border border-white/10 bg-[color:var(--surface-dark)]/90 backdrop-blur-xl",
             open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0 border-transparent",
           )}
         >
