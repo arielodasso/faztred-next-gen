@@ -24,6 +24,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as AdminPopupRouteImport } from './routes/admin.popup'
+import { Route as AdminGtmRouteImport } from './routes/admin.gtm'
 import { Route as AdminFormulariosRouteImport } from './routes/admin.formularios'
 import { Route as AdminConfiguracionRouteImport } from './routes/admin.configuracion'
 import { Route as AdminConfianzaRouteImport } from './routes/admin.confianza'
@@ -107,6 +108,11 @@ const AdminPopupRoute = AdminPopupRouteImport.update({
   path: '/popup',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminGtmRoute = AdminGtmRouteImport.update({
+  id: '/gtm',
+  path: '/gtm',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminFormulariosRoute = AdminFormulariosRouteImport.update({
   id: '/formularios',
   path: '/formularios',
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
   '/admin/formularios': typeof AdminFormulariosRoute
+  '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
@@ -172,6 +179,7 @@ export interface FileRoutesByTo {
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
   '/admin/formularios': typeof AdminFormulariosRoute
+  '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin': typeof AdminIndexRoute
@@ -195,6 +203,7 @@ export interface FileRoutesById {
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
   '/admin/formularios': typeof AdminFormulariosRoute
+  '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
@@ -219,6 +228,7 @@ export interface FileRouteTypes {
     | '/admin/confianza'
     | '/admin/configuracion'
     | '/admin/formularios'
+    | '/admin/gtm'
     | '/admin/popup'
     | '/admin/usuarios'
     | '/admin/'
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/admin/confianza'
     | '/admin/configuracion'
     | '/admin/formularios'
+    | '/admin/gtm'
     | '/admin/popup'
     | '/admin/usuarios'
     | '/admin'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/admin/confianza'
     | '/admin/configuracion'
     | '/admin/formularios'
+    | '/admin/gtm'
     | '/admin/popup'
     | '/admin/usuarios'
     | '/admin/'
@@ -389,6 +401,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPopupRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/gtm': {
+      id: '/admin/gtm'
+      path: '/gtm'
+      fullPath: '/admin/gtm'
+      preLoaderRoute: typeof AdminGtmRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/formularios': {
       id: '/admin/formularios'
       path: '/formularios'
@@ -433,6 +452,7 @@ interface AdminRouteChildren {
   AdminConfianzaRoute: typeof AdminConfianzaRoute
   AdminConfiguracionRoute: typeof AdminConfiguracionRoute
   AdminFormulariosRoute: typeof AdminFormulariosRoute
+  AdminGtmRoute: typeof AdminGtmRoute
   AdminPopupRoute: typeof AdminPopupRoute
   AdminUsuariosRoute: typeof AdminUsuariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -444,6 +464,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminConfianzaRoute: AdminConfianzaRoute,
   AdminConfiguracionRoute: AdminConfiguracionRoute,
   AdminFormulariosRoute: AdminFormulariosRoute,
+  AdminGtmRoute: AdminGtmRoute,
   AdminPopupRoute: AdminPopupRoute,
   AdminUsuariosRoute: AdminUsuariosRoute,
   AdminIndexRoute: AdminIndexRoute,

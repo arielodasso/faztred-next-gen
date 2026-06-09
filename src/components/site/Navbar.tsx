@@ -12,6 +12,7 @@ import {
   GraduationCap,
   Cpu,
   Sparkles,
+  LogIn,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
@@ -178,7 +179,14 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-2">
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 hover:bg-white/5 text-white/85 hover:text-white rounded-md px-4 py-2.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
+            >
+              <LogIn className="h-4 w-4" />
+              Login
+            </Link>
             <button
               type="button"
               onClick={calendarPopupHandler("navbar")}
@@ -218,13 +226,21 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
+            <Link
+              to="/login"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex items-center justify-center gap-2 border border-white/15 text-white/90 hover:bg-white/5 rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
+            >
+              <LogIn className="h-4 w-4" />
+              Login
+            </Link>
             <button
               type="button"
               onClick={(e) => {
                 setOpen(false);
                 calendarPopupHandler("navbar_mobile")(e);
               }}
-              className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
+              className="mt-2 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-md px-5 py-3 text-xs font-semibold tracking-wider uppercase"
             >
               <CalendarCheck className="h-4 w-4" />
               Agendá una reunión
