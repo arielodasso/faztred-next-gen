@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   CircuitBoard, Zap, Gauge, Network, CheckCircle2, ArrowRight, MessageCircle,
   ClipboardList, Hammer, PlayCircle,
+  UtensilsCrossed, FlaskConical, Pill, Layers, PackageSearch, Droplets, Factory,
 } from "lucide-react";
+
 import { PageHero } from "@/components/site/PageHero";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { ContactForm } from "@/components/site/ContactForm";
