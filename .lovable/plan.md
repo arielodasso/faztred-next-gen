@@ -1,52 +1,62 @@
-# Plan: Admin de Proyectos, Categorías y Encabezados
 
-## Objetivo
-Convertir el contenido hoy hardcodeado en `src/lib/site-data.ts` (proyectos y categorías) y los heros estáticos de cada página en contenido administrable desde el superadmin.
+## Migración a Vite SPA
 
-## 1. Base de datos (1 migración)
+Voy a convertir todo el proyecto de TanStack Start (SSR sobre Cloudflare Workers) a una SPA estática con React Router. `npm run build` producirá solo `dist/` con `index.html` y assets.
 
-**Tablas nuevas en `public`:**
-- `project_categories` — `id`, `name`, `slug` (único), `sort_order`. Seed con las 7 categorías actuales (Automatización, Tableros, Revamping, Capacitación, Cerramiento, Antiexplosivo, Señalización).
-- `projects` — `id`, `slug` (único), `title`, `industry`, `category_id` (FK), `problem`, `solution` (text[]), `result`, `technologies` (text[]), `cover_url`, `gallery` (text[]), `is_published` (bool), `sort_order`. Seed con los 8 proyectos actuales (subiendo las imágenes existentes al bucket).
-- `page_heroes` — `id`, `page_key` (único: `home`, `servicios`, `productos`, `proyectos`, `contacto`, `login`), `eyebrow`, `title`, `subtitle`, `image_url`. Seed con valores actuales por defecto.
+### Implicancias importantes (leer antes de aprobar)
 
-**RLS:**
-- `SELECT` público (anon + authenticated) en las tres tablas. Para projects, además filtro `is_published = true` vía policy.
-- `INSERT/UPDATE/DELETE` sólo `has_role(auth.uid(), 'superadmin')`.
-- `GRANT`s explícitos por convención del proyecto.
+1. **Email de contacto con Resend deja de funcionar tal cual está.**
+   Hoy se envía vía `createServerFn` (server function) usando `RESEND_API_KEY` desde `process.env`. En una SPA estática no hay servidor: la API key no puede vivir en el browser (sería pública y cualquiera podría usarla).
+   **Solución propuesta:** mover el envío a una **Edge Function de Lovable Cloud (Supabase)** y llamarla desde el browser. Sigue siendo "Supabase desde el browser", la key queda segura en el backend de Lovable Cloud. Si preferís, puedo simplemente eliminar el envío y dejar solo el guardado en la tabla `contact_submissions`.
 
-**Storage:**
-- Bucket público nuevo `site-media` con policy de upload para superadmin. Subcarpetas `projects/` y `heroes/`.
+2. **Ruta `/api/public/media/*` (servidor) desaparece.**
+   Hoy proxea archivos privados del bucket de Storage. En SPA no existe. Voy a hacer que `mediaUrl()` devuelva directamente la URL pública del bucket de Supabase Storage (requiere que el bucket sea público o usar signed URLs). Lo más simple: marcar `site-media` como **bucket público** y servir desde la URL pública de Supabase.
 
-## 2. Nuevas rutas admin
+3. **Sitemap dinámico (`/sitemap.xml`) deja de ser dinámico.**
+   Pasa a ser un `public/sitemap.xml` estático que listamos a mano con las rutas conocidas. (Las URLs no cambian, así que no se pierde nada práctico.)
 
-- `/admin/proyectos` — Lista de proyectos con buscador + botón "Nuevo". Drawer/modal de edición con todos los campos (título, slug, industria, categoría dropdown, problema, solución como lista editable, resultado, tecnologías como tags, publicado, imagen de portada + galería con subida múltiple a `site-media`, reordenable). Sección secundaria con CRUD de categorías (nombre + slug + orden).
-- `/admin/encabezados` — Lista fija de las 6 páginas. Por cada una: preview + form con eyebrow, title, subtitle e imagen de hero (upload a `site-media/heroes/`).
+4. **SEO / metadata por ruta**
+   Sin SSR, los metadatos se inyectan en runtime en el cliente. Google los lee igual (renderiza JS), pero algunos crawlers de redes sociales no. Voy a usar un componente tipo `<Head>` con efectos que actualizan `<title>` / `<meta>`. Los OG tags base quedan en `index.html`.
 
-Sidebar de `admin.tsx`: agregar dos items entre Clientes y Formularios con íconos `FolderKanban` y `Image`.
+5. **GTM** se mueve a `index.html` con el ID por defecto. (Si querés mantenerlo configurable desde el admin como hoy, hay que aceptar que en la primera carga aparece el default y luego cambia — pero GTM ya inicializado no se reemplaza, así que recomiendo dejarlo fijo en `index.html`.)
 
-## 3. Server functions
-`src/lib/site-content.functions.ts` con:
-- `getPublicProjects()` / `getPublicCategories()` / `getPageHero(page_key)` — públicos, devuelven DTOs serializables.
-- Mutations admin (crear/editar/eliminar proyecto, categoría, hero) protegidas con `requireSupabaseAuth` + chequeo de rol superadmin server-side.
+### Cambios de código
 
-## 4. Frontend público (cambios mínimos)
+**Eliminar:**
+- `wrangler.jsonc`, `src/server.ts`, `src/start.ts`, `src/router.tsx`, `src/routeTree.gen.ts`
+- `src/lib/error-capture.ts`, `src/lib/error-page.ts`
+- `src/routes/__root.tsx`, `src/routes/api.public.media.$.tsx`, `src/routes/sitemap[.]xml.tsx`
+- `src/lib/send-contact-email.functions.ts`, `src/lib/site-config.functions.ts`, `src/lib/site-content.functions.ts`, `src/lib/admin-users.functions.ts`
+- `src/integrations/supabase/client.server.ts`, `auth-middleware.ts`, `auth-attacher.ts`
+- `supabase/config.toml` (queda solo lo necesario)
+- Dependencias: `@tanstack/react-router`, `@tanstack/react-start`, `@tanstack/router-plugin`, `@cloudflare/vite-plugin`, `@lovable.dev/vite-tanstack-config`, `nitro`
 
-- `src/routes/proyectos.tsx`: loader que llama `getPublicProjects` + `getPublicCategories` vía Query. El filtro de categorías ahora se construye desde DB en vez del array literal. El tipo `ProjectCategory` queda como `string`.
-- `PageHero` se mantiene igual; cada página (home, servicios, productos, proyectos, contacto, login) consume `getPageHero('xxx')` para obtener título/subtítulo/imagen. Fallback a los valores actuales si la DB no responde, para no romper SSR.
-- `site-data.ts` mantiene los imports de imágenes sólo como fallback inicial; cuando admin sube reemplazos, se usa la URL del bucket.
+**Agregar:**
+- `react-router-dom`
+- `vite` con `@vitejs/plugin-react` + `@tailwindcss/vite` (config SPA simple)
+- `index.html` en la raíz con favicon, fonts, GTM y mount point `#root`
+- `src/main.tsx` con `<BrowserRouter>` + `QueryClientProvider` + montaje en `#root`
+- `src/App.tsx` con `<Routes>` listando todas las páginas (mismas URLs)
+- `src/components/AppShell.tsx` con Navbar/Footer/WhatsApp/CalendarModal/Toaster (lo que hoy hace `RootComponent`)
+- `src/components/ProtectedRoute.tsx` para `/admin/*`
+- `public/sitemap.xml` y `public/robots.txt` (ya existe)
+- Edge function `send-contact-email` en Supabase (si elegís opción A)
 
-## Detalles técnicos
-- Imágenes: subida directa con `supabase.storage.from('site-media').upload(...)` desde el cliente admin (autenticado), y se guarda el `publicUrl` en la tabla.
-- Galería: drag-and-drop opcional fuera de alcance; reorden con botones ↑/↓.
-- SSR: loaders públicos usan `supabaseAdmin` dentro del handler para evitar problemas de auth durante prerender.
-- No se borran datos existentes: el seed inicial replica el contenido actual para que `/proyectos` siga viéndose igual antes de cualquier edición.
+**Migrar todos los archivos de rutas y componentes:**
+- Cambiar `createFileRoute(...)({ component })` → exportar componente directamente.
+- Cambiar `Link, useNavigate, useRouter` de `@tanstack/react-router` → `react-router-dom` (`Link`/`useNavigate`, props: `to` con strings interpolados, no `params`).
+- Reemplazar llamadas a server functions:
+  - `getPublicSiteConfig`, `getAdminSiteConfig`, etc. → consultas directas a Supabase desde el cliente.
+  - `sendContactEmail` → `supabase.functions.invoke('send-contact-email', ...)` (opción A) o solo insertar en tabla (opción B).
+  - Funciones admin que usaban service role → mover a edge function con verificación de rol, o eliminar features que requieran service role (ej. crear usuarios desde admin requiere edge function).
+- `head()` de TanStack → hook `useDocumentHead({ title, description, ogImage })` que setea `document.title` y meta tags.
 
-## Lo que NO incluye
-- Editor rich-text (los campos largos quedan como textarea simple).
-- Drag-and-drop para reordenar (uso botones ↑/↓).
-- Versionado / historial.
-- Internacionalización.
+**Build output:** `vite.config.ts` por defecto produce `dist/` con `index.html` + `assets/`. No habrá `client/` ni `server/`.
 
-## Confirmación
-¿Avanzo con esto o querés ajustar algo (por ejemplo, agregar más campos, otro nombre de bucket, o sumar/quitar páginas del admin de encabezados)?
+### Preguntas antes de empezar
+
+- **A** (recomendado): mover envío de email a Edge Function de Supabase, o **B**: solo guardar en DB y olvidar el email?
+- ¿Está OK volver **público** el bucket `site-media`? (alternativa: signed URLs, más código)
+- ¿Funciones admin que crean/eliminan usuarios (service role) — las mantenemos vía Edge Function, o las dejamos fuera por ahora?
+
+Confirmá esas tres decisiones y arranco con la migración completa.
