@@ -23,9 +23,11 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
+import { Route as AdminProyectosRouteImport } from './routes/admin.proyectos'
 import { Route as AdminPopupRouteImport } from './routes/admin.popup'
 import { Route as AdminGtmRouteImport } from './routes/admin.gtm'
 import { Route as AdminFormulariosRouteImport } from './routes/admin.formularios'
+import { Route as AdminEncabezadosRouteImport } from './routes/admin.encabezados'
 import { Route as AdminConfiguracionRouteImport } from './routes/admin.configuracion'
 import { Route as AdminConfianzaRouteImport } from './routes/admin.confianza'
 import { Route as AdminClientesRouteImport } from './routes/admin.clientes'
@@ -104,6 +106,11 @@ const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
   path: '/usuarios',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminProyectosRoute = AdminProyectosRouteImport.update({
+  id: '/proyectos',
+  path: '/proyectos',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminPopupRoute = AdminPopupRouteImport.update({
   id: '/popup',
   path: '/popup',
@@ -117,6 +124,11 @@ const AdminGtmRoute = AdminGtmRouteImport.update({
 const AdminFormulariosRoute = AdminFormulariosRouteImport.update({
   id: '/formularios',
   path: '/formularios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEncabezadosRoute = AdminEncabezadosRouteImport.update({
+  id: '/encabezados',
+  path: '/encabezados',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminConfiguracionRoute = AdminConfiguracionRouteImport.update({
@@ -162,9 +174,11 @@ export interface FileRoutesByFullPath {
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/encabezados': typeof AdminEncabezadosRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/proyectos': typeof AdminProyectosRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -185,9 +199,11 @@ export interface FileRoutesByTo {
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/encabezados': typeof AdminEncabezadosRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/proyectos': typeof AdminProyectosRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin': typeof AdminIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -210,9 +226,11 @@ export interface FileRoutesById {
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/encabezados': typeof AdminEncabezadosRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/proyectos': typeof AdminProyectosRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -236,9 +254,11 @@ export interface FileRouteTypes {
     | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
+    | '/admin/encabezados'
     | '/admin/formularios'
     | '/admin/gtm'
     | '/admin/popup'
+    | '/admin/proyectos'
     | '/admin/usuarios'
     | '/admin/'
     | '/api/public/media/$'
@@ -259,9 +279,11 @@ export interface FileRouteTypes {
     | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
+    | '/admin/encabezados'
     | '/admin/formularios'
     | '/admin/gtm'
     | '/admin/popup'
+    | '/admin/proyectos'
     | '/admin/usuarios'
     | '/admin'
     | '/api/public/media/$'
@@ -283,9 +305,11 @@ export interface FileRouteTypes {
     | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
+    | '/admin/encabezados'
     | '/admin/formularios'
     | '/admin/gtm'
     | '/admin/popup'
+    | '/admin/proyectos'
     | '/admin/usuarios'
     | '/admin/'
     | '/api/public/media/$'
@@ -407,6 +431,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsuariosRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/proyectos': {
+      id: '/admin/proyectos'
+      path: '/proyectos'
+      fullPath: '/admin/proyectos'
+      preLoaderRoute: typeof AdminProyectosRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/popup': {
       id: '/admin/popup'
       path: '/popup'
@@ -426,6 +457,13 @@ declare module '@tanstack/react-router' {
       path: '/formularios'
       fullPath: '/admin/formularios'
       preLoaderRoute: typeof AdminFormulariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/encabezados': {
+      id: '/admin/encabezados'
+      path: '/encabezados'
+      fullPath: '/admin/encabezados'
+      preLoaderRoute: typeof AdminEncabezadosRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/configuracion': {
@@ -471,9 +509,11 @@ interface AdminRouteChildren {
   AdminClientesRoute: typeof AdminClientesRoute
   AdminConfianzaRoute: typeof AdminConfianzaRoute
   AdminConfiguracionRoute: typeof AdminConfiguracionRoute
+  AdminEncabezadosRoute: typeof AdminEncabezadosRoute
   AdminFormulariosRoute: typeof AdminFormulariosRoute
   AdminGtmRoute: typeof AdminGtmRoute
   AdminPopupRoute: typeof AdminPopupRoute
+  AdminProyectosRoute: typeof AdminProyectosRoute
   AdminUsuariosRoute: typeof AdminUsuariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -483,9 +523,11 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminClientesRoute: AdminClientesRoute,
   AdminConfianzaRoute: AdminConfianzaRoute,
   AdminConfiguracionRoute: AdminConfiguracionRoute,
+  AdminEncabezadosRoute: AdminEncabezadosRoute,
   AdminFormulariosRoute: AdminFormulariosRoute,
   AdminGtmRoute: AdminGtmRoute,
   AdminPopupRoute: AdminPopupRoute,
+  AdminProyectosRoute: AdminProyectosRoute,
   AdminUsuariosRoute: AdminUsuariosRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
