@@ -6,10 +6,8 @@ import { useDocumentHead } from "@/lib/useDocumentHead";
 export default function GraciasPage() {
   useDocumentHead({
     title: "¡Gracias! Recibimos tu mensaje — Faztred",
-    meta: [
-      { name: "description", content: "Recibimos tu consulta. Te respondemos a la brevedad." },
-      { name: "robots", content: "noindex" },
-    ],
+    description: "Recibimos tu consulta. Te respondemos a la brevedad.",
+    robots: "noindex",
   });
 
   useEffect(() => {
