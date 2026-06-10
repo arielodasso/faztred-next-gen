@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,10 +7,6 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import heroPlanta from "@/assets/hero-planta.jpg";
 
-export const Route = createFileRoute("/forgot-password")({
-  component: ForgotPage,
-  head: () => ({ meta: [{ title: "Recuperar contraseña — Faztred" }] }),
-});
 
 function ForgotPage() {
   const [email, setEmail] = useState("");
@@ -66,3 +62,5 @@ function ForgotPage() {
     </div>
   );
 }
+
+export default ForgotPage;

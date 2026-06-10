@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,9 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/admin/configuracion")({
-  component: SettingsPage,
-});
 
 interface Settings {
   contact_email: string;
@@ -60,3 +57,5 @@ function SettingsPage() {
     </div>
   );
 }
+
+export default SettingsPage;

@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -8,10 +8,6 @@ import { toast } from "sonner";
 import heroPlanta from "@/assets/hero-planta.jpg";
 import logoWhite from "@/assets/logo-white.png";
 
-export const Route = createFileRoute("/login")({
-  component: LoginPage,
-  head: () => ({ meta: [{ title: "Iniciar sesión — Faztred" }] }),
-});
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -21,7 +17,7 @@ function LoginPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/admin" });
+      if (data.session) navigate("/admin");
     });
   }, [navigate]);
 
@@ -35,7 +31,7 @@ function LoginPage() {
       return;
     }
     toast.success("Bienvenido");
-    navigate({ to: "/admin" });
+    navigate("/admin");
   };
 
   return (
@@ -99,3 +95,5 @@ function LoginPage() {
     </div>
   );
 }
+
+export default LoginPage;

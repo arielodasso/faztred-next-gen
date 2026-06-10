@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Placeholder } from "@/components/site/Placeholder";
@@ -9,52 +9,6 @@ import heroImage from "@/assets/hero-industrial.jpg";
 import { pushEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/servicios")({
-  component: ServiciosPage,
-  head: () => ({
-    meta: [
-      { title: "Servicios de Automatización Industrial | Faztred" },
-      {
-        name: "description",
-        content:
-          "PLC, SCADA, tableros, revamping, mantenimiento, instrumentación e Industria 4.0. Soluciones llave en mano para tu planta.",
-      },
-      { property: "og:title", content: "Servicios | Faztred Soluciones" },
-      {
-        property: "og:description",
-        content:
-          "PLC, SCADA, tableros, revamping, mantenimiento e Industria 4.0 — ingeniería + implementación.",
-      },
-      { property: "og:url", content: "/servicios" },
-    ],
-    links: [{ rel: "canonical", href: "/servicios" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Servicios de Faztred Soluciones",
-          itemListElement: services.map((s, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            item: {
-              "@type": "Service",
-              name: s.title,
-              description: s.description,
-              provider: {
-                "@type": "Organization",
-                name: "Faztred Soluciones",
-                url: "https://faztred.com.ar",
-              },
-              areaServed: { "@type": "Country", name: "Argentina" },
-            },
-          })),
-        }),
-      },
-    ],
-  }),
-});
 
 const areas = [
   {
@@ -199,3 +153,5 @@ function ServiciosPage() {
     </>
   );
 }
+
+export default ServiciosPage;

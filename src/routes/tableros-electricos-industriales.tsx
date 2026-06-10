@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import {
   CircuitBoard, Zap, Gauge, Network, CheckCircle2, ArrowRight, MessageCircle,
   ClipboardList, Hammer, PlayCircle,
@@ -74,74 +74,6 @@ const faqs = [
     a: "Trabajamos con componentes de primeras marcas y nos adaptamos a la marca preferida del cliente: Siemens, Schneider, Allen Bradley, ABB y otras." },
 ];
 
-export const Route = createFileRoute("/tableros-electricos-industriales")({
-  component: TablerosPage,
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { name: "keywords", content: "tableros eléctricos industriales, fabricación tableros, tableros de control, tableros de potencia, variadores de frecuencia, automatización, PLC, HMI, SCADA, Argentina" },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "article" },
-      { property: "og:url", content: PATH },
-      { property: "og:image", content: "https://faztred.com.ar/og-tableros-electricos.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESCRIPTION },
-    ],
-    links: [{ rel: "canonical", href: PATH }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          serviceType: "Fabricación de tableros eléctricos industriales",
-          provider: {
-            "@type": "Organization",
-            name: "Faztred Soluciones",
-            url: "https://faztred.com.ar",
-            telephone: "+5491162083230",
-            email: "info@faztred.com.ar",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Merlo",
-              addressRegion: "Buenos Aires",
-              addressCountry: "AR",
-            },
-          },
-          areaServed: { "@type": "Country", name: "Argentina" },
-          description: DESCRIPTION,
-          offers: types.map((t) => ({ "@type": "Offer", name: t.title, description: t.body })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Inicio", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Tableros eléctricos industriales", item: PATH },
-          ],
-        }),
-      },
-    ],
-  }),
-});
 
 function TablerosPage() {
   const { whatsappUrl } = useAppSettings();
@@ -285,3 +217,5 @@ function TablerosPage() {
     </>
   );
 }
+
+export default TablerosPage;

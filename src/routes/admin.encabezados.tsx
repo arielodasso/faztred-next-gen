@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -9,10 +9,6 @@ import { toast } from "sonner";
 import { Upload, Image as ImageIcon, X, Save } from "lucide-react";
 import { mediaUrl } from "@/lib/media-url";
 
-export const Route = createFileRoute("/admin/encabezados")({
-  component: HeroesAdminPage,
-  head: () => ({ meta: [{ title: "Encabezados — Admin Faztred" }, { name: "robots", content: "noindex" }] }),
-});
 
 interface Hero {
   id?: string;
@@ -182,3 +178,5 @@ function HeroesAdminPage() {
     </div>
   );
 }
+
+export default HeroesAdminPage;

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -6,9 +6,6 @@ import { ConfirmDialog } from "@/components/site/ConfirmDialog";
 import { Mail, Phone, Building2, Check, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/admin/formularios")({
-  component: FormulariosPage,
-});
 
 interface Submission {
   id: string;
@@ -146,3 +143,5 @@ function FormulariosPage() {
     </div>
   );
 }
+
+export default FormulariosPage;

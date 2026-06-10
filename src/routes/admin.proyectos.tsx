@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -21,10 +21,6 @@ import {
 } from "lucide-react";
 import { mediaUrl } from "@/lib/media-url";
 
-export const Route = createFileRoute("/admin/proyectos")({
-  component: ProyectosAdminPage,
-  head: () => ({ meta: [{ title: "Proyectos — Admin Faztred" }, { name: "robots", content: "noindex" }] }),
-});
 
 interface Category {
   id: string;
@@ -631,3 +627,5 @@ function ArrayEditor({
     </div>
   );
 }
+
+export default ProyectosAdminPage;

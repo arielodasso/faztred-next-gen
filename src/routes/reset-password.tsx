@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,10 +7,6 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import heroPlanta from "@/assets/hero-planta.jpg";
 
-export const Route = createFileRoute("/reset-password")({
-  component: ResetPage,
-  head: () => ({ meta: [{ title: "Nueva contraseña — Faztred" }] }),
-});
 
 function ResetPage() {
   const navigate = useNavigate();
@@ -31,7 +27,7 @@ function ResetPage() {
       return;
     }
     toast.success("Contraseña actualizada");
-    navigate({ to: "/admin" });
+    navigate("/admin");
   };
 
   return (
@@ -60,3 +56,5 @@ function ResetPage() {
     </div>
   );
 }
+
+export default ResetPage;

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import {
   Cpu, CircuitBoard, Wrench, Activity, LifeBuoy, Cloud,
   CheckCircle2, ArrowRight, MessageCircle,
@@ -57,74 +57,6 @@ const faqs = [
     a: "Operamos en toda Argentina desde nuestra base en Merlo, Buenos Aires, con proyectos en industrias alimenticia, química, plásticos, metalúrgica y más." },
 ];
 
-export const Route = createFileRoute("/automatizacion-industrial")({
-  component: AutomatizacionIndustrialPage,
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { name: "keywords", content: "automatización industrial, PLC, SCADA, tableros eléctricos, revamping, industria 4.0, Argentina, Faztred" },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "article" },
-      { property: "og:url", content: PATH },
-      { property: "og:image", content: "https://faztred.com.ar/og-automatizacion-industrial.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESCRIPTION },
-    ],
-    links: [{ rel: "canonical", href: PATH }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          serviceType: "Automatización industrial",
-          provider: {
-            "@type": "Organization",
-            name: "Faztred Soluciones",
-            url: "https://faztred.com.ar",
-            telephone: "+5491162083230",
-            email: "info@faztred.com.ar",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Merlo",
-              addressRegion: "Buenos Aires",
-              addressCountry: "AR",
-            },
-          },
-          areaServed: { "@type": "Country", name: "Argentina" },
-          description: DESCRIPTION,
-          offers: includes.map((i) => ({ "@type": "Offer", name: i.title, description: i.body })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Inicio", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Automatización industrial", item: PATH },
-          ],
-        }),
-      },
-    ],
-  }),
-});
 
 function AutomatizacionIndustrialPage() {
   const { whatsappUrl } = useAppSettings();
@@ -253,3 +185,5 @@ function AutomatizacionIndustrialPage() {
     </>
   );
 }
+
+export default AutomatizacionIndustrialPage;

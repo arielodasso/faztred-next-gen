@@ -1,11 +1,8 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, hasRole } from "@/lib/use-auth";
 
-export const Route = createFileRoute("/admin/")({
-  component: DashboardPage,
-});
 
 function DashboardPage() {
   const { roles, loading } = useAuth();
@@ -15,7 +12,7 @@ function DashboardPage() {
   useEffect(() => {
     if (loading) return;
     if (!hasRole(roles, "superadmin")) {
-      navigate({ to: "/admin/adjuntos" });
+      navigate("/admin/adjuntos");
       return;
     }
     (async () => {
@@ -53,3 +50,5 @@ function StatCard({ label, value, highlight }: { label: string; value: number; h
     </div>
   );
 }
+
+export default DashboardPage;
