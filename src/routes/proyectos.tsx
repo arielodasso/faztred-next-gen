@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import heroImage from "@/assets/hero-industrial.jpg";
@@ -11,43 +11,6 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { mediaUrl } from "@/lib/media-url";
 
-export const Route = createFileRoute("/proyectos")({
-  component: ProyectosPage,
-  validateSearch: (search: Record<string, unknown>) => ({
-    cat: typeof search.cat === "string" ? (search.cat as string) : undefined,
-  }),
-  head: () => ({
-    meta: [
-      { title: "Proyectos — Casos reales | Faztred" },
-      {
-        name: "description",
-        content:
-          "Casos reales de automatización industrial, tableros eléctricos, revamping y capacitaciones. Problema, solución y resultado.",
-      },
-      { property: "og:title", content: "Proyectos | Faztred Soluciones" },
-      {
-        property: "og:description",
-        content: "Experiencia real en planta. Problemas reales, soluciones concretas.",
-      },
-      { property: "og:url", content: "/proyectos" },
-    ],
-    links: [{ rel: "canonical", href: "/proyectos" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Proyectos realizados — Faztred Soluciones",
-          description:
-            "Portfolio de proyectos de automatización industrial, tableros eléctricos, revamping y capacitaciones ejecutados por Faztred en Argentina.",
-          url: "https://faztred.com.ar/proyectos",
-          isPartOf: { "@type": "WebSite", name: "Faztred Soluciones", url: "https://faztred.com.ar" },
-        }),
-      },
-    ],
-  }),
-});
 
 interface Project {
   slug: string;
@@ -426,3 +389,5 @@ function ProyectosPage() {
     </>
   );
 }
+
+export default ProyectosPage;

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,6 @@ import { ConfirmDialog } from "@/components/site/ConfirmDialog";
 import { toast } from "sonner";
 import { Upload, Trash2 } from "lucide-react";
 
-export const Route = createFileRoute("/admin/confianza")({
-  component: TrustPage,
-});
 
 interface Logo {
   id: string;
@@ -138,3 +135,5 @@ function TrustPage() {
     </div>
   );
 }
+
+export default TrustPage;

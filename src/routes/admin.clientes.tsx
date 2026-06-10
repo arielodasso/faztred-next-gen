@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,9 +7,6 @@ import { ConfirmDialog } from "@/components/site/ConfirmDialog";
 import { toast } from "sonner";
 import { Upload, Trash2, Download, FileText, Search } from "lucide-react";
 
-export const Route = createFileRoute("/admin/clientes")({
-  component: ClientesPage,
-});
 
 interface Client {
   id: string;
@@ -204,3 +201,5 @@ function ClientesPage() {
     </div>
   );
 }
+
+export default ClientesPage;

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { MapPin, Mail, Phone, Clock, Instagram, Linkedin, MessageCircle, CalendarCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import heroImage from "@/assets/hero-industrial.jpg";
@@ -8,23 +8,6 @@ import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
 import { useAppSettings } from "@/lib/use-site-config";
 
-export const Route = createFileRoute("/contacto")({
-  component: ContactoPage,
-  head: () => ({
-    meta: [
-      { title: "Contacto | Faztred Soluciones" },
-      {
-        name: "description",
-        content:
-          "Contactanos para automatización industrial, tableros, PLC, SCADA y revamping. Respondemos rápido por WhatsApp o formulario.",
-      },
-      { property: "og:title", content: "Contacto | Faztred Soluciones" },
-      { property: "og:description", content: "Contanos tu desafío. Te respondemos rápido." },
-      { property: "og:url", content: "/contacto" },
-    ],
-    links: [{ rel: "canonical", href: "/contacto" }],
-  }),
-});
 
 interface InfoItem {
   icon: typeof MapPin;
@@ -152,3 +135,5 @@ function ContactoPage() {
     </>
   );
 }
+
+export default ContactoPage;

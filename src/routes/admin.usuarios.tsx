@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
 import { createUserAccount, deleteUserAccount } from "@/lib/admin-users.functions";
 import { Button } from "@/components/ui/button";
@@ -12,9 +11,6 @@ import { ConfirmDialog } from "@/components/site/ConfirmDialog";
 import { toast } from "sonner";
 import { Trash2, Plus } from "lucide-react";
 
-export const Route = createFileRoute("/admin/usuarios")({
-  component: UsuariosPage,
-});
 
 interface UserRow {
   id: string;
@@ -140,3 +136,5 @@ function UsuariosPage() {
     </div>
   );
 }
+
+export default UsuariosPage;

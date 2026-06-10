@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import {
   Cpu, Gauge, Network, Activity, Eye, AlertTriangle, Zap,
   MessageCircle, ArrowRight, CheckCircle2,
@@ -170,56 +170,6 @@ function productMessage(cat: ProductCategory, product: string) {
   return `Hola Faztred, me interesa el producto "${product}" (categoría: ${cat.title}). ¿Podrían enviarme información y cotización?`;
 }
 
-export const Route = createFileRoute("/productos")({
-  component: ProductosPage,
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      {
-        name: "keywords",
-        content:
-          "productos industriales, PLC, HMI, SCADA, variadores de frecuencia, servodrives, sensores industriales, instrumentación, redes industriales, visión artificial, RFID, señalización industrial, Faztred",
-      },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://faztred.com.ar/productos" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESCRIPTION },
-    ],
-    links: [{ rel: "canonical", href: "https://faztred.com.ar/productos" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Productos y Soluciones Industriales",
-          itemListElement: categories.map((c, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            name: c.title,
-            description: c.description,
-            url: `https://faztred.com.ar/productos#${c.slug}`,
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Inicio", item: "https://faztred.com.ar/" },
-            { "@type": "ListItem", position: 2, name: "Productos", item: "https://faztred.com.ar/productos" },
-          ],
-        }),
-      },
-    ],
-  }),
-});
 
 function ProductosPage() {
   return (
@@ -394,3 +344,5 @@ function ProductosPage() {
     </>
   );
 }
+
+export default ProductosPage;

@@ -1,4 +1,4 @@
-import { Link, Outlet, createFileRoute, useNavigate, useRouterState } from "@tanstack/react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
   LayoutDashboard,
@@ -20,10 +20,6 @@ import { useAuth, hasRole } from "@/lib/use-auth";
 import { toast } from "sonner";
 import logoWhite from "@/assets/logo-white.png";
 
-export const Route = createFileRoute("/admin")({
-  component: AdminLayout,
-  head: () => ({ meta: [{ title: "Admin — Faztred" }, { name: "robots", content: "noindex" }] }),
-});
 
 interface NavItem {
   to: string;
@@ -51,17 +47,17 @@ const clientNav: NavItem[] = [
 function AdminLayout() {
   const navigate = useNavigate();
   const { loading, session, roles } = useAuth();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
 
   useEffect(() => {
     if (loading) return;
     if (!session) {
-      navigate({ to: "/login" });
+      navigate("/login");
       return;
     }
     if (roles.length === 0) {
       toast.error("Tu usuario no tiene acceso");
-      supabase.auth.signOut().then(() => navigate({ to: "/login" }));
+      supabase.auth.signOut().then(() => navigate("/login"));
     }
   }, [loading, session, roles, navigate]);
 
@@ -78,7 +74,7 @@ function AdminLayout() {
 
   const logout = async () => {
     await supabase.auth.signOut();
-    navigate({ to: "/login" });
+    navigate("/login");
   };
 
   return (
@@ -137,3 +133,5 @@ function AdminLayout() {
     </div>
   );
 }
+
+export default AdminLayout;
