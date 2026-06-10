@@ -225,6 +225,7 @@ function ProductosPage() {
   return (
     <>
       <PageHero
+        pageKey="productos"
         eyebrow="Catálogo"
         title="Productos y Soluciones Industriales"
         subtitle="Equipamiento industrial para automatización, control y mantenimiento. Marcas reconocidas a nivel nacional e internacional."

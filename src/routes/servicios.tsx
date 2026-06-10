@@ -79,6 +79,7 @@ function ServiciosPage() {
   return (
     <>
       <PageHero
+        pageKey="servicios"
         eyebrow="Qué hacemos"
         title="Servicios"
         subtitle="Soluciones de automatización industrial a medida para tu planta."

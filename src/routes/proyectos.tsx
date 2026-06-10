@@ -107,6 +107,7 @@ function ProyectosPage() {
   return (
     <>
       <PageHero
+        pageKey="proyectos"
         eyebrow="Casos reales"
         title="Proyectos realizados"
         subtitle="Experiencia real en planta. Problema, solución y resultado."
