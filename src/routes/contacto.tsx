@@ -1,6 +1,7 @@
 
 import { MapPin, Mail, Phone, Clock, Instagram, Linkedin, MessageCircle, CalendarCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import heroImage from "@/assets/hero-industrial.jpg";
 import { ContactForm } from "@/components/site/ContactForm";
 import { PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
@@ -25,6 +26,15 @@ const infoItems: InfoItem[] = [
 
 function ContactoPage() {
   const { whatsappUrl } = useAppSettings();
+  useDocumentHead({
+    title: "Contacto | Faztred Soluciones",
+    description: "Hablemos de tu proyecto de automatización industrial. Email, teléfono y WhatsApp directo. Respuesta en menos de 24 hs.",
+    canonical: "https://faztred.com.ar/contacto",
+    ogTitle: "Contacto | Faztred Soluciones",
+    ogDescription: "Hablemos de tu proyecto. Respuesta en menos de 24 hs.",
+    ogUrl: "https://faztred.com.ar/contacto",
+    ogType: "website",
+  });
   return (
     <>
       <PageHero

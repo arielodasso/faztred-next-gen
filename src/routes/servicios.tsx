@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import { Placeholder } from "@/components/site/Placeholder";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { Badge } from "@/components/site/Badge";
@@ -30,6 +31,15 @@ const areas = [
 ];
 
 function ServiciosPage() {
+  useDocumentHead({
+    title: "Servicios de Automatización Industrial | Faztred",
+    description: "Consultoría, ingeniería, programación PLC/SCADA, tableros eléctricos, revamping y capacitaciones. Servicios industriales llave en mano.",
+    canonical: "https://faztred.com.ar/servicios",
+    ogTitle: "Servicios de Automatización Industrial | Faztred",
+    ogDescription: "Consultoría, ingeniería, PLC/SCADA, tableros, revamping y capacitaciones.",
+    ogUrl: "https://faztred.com.ar/servicios",
+    ogType: "website",
+  });
   return (
     <>
       <PageHero

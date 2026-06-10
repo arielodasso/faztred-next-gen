@@ -4,6 +4,7 @@ import {
   CheckCircle2, ArrowRight, MessageCircle,
 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { ContactForm } from "@/components/site/ContactForm";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
@@ -60,6 +61,15 @@ const faqs = [
 
 function AutomatizacionIndustrialPage() {
   const { whatsappUrl } = useAppSettings();
+  useDocumentHead({
+    title: TITLE,
+    description: DESCRIPTION,
+    canonical: `https://faztred.com.ar${PATH}`,
+    ogTitle: TITLE,
+    ogDescription: DESCRIPTION,
+    ogUrl: `https://faztred.com.ar${PATH}`,
+    ogType: "website",
+  });
   return (
     <>
       <PageHero

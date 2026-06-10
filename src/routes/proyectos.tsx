@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import heroImage from "@/assets/hero-industrial.jpg";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
@@ -31,6 +32,15 @@ function fromStatic(p: StaticProject): Project {
 }
 
 function ProyectosPage() {
+  useDocumentHead({
+    title: "Proyectos — Casos reales | Faztred",
+    description: "Casos reales de automatización industrial, tableros eléctricos, revamping y capacitaciones en Argentina. Problema, solución y resultado.",
+    canonical: "https://faztred.com.ar/proyectos",
+    ogTitle: "Proyectos — Casos reales | Faztred",
+    ogDescription: "Experiencia real en planta. Problemas reales, soluciones concretas.",
+    ogUrl: "https://faztred.com.ar/proyectos",
+    ogType: "website",
+  });
   const [searchParams] = useSearchParams();
   const cat = searchParams.get("cat") ?? undefined;
   const [active, setActive] = useState<string>(cat ?? "Todos");

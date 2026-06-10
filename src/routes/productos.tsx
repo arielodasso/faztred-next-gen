@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { PHONE_NUMBER } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
@@ -172,6 +173,16 @@ function productMessage(cat: ProductCategory, product: string) {
 
 
 function ProductosPage() {
+  useDocumentHead({
+    title: TITLE,
+    description: DESCRIPTION,
+    canonical: `https://faztred.com.ar${PATH}`,
+    ogTitle: TITLE,
+    ogDescription: DESCRIPTION,
+    ogUrl: `https://faztred.com.ar${PATH}`,
+    ogType: "website",
+  });
+
   return (
     <>
       <PageHero
