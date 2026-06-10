@@ -17,6 +17,7 @@ import TablerosPage from "@/routes/tableros-electricos-industriales";
 import LoginPage from "@/routes/login";
 import ForgotPage from "@/routes/forgot-password";
 import ResetPage from "@/routes/reset-password";
+import GraciasPage from "@/routes/gracias";
 
 import AdminLayout from "@/routes/admin";
 import AdminDashboard from "@/routes/admin.index";
@@ -84,6 +85,7 @@ export default function App() {
           <Route path="/productos" element={<ProductosPage />} />
           <Route path="/proyectos" element={<ProyectosPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/gracias" element={<GraciasPage />} />
           <Route path="/automatizacion-industrial" element={<AutomatizacionIndustrialPage />} />
           <Route path="/tableros-electricos-industriales" element={<TablerosPage />} />
           <Route path="/login" element={<LoginPage />} />
