@@ -26,6 +26,15 @@ const infoItems: InfoItem[] = [
 
 function ContactoPage() {
   const { whatsappUrl } = useAppSettings();
+  useDocumentHead({
+    title: "Contacto | Faztred Soluciones",
+    description: "Hablemos de tu proyecto de automatización industrial. Email, teléfono y WhatsApp directo. Respuesta en menos de 24 hs.",
+    canonical: "https://faztred.com.ar/contacto",
+    ogTitle: "Contacto | Faztred Soluciones",
+    ogDescription: "Hablemos de tu proyecto. Respuesta en menos de 24 hs.",
+    ogUrl: "https://faztred.com.ar/contacto",
+    ogType: "website",
+  });
   return (
     <>
       <PageHero
