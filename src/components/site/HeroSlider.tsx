@@ -4,19 +4,26 @@ import { ArrowRight, Briefcase } from "lucide-react";
 import heroPlanta from "@/assets/hero-planta.jpg";
 import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
+import { usePageHero } from "@/lib/use-page-hero";
 
 export function HeroSlider() {
   const [mounted, setMounted] = useState(false);
+  const hero = usePageHero("home");
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 30);
     return () => clearTimeout(t);
   }, []);
+  const bgImage = hero.loaded && hero.image ? hero.image : heroPlanta;
+  const title = hero.loaded && hero.title ? hero.title : "Automatización industrial con soluciones reales para planta";
+  const subtitle = hero.loaded && hero.subtitle
+    ? hero.subtitle
+    : "Ingeniería, programación, tableros eléctricos, revamping y asistencia técnica para industrias que necesitan resultados concretos.";
 
   return (
     <section className="relative h-screen min-h-[560px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-darker)]">
       <div className="absolute inset-0">
         <img
-          src={heroPlanta}
+          src={bgImage}
           alt="Equipo Faztred trabajando en una planta industrial"
           className="h-full w-full object-cover object-center"
           fetchPriority="high"
@@ -36,11 +43,10 @@ export function HeroSlider() {
           }`}
         >
           <h1 className="h-display font-bold text-white text-balance">
-            Automatización industrial con soluciones reales para planta
+            {title}
           </h1>
           <p className="mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-2xl leading-relaxed">
-            Ingeniería, programación, tableros eléctricos, revamping y asistencia
-            técnica para industrias que necesitan resultados concretos.
+            {subtitle}
           </p>
           <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3">
             <button

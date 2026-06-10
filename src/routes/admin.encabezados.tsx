@@ -24,7 +24,7 @@ interface Hero {
 }
 
 const PAGES: Array<{ key: string; label: string; note?: string }> = [
-  { key: "home", label: "Home", note: "El home usa un slider; la imagen del hero acá no se aplica al slider." },
+  { key: "home", label: "Home" },
   { key: "servicios", label: "Servicios" },
   { key: "productos", label: "Productos" },
   { key: "proyectos", label: "Proyectos" },
