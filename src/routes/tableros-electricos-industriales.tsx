@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 
 import { PageHero } from "@/components/site/PageHero";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import { SectionTitle } from "@/components/site/SectionTitle";
 import { ContactForm } from "@/components/site/ContactForm";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
