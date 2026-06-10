@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { mediaUrl } from "@/lib/media-url";
+import { signMediaUrl } from "@/lib/useSignedMediaUrl";
 
 export interface HeroOverride {
   eyebrow?: string | null;
@@ -14,18 +14,23 @@ export function usePageHero(pageKey: string): HeroOverride {
   const [state, setState] = useState<HeroOverride>({ loaded: false });
   useEffect(() => {
     let active = true;
+    if (!pageKey) {
+      setState({ loaded: true });
+      return;
+    }
     supabase
       .from("page_heroes")
       .select("eyebrow, title, subtitle, image_url")
       .eq("page_key", pageKey)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(async ({ data }) => {
+        const image = await signMediaUrl(data?.image_url ?? null);
         if (!active) return;
         setState({
           eyebrow: data?.eyebrow ?? null,
           title: data?.title ?? null,
           subtitle: data?.subtitle ?? null,
-          image: mediaUrl(data?.image_url) ?? null,
+          image,
           loaded: true,
         });
       });
