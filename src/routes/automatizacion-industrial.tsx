@@ -61,6 +61,15 @@ const faqs = [
 
 function AutomatizacionIndustrialPage() {
   const { whatsappUrl } = useAppSettings();
+  useDocumentHead({
+    title: TITLE,
+    description: DESCRIPTION,
+    canonical: `https://faztred.com.ar${PATH}`,
+    ogTitle: TITLE,
+    ogDescription: DESCRIPTION,
+    ogUrl: `https://faztred.com.ar${PATH}`,
+    ogType: "website",
+  });
   return (
     <>
       <PageHero
