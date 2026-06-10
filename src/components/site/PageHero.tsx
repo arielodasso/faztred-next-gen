@@ -10,10 +10,16 @@ interface Props {
 
 export function PageHero({ title, subtitle, eyebrow, backgroundImage, pageKey }: Props) {
   const override = usePageHero(pageKey ?? "");
-  const finalTitle = (pageKey && override.loaded && override.title) ? override.title : title;
-  const finalSubtitle = pageKey && override.loaded ? (override.subtitle ?? subtitle) : subtitle;
-  const finalEyebrow = pageKey && override.loaded ? (override.eyebrow ?? eyebrow) : eyebrow;
-  const finalBg = pageKey && override.loaded ? (override.image ?? backgroundImage) : backgroundImage;
+  // Only use admin overrides when the field has a non-empty value;
+  // otherwise keep the page's default props (no flash on plain pages).
+  const ovTitle = override.title && override.title.trim() ? override.title : null;
+  const ovSubtitle = override.subtitle && override.subtitle.trim() ? override.subtitle : null;
+  const ovEyebrow = override.eyebrow && override.eyebrow.trim() ? override.eyebrow : null;
+  const ovImage = override.image && override.image.trim() ? override.image : null;
+  const finalTitle = pageKey && override.loaded && ovTitle ? ovTitle : title;
+  const finalSubtitle = pageKey && override.loaded && ovSubtitle ? ovSubtitle : subtitle;
+  const finalEyebrow = pageKey && override.loaded && ovEyebrow ? ovEyebrow : eyebrow;
+  const finalBg = pageKey && override.loaded && ovImage ? ovImage : backgroundImage;
   return (
     <section className="relative bg-[color:var(--surface-dark)] pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
       {finalBg && (

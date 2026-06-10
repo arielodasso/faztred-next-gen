@@ -1,0 +1,1 @@
+UPDATE public.page_heroes SET title = '', subtitle = NULL, eyebrow = NULL;
