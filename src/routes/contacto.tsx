@@ -1,6 +1,7 @@
 
 import { MapPin, Mail, Phone, Clock, Instagram, Linkedin, MessageCircle, CalendarCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import heroImage from "@/assets/hero-industrial.jpg";
 import { ContactForm } from "@/components/site/ContactForm";
 import { PHONE_NUMBER, PHONE_DISPLAY, EMAIL } from "@/lib/site-data";
