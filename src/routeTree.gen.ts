@@ -23,13 +23,16 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
+import { Route as AdminProyectosRouteImport } from './routes/admin.proyectos'
 import { Route as AdminPopupRouteImport } from './routes/admin.popup'
 import { Route as AdminGtmRouteImport } from './routes/admin.gtm'
 import { Route as AdminFormulariosRouteImport } from './routes/admin.formularios'
+import { Route as AdminEncabezadosRouteImport } from './routes/admin.encabezados'
 import { Route as AdminConfiguracionRouteImport } from './routes/admin.configuracion'
 import { Route as AdminConfianzaRouteImport } from './routes/admin.confianza'
 import { Route as AdminClientesRouteImport } from './routes/admin.clientes'
 import { Route as AdminAdjuntosRouteImport } from './routes/admin.adjuntos'
+import { Route as ApiPublicMediaSplatRouteImport } from './routes/api.public.media.$'
 
 const TablerosElectricosIndustrialesRoute =
   TablerosElectricosIndustrialesRouteImport.update({
@@ -103,6 +106,11 @@ const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
   path: '/usuarios',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminProyectosRoute = AdminProyectosRouteImport.update({
+  id: '/proyectos',
+  path: '/proyectos',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminPopupRoute = AdminPopupRouteImport.update({
   id: '/popup',
   path: '/popup',
@@ -116,6 +124,11 @@ const AdminGtmRoute = AdminGtmRouteImport.update({
 const AdminFormulariosRoute = AdminFormulariosRouteImport.update({
   id: '/formularios',
   path: '/formularios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEncabezadosRoute = AdminEncabezadosRouteImport.update({
+  id: '/encabezados',
+  path: '/encabezados',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminConfiguracionRoute = AdminConfiguracionRouteImport.update({
@@ -138,6 +151,11 @@ const AdminAdjuntosRoute = AdminAdjuntosRouteImport.update({
   path: '/adjuntos',
   getParentRoute: () => AdminRoute,
 } as any)
+const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
+  id: '/api/public/media/$',
+  path: '/api/public/media/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -156,11 +174,14 @@ export interface FileRoutesByFullPath {
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/encabezados': typeof AdminEncabezadosRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/proyectos': typeof AdminProyectosRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -178,11 +199,14 @@ export interface FileRoutesByTo {
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/encabezados': typeof AdminEncabezadosRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/proyectos': typeof AdminProyectosRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin': typeof AdminIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -202,11 +226,14 @@ export interface FileRoutesById {
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/confianza': typeof AdminConfianzaRoute
   '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/encabezados': typeof AdminEncabezadosRoute
   '/admin/formularios': typeof AdminFormulariosRoute
   '/admin/gtm': typeof AdminGtmRoute
   '/admin/popup': typeof AdminPopupRoute
+  '/admin/proyectos': typeof AdminProyectosRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -227,11 +254,14 @@ export interface FileRouteTypes {
     | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
+    | '/admin/encabezados'
     | '/admin/formularios'
     | '/admin/gtm'
     | '/admin/popup'
+    | '/admin/proyectos'
     | '/admin/usuarios'
     | '/admin/'
+    | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -249,11 +279,14 @@ export interface FileRouteTypes {
     | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
+    | '/admin/encabezados'
     | '/admin/formularios'
     | '/admin/gtm'
     | '/admin/popup'
+    | '/admin/proyectos'
     | '/admin/usuarios'
     | '/admin'
+    | '/api/public/media/$'
   id:
     | '__root__'
     | '/'
@@ -272,11 +305,14 @@ export interface FileRouteTypes {
     | '/admin/clientes'
     | '/admin/confianza'
     | '/admin/configuracion'
+    | '/admin/encabezados'
     | '/admin/formularios'
     | '/admin/gtm'
     | '/admin/popup'
+    | '/admin/proyectos'
     | '/admin/usuarios'
     | '/admin/'
+    | '/api/public/media/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -292,6 +328,7 @@ export interface RootRouteChildren {
   ServiciosRoute: typeof ServiciosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TablerosElectricosIndustrialesRoute: typeof TablerosElectricosIndustrialesRoute
+  ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -394,6 +431,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsuariosRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/proyectos': {
+      id: '/admin/proyectos'
+      path: '/proyectos'
+      fullPath: '/admin/proyectos'
+      preLoaderRoute: typeof AdminProyectosRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/popup': {
       id: '/admin/popup'
       path: '/popup'
@@ -413,6 +457,13 @@ declare module '@tanstack/react-router' {
       path: '/formularios'
       fullPath: '/admin/formularios'
       preLoaderRoute: typeof AdminFormulariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/encabezados': {
+      id: '/admin/encabezados'
+      path: '/encabezados'
+      fullPath: '/admin/encabezados'
+      preLoaderRoute: typeof AdminEncabezadosRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/configuracion': {
@@ -443,6 +494,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdjuntosRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/api/public/media/$': {
+      id: '/api/public/media/$'
+      path: '/api/public/media/$'
+      fullPath: '/api/public/media/$'
+      preLoaderRoute: typeof ApiPublicMediaSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -451,9 +509,11 @@ interface AdminRouteChildren {
   AdminClientesRoute: typeof AdminClientesRoute
   AdminConfianzaRoute: typeof AdminConfianzaRoute
   AdminConfiguracionRoute: typeof AdminConfiguracionRoute
+  AdminEncabezadosRoute: typeof AdminEncabezadosRoute
   AdminFormulariosRoute: typeof AdminFormulariosRoute
   AdminGtmRoute: typeof AdminGtmRoute
   AdminPopupRoute: typeof AdminPopupRoute
+  AdminProyectosRoute: typeof AdminProyectosRoute
   AdminUsuariosRoute: typeof AdminUsuariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -463,9 +523,11 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminClientesRoute: AdminClientesRoute,
   AdminConfianzaRoute: AdminConfianzaRoute,
   AdminConfiguracionRoute: AdminConfiguracionRoute,
+  AdminEncabezadosRoute: AdminEncabezadosRoute,
   AdminFormulariosRoute: AdminFormulariosRoute,
   AdminGtmRoute: AdminGtmRoute,
   AdminPopupRoute: AdminPopupRoute,
+  AdminProyectosRoute: AdminProyectosRoute,
   AdminUsuariosRoute: AdminUsuariosRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
@@ -485,17 +547,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServiciosRoute: ServiciosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TablerosElectricosIndustrialesRoute: TablerosElectricosIndustrialesRoute,
+  ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -113,6 +113,36 @@ export type Database = {
         }
         Relationships: []
       }
+      page_heroes: {
+        Row: {
+          eyebrow: string | null
+          id: string
+          image_url: string | null
+          page_key: string
+          subtitle: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          eyebrow?: string | null
+          id?: string
+          image_url?: string | null
+          page_key: string
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          eyebrow?: string | null
+          id?: string
+          image_url?: string | null
+          page_key?: string
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       popup_config: {
         Row: {
           button_label: string | null
@@ -172,6 +202,95 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      project_categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          category_id: string | null
+          cover_url: string | null
+          created_at: string
+          gallery: string[]
+          id: string
+          industry: string
+          is_published: boolean
+          problem: string
+          result: string
+          slug: string
+          solution: string[]
+          sort_order: number
+          technologies: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category_id?: string | null
+          cover_url?: string | null
+          created_at?: string
+          gallery?: string[]
+          id?: string
+          industry?: string
+          is_published?: boolean
+          problem?: string
+          result?: string
+          slug: string
+          solution?: string[]
+          sort_order?: number
+          technologies?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category_id?: string | null
+          cover_url?: string | null
+          created_at?: string
+          gallery?: string[]
+          id?: string
+          industry?: string
+          is_published?: boolean
+          problem?: string
+          result?: string
+          slug?: string
+          solution?: string[]
+          sort_order?: number
+          technologies?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "project_categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       trust_logos: {
         Row: {

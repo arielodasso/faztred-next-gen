@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import heroImage from "@/assets/hero-industrial.jpg";
 import { Placeholder } from "@/components/site/Placeholder";
 import { Badge } from "@/components/site/Badge";
-import { projects, type Project, type ProjectCategory } from "@/lib/site-data";
+import { projects as staticProjects, type Project as StaticProject } from "@/lib/site-data";
 import { pushEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { mediaUrl } from "@/lib/media-url";
 
 export const Route = createFileRoute("/proyectos")({
   component: ProyectosPage,
@@ -47,29 +49,79 @@ export const Route = createFileRoute("/proyectos")({
   }),
 });
 
-const categories: ("Todos" | ProjectCategory)[] = [
-  "Todos",
-  "Automatización",
-  "Tableros",
-  "Revamping",
-  "Capacitación",
-  "Cerramiento",
-  "Antiexplosivo",
-  "Señalización",
-];
+interface Project {
+  slug: string;
+  title: string;
+  industry: string;
+  category: string;
+  problem: string;
+  solution: string[];
+  result: string;
+  technologies: string[];
+  images: number;
+  gallery?: string[];
+  cover?: string;
+}
+
+function fromStatic(p: StaticProject): Project {
+  return { ...p };
+}
 
 function ProyectosPage() {
   const { cat } = Route.useSearch();
-  const initial = (categories as string[]).includes(cat ?? "") ? (cat as (typeof categories)[number]) : "Todos";
-  const [active, setActive] = useState<(typeof categories)[number]>(initial);
+  const [active, setActive] = useState<string>(cat ?? "Todos");
   const [open, setOpen] = useState<Project | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [dbProjects, setDbProjects] = useState<Project[] | null>(null);
+  const [dbCategories, setDbCategories] = useState<string[] | null>(null);
 
   useEffect(() => {
-    if (cat && (categories as string[]).includes(cat)) {
-      setActive(cat as (typeof categories)[number]);
-    }
+    (async () => {
+      const [{ data: pRows }, { data: cRows }] = await Promise.all([
+        supabase
+          .from("projects")
+          .select("slug, title, industry, problem, solution, result, technologies, cover_url, gallery, project_categories(name)")
+          .eq("is_published", true)
+          .order("sort_order"),
+        supabase.from("project_categories").select("name").order("sort_order"),
+      ]);
+      if (pRows && pRows.length > 0) {
+        const mapped: Project[] = (pRows as Array<Record<string, unknown> & { project_categories: { name: string } | null }>).map((r) => ({
+          slug: r.slug as string,
+          title: r.title as string,
+          industry: (r.industry as string) ?? "",
+          category: r.project_categories?.name ?? "Sin categoría",
+          problem: (r.problem as string) ?? "",
+          solution: (r.solution as string[]) ?? [],
+          result: (r.result as string) ?? "",
+          technologies: (r.technologies as string[]) ?? [],
+          images: 0,
+          gallery: ((r.gallery as string[]) ?? []).map((g) => mediaUrl(g) ?? g),
+          cover: mediaUrl(r.cover_url as string | null) ?? undefined,
+        }));
+        setDbProjects(mapped);
+      } else {
+        setDbProjects([]);
+      }
+      if (cRows && cRows.length > 0) {
+        setDbCategories((cRows as Array<{ name: string }>).map((c) => c.name));
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (cat) setActive(cat);
   }, [cat]);
+
+  const projects: Project[] = useMemo(() => {
+    if (dbProjects && dbProjects.length > 0) return dbProjects;
+    return staticProjects.map(fromStatic);
+  }, [dbProjects]);
+
+  const categories: string[] = useMemo(() => {
+    const base = dbCategories ?? ["Automatización", "Tableros", "Revamping", "Capacitación", "Cerramiento", "Antiexplosivo", "Señalización"];
+    return ["Todos", ...base];
+  }, [dbCategories]);
 
   const lightboxImages = open?.gallery ?? [];
 
@@ -104,9 +156,11 @@ function ProyectosPage() {
     };
   }, [open]);
 
+
   return (
     <>
       <PageHero
+        pageKey="proyectos"
         eyebrow="Casos reales"
         title="Proyectos realizados"
         subtitle="Experiencia real en planta. Problema, solución y resultado."

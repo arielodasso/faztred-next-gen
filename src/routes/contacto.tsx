@@ -45,6 +45,7 @@ function ContactoPage() {
   return (
     <>
       <PageHero
+        pageKey="contacto"
         eyebrow="Hablemos"
         title="Contacto"
         subtitle="Contanos tu desafío. Te respondemos rápido."
