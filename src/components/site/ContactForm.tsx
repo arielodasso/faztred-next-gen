@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -12,6 +13,7 @@ interface Props {
 
 export function ContactForm({ variant = "compact", className }: Props) {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,6 +48,7 @@ export function ContactForm({ variant = "compact", className }: Props) {
     setLoading(false);
     form.reset();
     toast.success("Mensaje enviado", { description: "Te vamos a responder a la brevedad." });
+    navigate("/gracias");
   };
 
   const fieldCls =
