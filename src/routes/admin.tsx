@@ -12,6 +12,8 @@ import {
   ExternalLink,
   LogOut,
   Tag,
+  FolderKanban,
+  Image as ImageIcon,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, hasRole } from "@/lib/use-auth";
@@ -33,6 +35,8 @@ const superadminNav: NavItem[] = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { to: "/admin/usuarios", label: "Usuarios", icon: Users },
   { to: "/admin/clientes", label: "Clientes", icon: Briefcase },
+  { to: "/admin/proyectos", label: "Proyectos", icon: FolderKanban },
+  { to: "/admin/encabezados", label: "Encabezados", icon: ImageIcon },
   { to: "/admin/formularios", label: "Formularios", icon: Inbox },
   { to: "/admin/popup", label: "Popup", icon: Megaphone },
   { to: "/admin/confianza", label: "Confianza", icon: ShieldCheck },
