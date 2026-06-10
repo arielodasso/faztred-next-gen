@@ -1,9 +1,11 @@
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
 import { cn } from "@/lib/utils";
 import { pushEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 interface Props {
   variant?: "compact" | "full";
@@ -12,6 +14,7 @@ interface Props {
 
 export function ContactForm({ variant = "compact", className }: Props) {
   const [loading, setLoading] = useState(false);
+  const sendEmail = useServerFn(sendContactEmail);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,20 +23,30 @@ export function ContactForm({ variant = "compact", className }: Props) {
     const fd = new FormData(form);
     pushEvent("form_submit", { location: "contact_form", label: variant });
 
-    const { error } = await supabase.from("contact_submissions").insert({
+    const payload = {
       name: String(fd.get("name") ?? ""),
       email: String(fd.get("email") ?? ""),
       phone: String(fd.get("phone") ?? "") || null,
       company: String(fd.get("company") ?? "") || null,
       message: String(fd.get("message") ?? ""),
       source: variant,
-    });
+    };
 
-    setLoading(false);
+    const { error } = await supabase.from("contact_submissions").insert(payload);
+
     if (error) {
+      setLoading(false);
       toast.error("No se pudo enviar el mensaje");
       return;
     }
+
+    try {
+      await sendEmail({ data: payload });
+    } catch (err) {
+      console.error("sendContactEmail failed", err);
+    }
+
+    setLoading(false);
     form.reset();
     toast.success("Mensaje enviado", { description: "Te vamos a responder a la brevedad." });
   };
