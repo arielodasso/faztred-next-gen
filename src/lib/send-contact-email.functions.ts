@@ -57,7 +57,7 @@ export const sendContactEmail = createServerFn({ method: "POST" })
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        from: "Faztred Web <onboarding@resend.dev>",
+        from: "Faztred Web <info@faztred.com.ar>",
         to: ["info@faztred.com.ar"],
         reply_to: data.email,
         subject: `Nueva consulta web — ${data.name}`,
