@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ArrowRight, CheckCircle2, X, Sparkles, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import heroImage from "@/assets/hero-industrial.jpg";
@@ -31,7 +31,8 @@ function fromStatic(p: StaticProject): Project {
 }
 
 function ProyectosPage() {
-  const { cat } = Route.useSearch();
+  const [searchParams] = useSearchParams();
+  const cat = searchParams.get("cat") ?? undefined;
   const [active, setActive] = useState<string>(cat ?? "Todos");
   const [open, setOpen] = useState<Project | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
