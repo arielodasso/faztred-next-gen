@@ -4,13 +4,20 @@ import { ArrowRight, Briefcase } from "lucide-react";
 import heroPlanta from "@/assets/hero-planta.jpg";
 import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
+import { usePageHero } from "@/lib/use-page-hero";
 
 export function HeroSlider() {
   const [mounted, setMounted] = useState(false);
+  const hero = usePageHero("home");
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 30);
     return () => clearTimeout(t);
   }, []);
+  const bgImage = hero.loaded && hero.image ? hero.image : heroPlanta;
+  const title = hero.loaded && hero.title ? hero.title : "Automatización industrial con soluciones reales para planta";
+  const subtitle = hero.loaded && hero.subtitle
+    ? hero.subtitle
+    : "Ingeniería, programación, tableros eléctricos, revamping y asistencia técnica para industrias que necesitan resultados concretos.";
 
   return (
     <section className="relative h-screen min-h-[560px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-darker)]">
