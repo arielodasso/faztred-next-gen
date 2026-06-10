@@ -23,7 +23,7 @@ export function HeroSlider() {
     <section className="relative h-screen min-h-[560px] max-h-[920px] w-full overflow-hidden bg-[color:var(--surface-darker)]">
       <div className="absolute inset-0">
         <img
-          src={heroPlanta}
+          src={bgImage}
           alt="Equipo Faztred trabajando en una planta industrial"
           className="h-full w-full object-cover object-center"
           fetchPriority="high"
