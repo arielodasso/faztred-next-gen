@@ -20,7 +20,7 @@ interface UserRow {
 }
 
 function UsuariosPage() {
-  const createFn = async (args: { data: typeof form }) => {
+  const createFn = async (args: { data: { email: string; password: string; full_name: string; role: "superadmin" | "client_admin" } }) => {
     const { error } = await supabase.functions.invoke("admin-users", {
       body: { action: "create", ...args.data },
     });
