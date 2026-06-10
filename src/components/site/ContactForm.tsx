@@ -1,11 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
-import { useServerFn } from "@tanstack/react-start";
 import { cn } from "@/lib/utils";
 import { pushEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
-import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 interface Props {
   variant?: "compact" | "full";
@@ -14,7 +12,6 @@ interface Props {
 
 export function ContactForm({ variant = "compact", className }: Props) {
   const [loading, setLoading] = useState(false);
-  const sendEmail = useServerFn(sendContactEmail);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,16 +38,15 @@ export function ContactForm({ variant = "compact", className }: Props) {
     }
 
     try {
-      await sendEmail({ data: payload });
+      await supabase.functions.invoke("send-contact-email", { body: payload });
     } catch (err) {
-      console.error("sendContactEmail failed", err);
+      console.error("send-contact-email failed", err);
     }
 
     setLoading(false);
     form.reset();
     toast.success("Mensaje enviado", { description: "Te vamos a responder a la brevedad." });
   };
-
 
   const fieldCls =
     "w-full bg-white border border-border rounded-md px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-foreground/50 focus:ring-1 focus:ring-foreground/20 transition-colors";

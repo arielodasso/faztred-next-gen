@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Menu,
   X,
@@ -21,7 +21,7 @@ import { projects, type ProjectCategory } from "@/lib/site-data";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
 
 const links = [
-  { to: "/", label: "HOME" },
+  { to: "/", label: "HOME", end: true },
   { to: "/servicios", label: "SERVICIOS" },
   { to: "/productos", label: "PRODUCTOS" },
   { to: "/proyectos", label: "PROYECTOS", hasMenu: true },
@@ -42,6 +42,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -52,7 +53,7 @@ export function Navbar() {
 
   const handleLogoClick = () => {
     setOpen(false);
-    if (typeof window !== "undefined" && window.location.pathname === "/") {
+    if (typeof window !== "undefined" && location.pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -64,11 +65,7 @@ export function Navbar() {
         scrolled ? "top-3 md:top-5" : "top-0",
       )}
     >
-      <div
-        className={cn(
-          "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-300 ease-out",
-        )}
-      >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-300 ease-out">
         <div
           className={cn(
             "grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 lg:gap-4 h-20 md:h-24 px-4 md:px-6 lg:px-4 2xl:px-6 transition-all duration-300 ease-out",
@@ -85,7 +82,6 @@ export function Navbar() {
             />
           </Link>
 
-
           <nav className="hidden lg:flex min-w-0 items-center justify-center gap-3 xl:gap-4 2xl:gap-8">
             {links.map((l) =>
               "hasMenu" in l && l.hasMenu ? (
@@ -95,10 +91,14 @@ export function Navbar() {
                   onMouseEnter={() => setProjectsOpen(true)}
                   onMouseLeave={() => setProjectsOpen(false)}
                 >
-                  <Link
+                  <NavLink
                     to={l.to}
-                    className="inline-flex items-center gap-1 text-[9px] xl:text-[10px] 2xl:text-[11px] font-medium tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
-                    activeProps={{ className: "!text-white" }}
+                    className={({ isActive }) =>
+                      cn(
+                        "inline-flex items-center gap-1 text-[9px] xl:text-[10px] 2xl:text-[11px] font-medium tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group",
+                        isActive && "!text-white",
+                      )
+                    }
                   >
                     {l.label}
                     <ChevronDown
@@ -108,9 +108,8 @@ export function Navbar() {
                       )}
                     />
                     <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                  </Link>
+                  </NavLink>
 
-                  {/* Mega menu */}
                   <div
                     className={cn(
                       "absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200",
@@ -126,8 +125,7 @@ export function Navbar() {
                           return (
                             <Link
                               key={p.slug}
-                              to="/proyectos"
-                              search={{ cat: p.category }}
+                              to={`/proyectos?cat=${encodeURIComponent(p.category)}`}
                               onClick={() => setProjectsOpen(false)}
                               className="group flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-white/5 transition-colors"
                             >
@@ -160,16 +158,20 @@ export function Navbar() {
                   </div>
                 </div>
               ) : (
-                <Link
+                <NavLink
                   key={l.to}
                   to={l.to}
-                  className="text-[9px] xl:text-[10px] 2xl:text-[11px] font-medium tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group"
-                  activeProps={{ className: "!text-white" }}
-                  activeOptions={{ exact: l.to === "/" }}
+                  end={"end" in l ? l.end : false}
+                  className={({ isActive }) =>
+                    cn(
+                      "text-[9px] xl:text-[10px] 2xl:text-[11px] font-medium tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.18em] text-white/75 hover:text-white transition-colors relative py-2 group",
+                      isActive && "!text-white",
+                    )
+                  }
                 >
                   {l.label}
                   <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
+                </NavLink>
               ),
             )}
           </nav>
@@ -211,16 +213,20 @@ export function Navbar() {
         >
           <nav className="flex flex-col px-5 py-4 gap-1">
             {links.map((l) => (
-              <Link
+              <NavLink
                 key={l.to}
                 to={l.to}
+                end={"end" in l ? l.end : false}
                 onClick={() => setOpen(false)}
-                className="text-white/90 hover:text-primary text-sm font-medium tracking-wider py-3 border-b border-white/5"
-                activeProps={{ className: "!text-primary" }}
-                activeOptions={{ exact: l.to === "/" }}
+                className={({ isActive }) =>
+                  cn(
+                    "text-white/90 hover:text-primary text-sm font-medium tracking-wider py-3 border-b border-white/5",
+                    isActive && "!text-primary",
+                  )
+                }
               >
                 {l.label}
-              </Link>
+              </NavLink>
             ))}
             <Link
               to="/login"
