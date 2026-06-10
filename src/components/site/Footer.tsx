@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Instagram, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { pushEvent } from "@/lib/analytics";
@@ -11,11 +11,11 @@ import {
 import { useAppSettings } from "@/lib/use-site-config";
 
 const companyLinks = [
-  { label: "Sobre nosotros", to: "/" as const, hash: "diferenciales" },
-  { label: "Servicios", to: "/servicios" as const },
-  { label: "Productos", to: "/productos" as const },
-  { label: "Proyectos", to: "/proyectos" as const },
-  { label: "Contacto", to: "/contacto" as const },
+  { label: "Sobre nosotros", to: "/#diferenciales" },
+  { label: "Servicios", to: "/servicios" },
+  { label: "Productos", to: "/productos" },
+  { label: "Proyectos", to: "/proyectos" },
+  { label: "Contacto", to: "/contacto" },
   { label: "Brochure 2025", href: BROCHURE_URL, external: true },
 ];
 
@@ -29,7 +29,7 @@ const serviceLinks = [
   { label: "Sistemas especiales", slug: "sistemas-especiales" },
 ];
 
-const moreAboutLinks: { label: string; to: "/automatizacion-industrial" | "/tableros-electricos-industriales" | "/productos" | "/servicios" | "/proyectos" }[] = [
+const moreAboutLinks = [
   { label: "Automatización industrial", to: "/automatizacion-industrial" },
   { label: "Tableros eléctricos industriales", to: "/tableros-electricos-industriales" },
   { label: "Productos y soluciones", to: "/productos" },
@@ -53,14 +53,11 @@ export function Footer() {
   return (
     <footer className="bg-[color:var(--surface-darker)] px-3 md:px-4 pt-12 pb-8">
       <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl bg-[color:var(--surface-dark)] border border-white/[0.06]">
-        {/* Ember radial glows — n8n signature */}
         <div className="pointer-events-none absolute -top-32 -left-24 w-[55%] h-[70%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.22),transparent_65%)] blur-3xl" />
         <div className="pointer-events-none absolute -bottom-40 -right-24 w-[55%] h-[70%] bg-[radial-gradient(circle_at_center,rgba(204,0,0,0.18),transparent_65%)] blur-3xl" />
 
         <div className="relative px-6 sm:px-10 lg:px-14 pt-14 pb-10 text-white">
-          {/* Top: brand + nav columns */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
-            {/* Brand block */}
             <div className="lg:col-span-4">
               <Link to="/" className="block mb-5">
                 <img src={logoWhite} alt="Faztred Soluciones" className="h-12 w-auto" />
@@ -93,29 +90,19 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Company */}
             <div className="lg:col-span-2">
               <h4 className="text-white text-sm font-semibold mb-5">Empresa</h4>
               <ul className="space-y-3 text-sm">
                 {companyLinks.map((l) =>
                   "href" in l ? (
                     <li key={l.label}>
-                      <a
-                        href={l.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white/55 hover:text-white transition-colors"
-                      >
+                      <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-white/55 hover:text-white transition-colors">
                         {l.label}
                       </a>
                     </li>
                   ) : (
                     <li key={l.label}>
-                      <Link
-                        to={l.to}
-                        hash={l.hash}
-                        className="text-white/55 hover:text-white transition-colors"
-                      >
+                      <Link to={l.to} className="text-white/55 hover:text-white transition-colors">
                         {l.label}
                       </Link>
                     </li>
@@ -124,17 +111,12 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Services */}
             <div className="lg:col-span-3">
               <h4 className="text-white text-sm font-semibold mb-5">Servicios</h4>
               <ul className="space-y-3 text-sm">
                 {serviceLinks.map((s) => (
                   <li key={s.slug}>
-                    <Link
-                      to="/servicios"
-                      hash={s.slug}
-                      className="text-white/55 hover:text-white transition-colors"
-                    >
+                    <Link to={`/servicios#${s.slug}`} className="text-white/55 hover:text-white transition-colors">
                       {s.label}
                     </Link>
                   </li>
@@ -142,7 +124,6 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Contact */}
             <div className="lg:col-span-3">
               <h4 className="text-white text-sm font-semibold mb-5">Contacto</h4>
               <ul className="space-y-3 text-sm">
@@ -152,21 +133,13 @@ export function Footer() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="h-4 w-4 mt-0.5 text-white/35 flex-shrink-0" />
-                  <a
-                    href={`mailto:${EMAIL}`}
-                    onClick={() => pushEvent("email_click", { location: "footer" })}
-                    className="text-white/55 hover:text-white transition-colors break-all"
-                  >
+                  <a href={`mailto:${EMAIL}`} onClick={() => pushEvent("email_click", { location: "footer" })} className="text-white/55 hover:text-white transition-colors break-all">
                     {EMAIL}
                   </a>
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="h-4 w-4 mt-0.5 text-white/35 flex-shrink-0" />
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    onClick={() => pushEvent("phone_click", { location: "footer" })}
-                    className="text-white/55 hover:text-white transition-colors"
-                  >
+                  <a href={`tel:${PHONE_NUMBER}`} onClick={() => pushEvent("phone_click", { location: "footer" })} className="text-white/55 hover:text-white transition-colors">
                     {PHONE_DISPLAY}
                   </a>
                 </li>
@@ -175,17 +148,13 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Divider — Más sobre Faztred + tech */}
           <div className="mt-14 pt-10 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
               <h4 className="text-white text-sm font-semibold mb-5">Más sobre Faztred Soluciones</h4>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 text-sm">
                 {moreAboutLinks.map((l) => (
                   <li key={l.to}>
-                    <Link
-                      to={l.to}
-                      className="text-white/55 hover:text-white transition-colors"
-                    >
+                    <Link to={l.to} className="text-white/55 hover:text-white transition-colors">
                       {l.label}
                     </Link>
                   </li>
@@ -197,10 +166,7 @@ export function Footer() {
               <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                 {technologies.map((t) => (
                   <li key={t}>
-                    <Link
-                      to="/servicios"
-                      className="text-white/55 hover:text-white transition-colors"
-                    >
+                    <Link to="/servicios" className="text-white/55 hover:text-white transition-colors">
                       {t}
                     </Link>
                   </li>
@@ -209,7 +175,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Bottom bar */}
           <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/40">
             <p>© {new Date().getFullYear()} Faztred Soluciones. Todos los derechos reservados.</p>
             <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center">

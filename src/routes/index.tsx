@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import {
   CalendarCheck,
   MessageCircle,
@@ -29,6 +29,7 @@ import {
 import { pushEvent } from "@/lib/analytics";
 import { calendarPopupHandler } from "@/lib/calendar-popup";
 import { useAppSettings, useTrustLogos } from "@/lib/use-site-config";
+import { useDocumentHead } from "@/lib/useDocumentHead";
 import clientManaos from "@/assets/clients/manaos.png";
 import clientYpf from "@/assets/clients/ypf.png";
 import clientYamaha from "@/assets/clients/yamaha.png";
@@ -80,33 +81,6 @@ function openBrochurePopup(e: React.MouseEvent) {
   );
 }
 
-export const Route = createFileRoute("/")({
-  component: HomePage,
-  head: () => ({
-    meta: [
-      { title: "Faztred | Automatización Industrial, PLC y SCADA" },
-      {
-        name: "description",
-        content:
-          "Automatización industrial, PLC, SCADA, tableros eléctricos, revamping e Industria 4.0 para procesos productivos.",
-      },
-      {
-        name: "keywords",
-        content:
-          "automatización industrial, PLC, SCADA, tableros eléctricos, revamping, integración industrial, programación PLC, mantenimiento industrial, Industria 4.0, ingeniería industrial, automatización de procesos",
-      },
-      { property: "og:title", content: "Faztred | Automatización Industrial llave en mano" },
-      {
-        property: "og:description",
-        content:
-          "PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias.",
-      },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
-});
-
 const contactCards = [
   {
     icon: CalendarCheck,
@@ -145,7 +119,17 @@ const whyFaztred = [
 
 const industries = ["Química", "Metalúrgica", "Alimenticia", "Automotriz", "Farmacéutica"];
 
-function HomePage() {
+export default function HomePage() {
+  useDocumentHead({
+    title: "Faztred | Automatización Industrial, PLC y SCADA",
+    description: "Automatización industrial, PLC, SCADA, tableros eléctricos, revamping e Industria 4.0 para procesos productivos.",
+    keywords: "automatización industrial, PLC, SCADA, tableros eléctricos, revamping, integración industrial, programación PLC, mantenimiento industrial, Industria 4.0, ingeniería industrial, automatización de procesos",
+    canonical: "https://faztred.com.ar/",
+    ogTitle: "Faztred | Automatización Industrial llave en mano",
+    ogDescription: "PLC, SCADA, tableros eléctricos, revamping y asistencia técnica para industrias.",
+    ogUrl: "https://faztred.com.ar/",
+    ogType: "website",
+  });
   const { whatsappUrl } = useAppSettings();
   const dynamicLogos = useTrustLogos();
   const logosToRender = dynamicLogos.length > 0
@@ -154,12 +138,11 @@ function HomePage() {
   const midDyn = Math.ceil(logosToRender.length / 2);
   const rowA = logosToRender.slice(0, midDyn);
   const rowB = logosToRender.slice(midDyn);
+  void clientsRowA; void clientsRowB;
   return (
     <>
       <WelcomePopup />
       <HeroSlider />
-
-
 
       {/* Contact CTAs */}
       <section className="bg-[#e6e7ea] py-20 md:py-28" aria-labelledby="home-contact-cta-heading">
@@ -376,7 +359,6 @@ function HomePage() {
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -417,7 +399,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
 
       {/* Quick contact form */}
       <section className="py-20 md:py-28 bg-background">
