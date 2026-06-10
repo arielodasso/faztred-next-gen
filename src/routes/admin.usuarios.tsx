@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { createUserAccount, deleteUserAccount } from "@/lib/admin-users.functions";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,8 +20,18 @@ interface UserRow {
 }
 
 function UsuariosPage() {
-  const createFn = useServerFn(createUserAccount);
-  const deleteFn = useServerFn(deleteUserAccount);
+  const createFn = async (args: { data: typeof form }) => {
+    const { error } = await supabase.functions.invoke("admin-users", {
+      body: { action: "create", ...args.data },
+    });
+    if (error) throw new Error(error.message);
+  };
+  const deleteFn = async (args: { data: { user_id: string } }) => {
+    const { error } = await supabase.functions.invoke("admin-users", {
+      body: { action: "delete", user_id: args.data.user_id },
+    });
+    if (error) throw new Error(error.message);
+  };
   const [rows, setRows] = useState<UserRow[]>([]);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", full_name: "", role: "client_admin" as "superadmin" | "client_admin" });
