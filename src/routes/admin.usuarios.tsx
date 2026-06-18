@@ -22,13 +22,13 @@ interface UserRow {
 function UsuariosPage() {
   const createFn = async (args: { data: { email: string; password: string; full_name: string; role: "superadmin" | "client_admin" } }) => {
     const { error } = await supabase.functions.invoke("admin-users", {
-      body: { action: "create", ...args.data },
+      body: { action: "create", payload: args.data },
     });
     if (error) throw new Error(error.message);
   };
   const deleteFn = async (args: { data: { user_id: string } }) => {
     const { error } = await supabase.functions.invoke("admin-users", {
-      body: { action: "delete", user_id: args.data.user_id },
+      body: { action: "delete", payload: { user_id: args.data.user_id } },
     });
     if (error) throw new Error(error.message);
   };
